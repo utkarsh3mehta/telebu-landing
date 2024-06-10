@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="q7AbFskcx5yCZpGbM5q7c_4NiFs3v3xUTKi9196tLSI" />
+    <title>Quotation India</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        .invoice-heading span {
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='15' stroke-dasharray='7%2c 28' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+            height: 1px;
+            width: 350px;
+        }
+        body{
+            font-family: "Poppins", sans-serif;
+        }
+        .container{
+            max-width: 1200px;
+            margin: auto;
+        }
+        .table-bordered.invoice-table {
+            border-color: rgba(97, 153, 237, 0.26);
+            }
+        .table-bordered.invoice-table tr td:first-of-type {
+            background: rgba(97, 153, 237, 0.26);
+        }
+
+        table.invoice-item-table {
+            border-color: rgba(97, 153, 237, 0.26);
+        }
+        table.invoice-item-table thead th {
+            background-color: #3166de;
+            color: #fff;
+        }
+        table.invoice-item-table tbody tr {
+            border-width: 0;
+        }
+        table.invoice-item-table tbody tr td {
+            border-bottom-color: rgba(97, 153, 237, 0.26) !important;
+        }
+        table.invoice-item-table tbody tr.border-bottom {
+            border-bottom-color: rgba(97, 153, 237, 0.26) !important;
+        }
+
+        table.payment-table {
+            border-color: rgba(97, 153, 237, 0.26);
+        }
+        .header-div{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .header-div span{
+            display: block;
+        }
+        .text-right{
+            text-align: right;
+        }
+        .invoice-heading{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            margin-top: 30px;
+        }
+        .invoice-heading h1{
+            color: #3166de;
+            font-size: 40px;
+            padding: 0 16px 0 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .address-table{
+            display: flex;
+            justify-content: space-between
+        } 
+        .mb-50{
+            margin-bottom: 50px;
+        }
+        h6{
+            color: #333;
+            font-weight: 700;
+            font-size: 16px;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .address-table span{
+            display: block;
+        }
+        .table {
+            border-color: rgba(97, 153, 237, 0.26);
+            border-collapse: collapse;
+            padding: .5rem .5rem;
+            width: 100%;
+        }
+        .table td, .table th{
+            border: 1px solid rgba(97, 153, 237, 0.26);
+        }
+        .table, td, th {
+            padding: .5rem .5rem;
+        }
+       
+        .text-end{
+            text-align: right;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .table .border-0.border-bottom {
+            border-bottom: 1px solid rgba(97, 153, 237, 0.26);
+        }
+        .table .border-0{
+            border: 0;
+        }
+        .col-md-6{
+            flex: 0 0 auto;
+            width: 50%;
+        }
+        .table .border-bottom.border-3{
+            border-width: 4px;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <header>
+        <div class="container">
+            <div class="header-div">
+                <div class="logo text-md-start text-center">
+                    <a href="index.html">
+                        <img src="images/logo.svg" alt="">
+                    </a>
+                </div>
+                <div class="text-right">
+                    <div>
+                        <h6 class="mb-0">Telebu Communications Pvt. Ltd.</h6>
+                            <span class="d-block">Plot no. 81/10, Block-D, 5th floor, Sreenidhi Pearl, Street Number 1, 
+                            </span>
+                            <span class="d-block">Patrika Nagar, Madhapur, Hyderabad, Telangana</span>
+                            <span class="d-block">GST 36AAKCT7722M1ZQ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="invoice-heading mt-30 mb-50 d-flex justify-content-center align-items-center">
+            <span class="d-block"></span>
+            <h1 class="text-center color-primary pe-sm-3 ps-sm-2 text-nowrap"> QUOTATION </h1>
+            <span class="d-block"></span>
+        </div>
+        <div class="address-table mb-50">
+            <div class="col-md-6">
+                <div>
+                    <h6 class="mb-0">THE PRINTERS (MYSORE) PVT LTD</h6>
+                        <span class="d-block">Address: PLOT NO. 7-12, KUMBALGODU INDUSTRIAL AREA, 2ND</span>
+                        <span class="d-block">PHASE, BENGALURU-5600074</span>
+                        <span class="d-block">Mobile: +91 99019 74750</span>
+                        <span class="d-block">Email: thejaswini.s@deccanherald.co.in</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="table-responsive">
+                    <table class=" table table-bordered invoice-table">
+                        <tbody>
+                            <tr>
+                                <td>Quotation #</td>
+                                <td>Telebu/IND/Apr-24/088</td>
+                            </tr>
+                            <tr>
+                                <td>Quotation Date</td>
+                                <td>16-04-2024</td>
+                            </tr>
+                            <tr>
+                                <td>Due Date</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Period</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle">Account Manager</td>
+                                <td>
+                                    <span class="d-block">Aesha Shabreen</span>
+                                    <span class="d-block">+91 97019 23786</span>
+                                    <span class="d-block">aesha.shabreen@smscountry.com</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+               
+            </div>
+        </div>
+        <div class="row mb-90">
+            <div class="col-sm-12 mb-40">
+                <div class="table-responsive">
+                    <table class="table table-bordered invoice-item-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="4%">#</th>
+                                <th class="text-center" width="30%">Item &amp; Description</th>
+                                <th class="text-center" width="20%">Delivery Period</th>
+                                <th class="text-center" width="16%">Qty</th>
+                                <th class="text-center" width="15%">Rate</th>
+                                <th class="text-center" width="15%">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle text-center">1</td>
+                                <td>
+                                    <h6 class="d-block">One-time Setup Cost</h6>
+                                    <span class="mb-15 d-inline-block">
+                                        Setup of WhatsApp Business API Account
+                                        1 Facebook Business Account Verification
+                                        1 Marketing Campaign Setup
+                                        1 Chatbot Integration (English)
+                                        OTP Verification + Google Sheets Integration 
+                                    </span>
+                                </td>
+                                <td class="align-middle text-center">-</td>
+                                <td class="align-middle text-center">1</td>
+                                <td class="align-middle text-end">INR 15,000.00</td>
+                                <td class="align-middle text-end">INR 15,000.00</td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center">2</td>
+                                <td>
+                                    <h6 class="d-block">Platform Subscription Fee</h6>
+                                    <span class="mb-15 d-inline-block">
+                                        Hosting & Maintenance
+                                        WABA Number Setup
+                                        1000 Free Service (User Initiated) Conversations per Month
+                                    </span>
+                                </td>
+                                <td class="align-middle text-center">16-04-2024 to 15-10-2024</td>
+                                <td class="align-middle text-center">6</td>
+                                <td class="align-middle text-end">NR 4,000.00</td>
+                                <td class="align-middle text-end">NR 24,000.00</td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center">3</td>
+                                <td>
+                                    <span class="d-inline-block">
+                                        Marketing Conversations (Business Initiated)
+                                        Preferred Country - India
+                                    </span>
+                                </td>
+                                <td class="align-middle text-center">-</td>
+                                <td class="align-middle text-center">Per Conversation</td>
+                                <td class="align-middle text-end">INR 0.78</td>
+                                <td class="align-middle text-end">-</td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle text-center">4</td>
+                                <td>
+                                    <span class="d-inline-block">
+                                        Utility Conversations (Business Initiated) 
+                                        Preferred Country - India
+                                    </span>
+                                </td>
+                                <td class="align-middle text-center">-</td>
+                                <td class="align-middle text-center">Per Conversation</td>
+                                <td class="align-middle text-end">INR 0.36</td>
+                                <td class="align-middle text-end">-</td>
+                            </tr>
+                            <tr class="">
+                                <td class="align-middle text-center">5</td>
+                                <td>
+                                    <span>
+                                        Service Conversations (User Initiated) Preferred Country - India
+                                    </span>
+                                </td>
+                                <td class="align-middle text-center">-</td>
+                                <td class="align-middle text-center">Per Conversation</td>
+                                <td class="align-middle text-end">INR 0.36</td>
+                                <td class="align-middle text-end">-</td>
+                            </tr>
+                            <tr class="border-bottom">
+                                <td class="align-middle text-center">6</td>
+                                <td>
+                                    <h6 class="d-block">Monthly Active Users (MAU)</h6>
+                                    <span class="d-inline-block">
+                                        Monthly unique user engagements across social channels 
+                                    </span>
+                                </td>
+                                <td class="align-middle text-center">-</td>
+                                <td class="align-middle text-center">Per MAU</td>
+                                <td class="align-middle text-end">INR 3.00</td>
+                                <td class="align-middle text-end">-</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center border-0"></td>
+                                <td class="text-center border-0"></td>
+                                <td class="text-center border-0"></td>
+                                <td class="text-end border-0 border-bottom" width="12%">SUB TOTAL</td>
+                                <td class="text-center border-0 border-bottom" width="13%"></td>
+                                <td class="text-end border-0 border-bottom" width="13%">INR 39,000.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center border-0"></td>
+                                <td class="text-center border-0"></td>
+                                <td class="text-center border-0"></td>
+                                <td class="text-end border-0 border-bottom" width="12%">GST (18%)</td>
+                                <td class="text-center border-0 border-bottom" width="13%"></td>
+                                <td class="text-end border-0 border-bottom" width="13%">INR 7,020.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center border-0"></td>
+                                <td class="text-center border-0"></td>
+                                <td class="text-center border-0"></td>
+                                <td class="text-end border-0 border-bottom border-3" width="12%">
+                                    <h6 class="text-nowrap">TOTAL AMOUNT</h6>
+                                </td>
+                                <td class="text-center border-0 border-bottom border-3" width="13%"></td>
+                                <td class="text-end border-0 border-bottom border-3" width="13%">
+                                    <h6 class="text-nowrap">INR 46,020.00</h6>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- <div class="col-sm-12">
+                <p class="mb-0">Please make your payments to "TELEBU COMMUNICATIONS LLC"</p>
+                <div class="table-responsive">
+                    <table class="table table-bordered payment-table">
+                        <tbody>
+                            <tr>
+                                <td><b>Bank Name</b></td>
+                                <td>RAK Bank</td>
+                                <td>ADCB Bank</td>
+                                <td>Emirates Islamic Bank</td>
+                            </tr>
+                            <tr>
+                                <td><b>Current Account No</b></td>
+                                <td>0332014346001</td>
+                                <td>11334962920001</td>
+                                <td>3708321243701</td>
+                            </tr>
+                            <tr>
+                                <td><b>Address</b></td>
+                                <td>UMM Hurair Branch, Dubai, UAE</td>
+                                <td>Bay Branch, Dubai, UAE</td>
+                                <td>Sheikh Zayed Rd, Dubai, UAE</td>
+                            </tr>
+                            <tr>
+                                <td><b>SWIFT Code</b></td>
+                                <td>NRAKAEAK</td>
+                                <td>ADCBAEAA</td>
+                                <td>MEBLAEAD</td>
+                            </tr>
+                            <tr>
+                                <td><b>IBAN</b></td>
+                                <td>AE530400000332014346001</td>
+                                <td>AE200030011334962920001</td>
+                                <td>AE890340003708321243701</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Thank you for choosing TelebuSocial.</p>
+                </div>
+                
+            </div> -->
+            <div class="col-sm-12">
+                <div class="quotation-content">
+                    <p>Thank you for considering TelebuSocial!</p>
+                    <div class="mb-30">
+                        <h6 class="mb-20">Delivery Terms</h6>
+                        <ul>
+                            <li>The steps involved in going live are as follows
+                                <ol type="a">
+                                    <li>Facebook Business Verification</li>
+                                    <li>Chatbot/Campaign Creation</li>
+                                    <li>Platform Integration</li>
+                                    <li>Go Live</li>
+                                </ol>
+                            </li>
+                            <li>Facebook Business verification takes 2-3 days if all documents are ready.</li>
+                            <li>Creating a chatbot can take 1-2 days, depending on how complex it is.</li>
+                            <li>Launching a campaign can take less than a day, as long as Meta approves the templates.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-30">
+                        <h6 class="mb-20">Subscription Terms</h6>
+                        <ul>
+                            <li>All services need Meta's approval.</li>
+                            <li>The minimum contract period is 1 year.</li>
+                            <li>Prices may vary at the time of renewal or prior, based on Meta's pricing adjustments.</li>
+                            <li>Your platform subscription starts when your number is registered for WhatsApp API services.</li>
+                            <li>You need to notify us 30 days in advance if you want to cancel your Business WhatsApp API.</li>
+                            <li>We are not responsible if Meta blocks your WhatsApp number for messaging unsolicited numbers. We can ask Meta on your behalf, but it's Meta's call to unblock it.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-30">
+                        <h6 class="mb-20">Payment Terms</h6>
+                        <ul>
+                            <li>You need to pay 50% before we begin onboarding, and 50% once onboarding is complete.</li>
+                            <li>Your Conversations are billed based on your usage every month. You need to pay within 15 days of receiving the invoice.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-30">
+                        <h6 class="mb-20">How Monthly Active Users (MAU) are billed</h6>
+                        <p>If 100 different users start (initiate)  a chat with your WhatsApp or your bot each month, you'll be billed 300 INR (100 users x 3.00 INR per user). When more people start chats, it's good because it means more potential or current customers are reaching out.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

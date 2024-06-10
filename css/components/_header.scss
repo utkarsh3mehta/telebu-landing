@@ -1,0 +1,172 @@
+@import "../import/variables";
+
+header {
+    padding: 25px 0;
+    .container {
+        display: flex;
+    }
+    .logo {
+        img {
+            max-width: 200px;
+        }
+        .mob-menu-btn {
+            width: 30px;
+            display: none;
+            span {
+                width: 100%;
+                height: 3px;
+                background-color: #333;
+                margin: 6px 0;
+                transition: 0.4s;
+                display: block;
+                border-radius: 4px;
+            }
+            &.active {
+                span:first-of-type {
+                    transform: translate(0, 7px) rotate(-45deg);
+                }
+                span:nth-of-type(2) {
+                    opacity: 0;
+                }
+                span:nth-of-type(3) {
+                    transform: translate(0, -11px) rotate(45deg);
+                }
+            }
+        }
+    }
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 44px;
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            li {
+                margin: 0 20px -30px;
+                padding-bottom: 30px;
+                position: relative;
+                .fa-solid {
+                    display: none;
+                }
+                a:not(.btn-primary) {
+                    font-size: 18px;
+                    font-weight: 400;
+                    color: var(--color-secondary);
+                    text-decoration: none;
+                    position: relative;
+                    transition: all 0.3s ease;
+                    &::after {
+                        content: "";
+                        width: 100%;
+                        height: 2px;
+                        background: var(--color-primary);
+                        position: absolute;
+                        left: 0;
+                        bottom: -8px;
+                        opacity: 0;
+                        transition: all 0.3s ease;
+                    }
+                    &:hover {
+                        color: var(--color-primary);
+                        &::after {
+                            opacity: 1;
+                        }
+                    }
+                }
+                .btn-primary {
+                    border-radius: 30px;
+                    font-weight: 400;
+                    min-width: 174px;
+                    padding: 8px 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    line-height: 22px;
+                }
+                .dropdown {
+                    width: 700px;
+                    position: absolute;
+                    left: 0;
+                    top: 50px;
+                    z-index: 1;
+                    border-radius: 10px;
+                    border: 1px solid #dcdbdb;
+                    background: #fff;
+                    padding: 21px 29px;
+                    display: flex;
+                    opacity: 0;
+                    pointer-events: none;
+                    visibility: hidden;
+                    transform: translateY(-50px);
+                    transition: all 0.3s ease;
+                    &.width-180 {
+                        width: 170px;
+                    }
+                    &.width-256 {
+                        width: 256px;
+                    }
+                    .item {
+                        flex-grow: 1;
+                        flex-basis: 0;
+                        p {
+                            font-size: 15px;
+                            font-weight: 600;
+                            color: var(--color-primary);
+                            margin: 0;
+                        }
+                        ul {
+                            flex-wrap: wrap;
+                            li {
+                                margin: 6px 0 2px 0;
+                                width: 100%;
+                                padding-bottom: 0;
+                                a {
+                                    font-size: 15px;
+                                    font-weight: 500;
+                                    &::after {
+                                        bottom: -2px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.has-small-drop {
+                    position: relative;
+                }
+
+                &.has-dropdown {
+                    &:hover {
+                        .drop-link {
+                            color: var(--color-primary);
+                            &::after {
+                                opacity: 1;
+                            }
+                        }
+
+                        .dropdown {
+                            transform: translateY(0);
+                            opacity: 1;
+                            pointer-events: all;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+
+            &:last-of-type {
+                li {
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,489 @@
+@import "../import/variables";
+
+@media (max-width: 1366px) {
+    .custom-accordion .item {
+        background-position: 98% 15px;
+    }
+    .custom-accordion .item.active {
+        background-position: 96% 28px;
+    }
+    .custom-accordion .item .accordion-title {
+        font-size: 18px;
+    }
+    .custom-accordion .item .accordion-data {
+        font-size: 16px;
+    }
+    .business-testimonial .item {
+        padding: 45px 30px;
+    }
+
+    .user-img-circle .item-1 {
+        left: 60px;
+    }
+    .user-img-circle .item-2 {
+        left: 140px;
+    }
+    .user-img-circle .item-3 {
+        right: 140px;
+    }
+    .user-img-circle .item-4 {
+        right: 60px;
+    }
+}
+
+@media (max-width: 1200px) {
+    header {
+        position: relative;
+    }
+    header nav {
+        padding-left: 0;
+        justify-content: flex-end;
+    }
+
+    header nav ul li {
+        margin: 0 13px -20px;
+        position: static;
+    }
+
+    header nav ul li .btn-primary {
+        min-width: 0px;
+        white-space: nowrap;
+    }
+
+    header nav ul li .dropdown {
+        width: calc(100% - 40px);
+        left: 20px;
+        top: 80px;
+    }
+
+    header nav ul li.has-small-drop .dropdown {
+        top: 50px;
+        left: 0;
+    }
+
+    .sec-space {
+        padding: 40px 0;
+    }
+
+    .banner-home p {
+        font-size: 20px;
+    }
+
+    .trusted-by-businesses {
+        img {
+            max-width: 150px;
+        }
+    }
+
+    .custom-accordion .item .accordion-title {
+        padding-right: 40px;
+    }
+
+    .user-img-circle-2 .item-1,
+    .user-img-circle-2 .item-3 {
+        top: 0;
+    }
+
+    .user-img-circle-2 .item-2 {
+        bottom: -73px;
+    }
+
+    .btn-primary,
+    .btn-outline {
+        min-width: 186px;
+    }
+
+    .form .radioGroup .custom-radio-1 {
+        flex: 0 calc(25% - 6px);
+    }
+    .check-col {
+        flex-wrap: wrap;
+        padding-left: 55px;
+        .item {
+            max-width: none;
+            width: 50%;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .order-md-1 {
+        order: -1 !important;
+    }
+    header .logo {
+        width: 160px;
+        margin-top: -4px;
+        img {
+            width: 100%;
+        }
+    }
+    header nav ul li {
+        margin: 0 8px -20px;
+    }
+    header nav ul li a:not(.btn-primary) {
+        font-size: 14px;
+    }
+    header nav ul li .btn-primary {
+        font-size: 12px;
+    }
+
+    .custom-checkbox-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .custom-checkbox-list .item {
+        margin: 0 20px 30px;
+    }
+
+    .custom-tabs {
+        flex-wrap: wrap;
+        height: auto;
+    }
+    .custom-tabs .item {
+        width: 33.3%;
+        min-height: 65px;
+    }
+    .custom-tabs .item::after {
+        width: 100%;
+    }
+
+    .one-dashboard .item {
+        margin-bottom: 30px;
+        height: auto;
+    }
+
+    .contact-tabs .custom-tabs .item {
+        min-height: 120px;
+    }
+
+    .user-img-circle .user-img {
+        display: none;
+    }
+
+    .sec-space.pt-md-0 {
+        padding-top: 0 !important;
+    }
+    .check-col .item {
+        padding-right: 45px;
+    }
+    .plans-bundles .plans-box {
+        flex-wrap: wrap;
+        gap: 20px 0;
+    }
+    .plans-bundles .plans-box .item {
+        flex: 0 100%;
+    }
+
+    .sec-img-1 {
+        background-size: 100%;
+        height: 420px;
+    }
+}
+
+@media (max-width: 767px) {
+    h4 {
+        br {
+            display: none;
+        }
+    }
+    header {
+        padding: 15px 0;
+    }
+    header .container {
+        flex-wrap: wrap;
+    }
+    header .logo {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            max-width: 150px;
+        }
+    }
+    header .logo .mob-menu-btn {
+        display: block;
+    }
+    header nav {
+        display: none;
+        margin: 15px -13px 0;
+        padding: 0 20px;
+        width: calc(100% + 26px);
+        background: var(--color-accent);
+    }
+    header nav ul {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    header nav ul li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .fa-solid {
+            display: inline-block;
+            &.active {
+                &::before {
+                    content: "\f068";
+                }
+            }
+        }
+    }
+
+    header nav ul li:not(.has-dropdown):not(.item ul li) {
+        padding: 10px 0;
+    }
+
+    header nav ul li.has-dropdown .drop-link {
+        margin: 10px 0;
+        display: inline-block;
+        &::after {
+            display: none;
+        }
+    }
+
+    header nav ul li a:not(.btn-primary) {
+        display: block;
+    }
+
+    header nav ul li.has-dropdown:hover .drop-link {
+        color: var(--color-secondary);
+    }
+
+    header nav ul li .dropdown {
+        transition: none;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+        position: static;
+        width: calc(100% + 40px);
+        margin: 0 -20px;
+        border-radius: 0;
+        border-right: none;
+        border-left: none;
+        flex-wrap: wrap;
+        display: none;
+    }
+    header nav ul li .dropdown.width-180,
+    header nav ul li .dropdown.width-256 {
+        width: calc(100% + 40px);
+    }
+    header nav ul li .dropdown .item {
+        width: 100%;
+        flex: auto;
+    }
+
+    header nav ul li .dropdown .item ul li {
+        padding-bottom: 10px;
+    }
+    header nav ul li .dropdown .item ul li a::after {
+        display: none;
+    }
+
+    .custom-checkbox-list .item {
+        width: 50%;
+        margin: 0 0 20px 0;
+        padding: 0 10px;
+    }
+    .custom-checkbox-list .item label {
+        width: 100%;
+    }
+
+    .btn-primary,
+    .btn-outline {
+        min-width: 0;
+        width: 100%;
+        font-size: 14px;
+        padding: 14px 10px;
+    }
+    .btn-outline {
+        padding: 12px 10px;
+    }
+
+    .sec-img-1 {
+        background-size: 100%;
+        height: 220px;
+    }
+
+    .content-img-boxes {
+        img.user-img-big {
+            max-width: 100px;
+        }
+    }
+
+    .custom-tabs .item {
+        width: 100%;
+    }
+
+    .content-boxes .item {
+        padding: 30px 30px;
+    }
+
+    .testimonial .img-box::before,
+    .testimonial .img-box::after {
+        display: none;
+    }
+    .testimonial-slider .container {
+        padding: 25px 30px;
+    }
+    .testimonial .img-box {
+        img {
+            max-width: 100%;
+        }
+    }
+    .testimonial .img-box .slick-arrow {
+        width: 60px;
+        background-size: 100% !important;
+    }
+    .testimonial .img-box .slick-arrow.prev {
+        left: -28px;
+    }
+    .testimonial .img-box .slick-arrow.next {
+        right: -28px;
+    }
+    .testimonial .text-box p {
+        font-size: 16px;
+    }
+
+    .business-testimonial .item {
+        padding: 25px 15px;
+    }
+
+    .checklist {
+        padding-left: 0px;
+    }
+    .checklist ul li {
+        font-size: 18px;
+        padding-left: 32px;
+    }
+    .checklist ul li::before {
+        width: 20px;
+        height: 20px;
+        background-size: 10px;
+        top: 4px;
+    }
+
+    .custom-accordion .item {
+        padding: 25px;
+        background-size: 50px;
+        background-position: 97% 20px;
+        margin-bottom: 20px;
+    }
+    .custom-accordion .item.active {
+        background-size: 28px !important;
+        background-position: 94% 28px;
+    }
+    .custom-accordion .item .accordion-title {
+        font-size: 16px;
+        max-width: 90%;
+    }
+    .custom-accordion .item .accordion-data {
+        font-size: 14px;
+    }
+
+    .user-img-circle-2 .item-1,
+    .user-img-circle-2 .item-2,
+    .user-img-circle-2 .item-3 {
+        position: static;
+        display: inline-flex;
+        margin: 20px 15px 0;
+    }
+
+    .contact-tabs .custom-tabs .item {
+        flex-wrap: wrap;
+        align-content: space-between;
+        font-size: 15px;
+        padding: 18px 0;
+        min-height: 110px;
+    }
+    .contact-tabs .custom-tabs .item img {
+        max-width: 40px;
+        margin: 0;
+    }
+    .contact-tabs .custom-tabs .item span {
+        width: 100%;
+        display: block;
+    }
+    .contact-tabs .custom-tabs .item::after {
+        display: none;
+    }
+
+    .custom-accordion-2 .item {
+        margin-bottom: 20px;
+    }
+
+    .custom-accordion-2 .item .accordion-title {
+        font-size: 16px;
+        padding: 14px 16px;
+    }
+    .custom-accordion-2 .item .accordion-title::after {
+        background-size: 16px;
+        right: 14px;
+    }
+    .custom-accordion-2 .item .accordion-data {
+        padding: 10px 27px 0;
+    }
+
+    .schedule-demo-form {
+        padding: 25px 20px 35px;
+    }
+
+    .form .radioGroup .custom-radio-1 {
+        flex: 0 calc(50% - 6px);
+    }
+
+    .checklist.check-small ul li {
+        font-size: 14px;
+    }
+
+    .check-col {
+        padding-left: 50px;
+    }
+    .check-col .item {
+        padding-right: 0;
+        width: 100%;
+    }
+
+    .plans-bundles .plans-box .item {
+        padding: 20px;
+    }
+
+    footer .foot {
+        margin-top: 10px;
+        font-size: 13px;
+        img {
+            width: 40px;
+            margin-right: 5px;
+            position: relative;
+            top: -3px;
+        }
+    }
+
+    footer .footer-menu ul li a {
+        font-size: 16px;
+    }
+
+    .content-boxes .item .icon-box {
+        position: static;
+        border-radius: 27px;
+        width: auto;
+        height: auto;
+        background: transparent;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+    .invoice-heading h1{
+        font-size: 20px;
+        margin: 0;
+        padding: 0 5px;
+    }
+}

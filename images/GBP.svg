@@ -1,0 +1,16 @@
+<svg width="27" height="18" viewBox="0 0 27 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_204_1070" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="27" height="18">
+<path d="M0.5 2C0.5 1.17157 1.17157 0.5 2 0.5H25C25.8284 0.5 26.5 1.17157 26.5 2V16C26.5 16.8284 25.8284 17.5 25 17.5H2C1.17157 17.5 0.5 16.8284 0.5 16V2Z" fill="#C4C4C4" stroke="black"/>
+</mask>
+<g mask="url(#mask0_204_1070)">
+<path d="M0 0H27V18H0V0Z" fill="#4427F8"/>
+<path d="M26 1L1 17" stroke="white"/>
+<path d="M1 1L26 17" stroke="white"/>
+<mask id="path-5-inside-1_204_1070" fill="white">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17 0H11V6L0 6V12H11V18H17V12H27V6L17 6V0Z"/>
+</mask>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17 0H11V6L0 6V12H11V18H17V12H27V6L17 6V0Z" fill="#FF0000"/>
+<path d="M11 0V-1H10V0H11ZM17 0H18V-1H17V0ZM11 6V7H12V6H11ZM0 6L4.33488e-08 5H-1V6H0ZM0 12H-1V13H0V12ZM11 12H12V11H11V12ZM11 18H10V19H11V18ZM17 18V19H18V18H17ZM17 12V11H16V12H17ZM27 12V13H28V12H27ZM27 6H28V5H27V6ZM17 6H16V7H17V6ZM11 1H17V-1H11V1ZM12 6V0H10V6H12ZM-4.33488e-08 7L11 7V5L4.33488e-08 5L-4.33488e-08 7ZM1 12V6H-1V12H1ZM11 11H0V13H11V11ZM12 18V12H10V18H12ZM17 17H11V19H17V17ZM16 12V18H18V12H16ZM27 11H17V13H27V11ZM26 6V12H28V6H26ZM17 7L27 7V5L17 5V7ZM16 0V6H18V0H16Z" fill="white" mask="url(#path-5-inside-1_204_1070)"/>
+<rect x="0.5" y="0.5" width="26" height="17" rx="1.5" stroke="white"/>
+</g>
+</svg>

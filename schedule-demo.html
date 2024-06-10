@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="q7AbFskcx5yCZpGbM5q7c_4NiFs3v3xUTKi9196tLSI" />
+    <title>Schedule Demo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+        integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="css/main.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="">
+                </a>
+
+                <div class="mob-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">Solutions</a>
+                        <i class="fa-solid fa-plus"></i>
+                        <div class="dropdown">
+                            <div class="item">
+                                <p>Industry</p>
+                                <ul>
+                                    <li>
+                                        <a href="industry/ecommerce.html">Ecommerce </a>
+                                    </li>
+                                    <li>
+                                        <a href="industry/real-estate.html">Real Estate </a>
+                                    </li>
+                                    <li>
+                                        <a href="industry/healthcare.html">Healthcare</a>
+                                    </li>
+                                    <li>
+                                        <a href="industry/education.html">Education</a>
+                                    </li>
+                                    <li>
+                                        <a href="industry/finance.html">Banking & Finance</a>
+                                    </li>
+                                    <li>
+                                        <a href="industry/logistics.html">Logistics</a>
+                                    </li>
+                                    <li>
+                                        <a href="industry/government.html">Government</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <p>Usecase</p>
+                                <ul>
+                                    <li>
+                                        <a href="usecases/customer-support.html">Omnichannel Support</a>
+                                    </li>
+                                    <li>
+                                        <a href="usecases/marketing.html">Marketing</a>
+                                    </li>
+                                    <li>
+                                        <a href="usecases/sales.html">Sales</a>
+                                    </li>
+                                    <li>
+                                        <a href="usecases/customer-transactional-engagement.html">Customer
+                                            Engagement</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <p>Business size</p>
+                                <ul>
+                                    <li>
+                                        <a href="business/enterprise.html">Enterprise</a>
+                                    </li>
+                                    <li>
+                                        <a href="business/smes.html">SMEs</a>
+                                    </li>
+                                    <li>
+                                        <a href="business/startups.html">Startups</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Platform</a>
+                        <i class="fa-solid fa-plus"></i>
+                        <div class="dropdown">
+                            <div class="item">
+                                <p>Key Features</p>
+                                <ul>
+                                    <li>
+                                        <a href="features/conversational-chatbot.html">Conversational Chatbot
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="features/conversational-broadcast.html">Conversational
+                                            broadcast </a>
+                                    </li>
+                                    <li>
+                                        <a href="features/conversational-api.html">Conversational API</a>
+                                    </li>
+                                    <li>
+                                        <a href="features/conversational-agent-chat.html">Conversational agent
+                                            chat</a>
+                                    </li>
+                                    <li>
+                                        <a href="features/analytics.html">Detailed analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="features/admin.html">Admin Control</a>
+                                    </li>
+                                    <li>
+                                        <a href="features/third-party-integration.html">Third-party
+                                            integration</a>
+                                    </li>
+                                    <li>
+                                        <a href="features/omni-channel-communication.html">Omni-channel
+                                            Communication </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="item">
+                                <p>Channels</p>
+                                <ul>
+                                    <li>
+                                        <a href="channels/instagram.html">Instagram</a>
+                                    </li>
+                                    <li>
+                                        <a href="channels/facebook.html">Facebook</a>
+                                    </li>
+                                    <li>
+                                        <a href="channels/twitter.html">Twitter</a>
+                                    </li>
+                                    <li>
+                                        <a href="channels/whatsapp.html">WhatsApp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-small-drop">
+                        <a href="#">Resources</a>
+                        <i class="fa-solid fa-plus"></i>
+                        <div class="dropdown width-180">
+                            <div class="item">
+                                <p>Coming Soon</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="has-small-drop">
+                        <a href="#">Telebu Products</a>
+                        <i class="fa-solid fa-plus"></i>
+                        <div class="dropdown width-256">
+                            <div class="item">
+                                <ul>
+                                    <li>
+                                        <a href="https://www.smscountry.com/" target="_blank">SMSCountry</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.telebu.com/hub" target="_blank">TelebuHub</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.grptalk.com/" target="_blank">grpTalk</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.talkmagnet.com/" target="_blank">Talk Magnet</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li>
+                        <a href="pricing.html">Pricing</a>
+                    </li>
+                    <li>
+                        <a href="https://appsocial.telebu.com/admin/login">Log in</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-primary" data-bs-toggle="modal" data-bs-target="#modalGetStarted">Get
+                            started</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="bg-g-skyblue-top-bottom">
+        <section class="sec-space tab-data-main">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-5 pr-30">
+                        <div>
+                            <img src="images/icon-text-shap.svg" alt="">
+                        </div>
+                        <div class="mt-20">
+                            <img src="images/icon-5-star.svg" alt="">
+                        </div>
+                        <p class="font-20px font-lg-18px font-sm-14px line-h-32px line-h-sm-24px mt-40 mt-sm-20">
+                            "Our experience with Telebu Communications has been exceptional. Their WhatsApp API & SMS
+                            Services have not only increased our operational flexibility but have also resulted in cost
+                            savings."
+                        </p>
+
+                        <div class="row flex-nowrap align-items-center mt-10 mb-43">
+                            <div class="col-auto">
+                                <img src="images/client-img-1.png" alt="">
+                            </div>
+                            <div class="col-8 col-md-9">
+                                <p class="font-20px font-lg-18px font-sm-14px font-w-600 mb-0 text-transform-auto">
+                                    Pravin Rai, Co-Founder & CEO
+                                </p>
+                                <p class="font-16px font-lg-14px mb-0 color-095">
+                                    QuicKart
+                                </p>
+                            </div>
+                        </div>
+
+                        <h3 class="font-18px font-sm-14px font-w-600 line-h-20px line-h-sm-18px color-333">
+                            Schedule a FREE 1-1 demo today to:
+                        </h3>
+
+                        <div class="checklist check-small mt-20 ps-0">
+                            <ul>
+                                <li>Learn more about how TelebuSocial works</li>
+                                <li>See how you can deliver the best conversational customer experience</li>
+                                <li>Get all your questions answered</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-7">
+
+                        <h1
+                            class="font-36px font-lg-30px line-h-50px font-sm-18px line-h-sm-30px mt-md-40 mt-sm-10 pl-42">
+                            Schedule
+                            <span class="color-primary">Demo</span>
+                        </h1>
+
+                        <div class="schedule-demo-form">
+                            <div class="form form-field-white">
+                                <!--State 1 -->
+                                <!-- <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group required">
+                                            <label>Select your Time Zome</label>
+                                            <select>
+                                                <option>Asia/Kolkata - IST (+05:30)</option>
+                                                <option>Option 1</option>
+                                                <option>Option 2</option>
+                                                <option>Option 3</option>
+                                                <option>Option 4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group required">
+                                            <label>Select Date</label>
+                                            <input type="text" value="" placeholder="Please select date"
+                                                class="input-datepicker" id="schedule-demo-datepicker">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Select your Time Zome</label>
+                                            <div class="radioGroup">
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-1">
+                                                    <label for="radio-1">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-2">
+                                                    <label for="radio-2">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-3">
+                                                    <label for="radio-3">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-4">
+                                                    <label for="radio-4">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-5">
+                                                    <label for="radio-5">08:00 AM</label>
+                                                </div>
+
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-6">
+                                                    <label for="radio-6">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-7">
+                                                    <label for="radio-7">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-8">
+                                                    <label for="radio-8">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-9">
+                                                    <label for="radio-9">08:00 AM</label>
+                                                </div>
+                                                <div class="custom-radio-1">
+                                                    <input type="radio" name="radioGroup" id="radio-10">
+                                                    <label for="radio-10">08:00 AM</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-40 mt-sm-10">
+                                    <div class="col-lg-12">
+                                        <button class="btn-primary">Next</button>
+                                    </div>
+                                </div> -->
+                                <!--State 1 End -->
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group required">
+                                            <label>Name</label>
+                                            <input type="text" value="" placeholder="Your Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group required">
+                                            <label>Email</label>
+                                            <input type="email" value="" placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <input type="text" value="" placeholder="+00">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>Phone number</label>
+                                            <input type="text" value="" placeholder="+00">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <input type="text" value="" placeholder="City">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Anything you’d want us to know that’d help us prepare for the
+                                                demo?</label>
+                                            <textarea rows="5"
+                                                placeholder="Any tech related queries? In such a case we’ll ensure that a tech expert is there to resolve those queries, helping you avoid additional calls"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-sm-10">
+                                    <div class="col-lg-12">
+                                        <button class="btn-primary">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="sec-space text-center pt-0 trusted-by-businesses">
+            <div class="container">
+                <h3>Trusted By businesses</h3>
+                <p class="color-c7cs">
+                    like you who love their customers
+                </p>
+            </div>
+            <div class="marquee">
+                <div class="item">
+                    <img src="images/business-logo-2.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="images/business-logo-1.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="images/business-logo-4.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="images/business-logo-6.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="images/business-logo-3.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="images/business-logo-7.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="images/business-logo-8.png" alt="">
+                </div>
+                <div class="item">
+                    <img src="images/business-logo-5.png" alt="">
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <footer class="sec-space pt-sm-30 pb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-logo">
+                        <img src="images/logo.svg" alt="" width="180">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="font-20px font-sm-18px font-w-600 color-D2D mt-10 mb-10">
+                                Telebu Products
+                            </p>
+
+                            <div class="footer-menu">
+                                <ul>
+                                    <li>
+                                        <a href="https://www.smscountry.com/" target="_blank">
+                                            SMSCountry
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.telebu.com/hub" target="_blank">
+                                            TelebuHub
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.grptalk.com/" target="_blank">
+                                            Grptalk
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.talkmagnet.com/">
+                                            TalkMagnet
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.telebu.com/" target="_blank">
+                                            Telebu
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <p class="font-20px font-sm-18px font-w-600 color-D2D mt-10 mb-10">
+                                Sitelinks
+                            </p>
+
+                            <div class="footer-menu">
+                                <ul>
+                                    <li>
+                                        <a href="contact.html">
+                                            Contact Us
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="pricing.html">
+                                            Pricing
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="api.html">
+                                            API
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Solutions
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            Platform
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 mt-md-40 mt-sm-30">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <p class="font-20px font-sm-16px font-w-700 color-333">
+                                An AI Built different.<br> #1 Conversational Whatsapp Chatbot Platform
+                            </p>
+                            <p class="font-18px font-sm-14px font-w-500 color-666">
+                                Enable happy conversational experiences across your customer journey via conversational
+                                support, conversational marketing, and conversational sales.
+                            </p>
+                            <div class="footer-social d-flex align-items-center mt-30 mt-md-10">
+                                <a href="#" class="text-decoration-none font-21px">
+                                    <i class="fa-brands fa-facebook color-primary"></i>
+                                </a>
+
+                                <a href="#" class="text-decoration-none font-21px ml-12">
+                                    <i class="fa-brands fa-linkedin color-primary"></i>
+                                </a>
+
+                                <a href="#" class="text-decoration-none font-21px ml-12">
+                                    <i class="fa-brands fa-twitter color-primary"></i>
+                                </a>
+
+                                <a href="#" class="text-decoration-none font-21px ml-12">
+                                    <i class="fa-brands fa-instagram color-primary"></i>
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-sm-30">
+                            <div class="row justify-content-between">
+                                <div class="col-lg-12">
+                                    <p class="font-20px font-sm-16px font-w-700 color-333">
+                                        Always know what’s happening
+                                    </p>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form">
+                                        <div class="form-group">
+                                            <input type="text" value="" placeholder="Email">
+                                            <button class="btn-primary btn-small br-70 mt-20">Subscribe</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot">
+            <img src="images/logo-icon.svg">
+            ©2024, TelebuSocial. All Rights Reserved
+        </div>
+    </footer>
+
+    <div class="modal fade modal-default" id="modalGetStarted" tabindex="-1"
+        aria-labelledby="modalGetStartedModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title font-32px" id="exampleModalLabel">Get <span
+                            class="color-primary">started</span></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form form-field-white">
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input type="text" value="" placeholder="Your Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="text" value="" placeholder="Your Email">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <input type="text" value="" placeholder="+00">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Phone number</label>
+                                    <input type="text" value="" placeholder="+00">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input type="text" value="" placeholder="City">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Are you looking for a 1:1 Demo?</label>
+
+                            <div class="d-flex align-items-center">
+                                <p class="font-18px font-sm-14px color-f49 mb-0">No</p>
+                                <div class="custom-switch mx-3">
+                                    <input type="checkbox" id="switch" checked>
+                                    <label for="switch" class="mb-0"></label>
+                                </div>
+                                <p class="font-18px font-sm-14px color-f49 mb-0">Yes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary open-otp-modal" data-bs-toggle="modal"
+                        data-bs-target="#modalSuccess">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-default modal-otp" id="modalOtp" tabindex="-1" aria-labelledby="modalOtpModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title font-32px" id="exampleModalLabel">
+                            Verify Mobile Number
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <h4 class="font-28px font-w-600 mt-25">Enter OTP</h4>
+
+                        <p class="font-18px font-w-400 color-494">
+                            sent to your phone number
+                        </p>
+
+                        <div class="form otp-fields">
+                            <div id="otp-inputs" data-inputs-classes="text-danger" data-otp-length="5">
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-between">
+                            <div class="col-auto">
+                                <p class="font-18px font-w-400 color-494">
+                                    00:30
+                                </p>
+                            </div>
+                            <div class="col-auto">
+                                <p class="font-18px font-w-400 color-494 text-transform-auto">
+                                    Didn't receive a OTP? <a href="#" class="color-primary text-decoration-none">Resend
+                                        OTP</a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary open-otp-modal mt-25" data-bs-toggle="modal"
+                            data-bs-target="#modalSuccess">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-default modal-success" id="modalSuccess" tabindex="-1"
+        aria-labelledby="modalOtpModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="images/icon-success-big.svg" alt="">
+                        <p class="font-32px font-w-700 color-333 mt-40 mb-40">
+                            Thank You!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.Marquee/1.6.0/jquery.marquee.min.js"
+        integrity="sha512-JHJv/L48s1Hod24iSI0u9bcF/JlUi+YaxliKdbasnw/U1Lp9xxWkaZ3O5OuQPMkVwOVXeFkF4n4176ouA6Py3A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+        integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/HichemTab-tech/OTP-designer-jquery@2.2.0/dist/otpdesigner.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/3e5a06e604.js" crossorigin="anonymous"></script>
+
+    <script src="js/custom.js"></script>
+</body>
+
+</html>
