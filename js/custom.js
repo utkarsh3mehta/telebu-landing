@@ -3,7 +3,7 @@ var API_URL = "https://telebusocial-api.enpointe.io";
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
   let submitButton = getStartedModal.querySelector(
-    "[data-bs-target='#modalSuccess']"
+    "[data-bs-target='#modalOtp']"
   );
   if (submitButton)
     submitButton.addEventListener("click", function () {
