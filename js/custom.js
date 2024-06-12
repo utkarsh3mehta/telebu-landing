@@ -25,7 +25,7 @@ $(document).ready(function () {
       let number = numbers[1].value;
       let city = getStartedModal.querySelector("[placeholder='City']").value;
       let demo = getStartedModal.querySelector("#switch").checked;
-
+      otpModal.show();
       let submitFormButton = document.getElementById("getStartedSubmitButton");
       var xhr = new XMLHttpRequest();
       // otpModal.show();
@@ -107,7 +107,9 @@ $(document).ready(function () {
 
   $(document).ready(function () {
     let otpSubmitButton = document.getElementById("otpSubmitButton");
-    const successModal = document.getElementById("modalSuccess");
+    var successModal = new bootstrap.Modal(
+      document.getElementById("modalSuccess")
+    );
     otpSubmitButton.addEventListener("click", function () {
       var otpInputs = document.querySelectorAll("#otp-inputs input");
       var otp = "";
@@ -135,6 +137,7 @@ $(document).ready(function () {
             successModal.show();
             otpSubmitButton.disabled = false;
             otpSubmitButton.innerHTML = "Next";
+            otpModal.hide();
           } else {
             alert("Invalid OTP. Please try again.");
             otpSubmitButton.disabled = false;
@@ -259,18 +262,22 @@ $(document).ready(function () {
     $("#otp-inputs").otpdesigner({
       onlyNumbers: true,
       typingDone: function (otp) {
+        var url = API_URL + "/validate-otp";
         console.log("Entered OTP code: " + otp);
         otpSubmitButton.disabled = true;
         otpSubmitButton.textContent = "Verifying...";
-
+        var email = localStorage.getItem("email");
         var xhr = new XMLHttpRequest();
-
+        var successModal = new bootstrap.Modal(
+          document.getElementById("modalSuccess")
+        );
+        var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
-
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
             if (xhr.status === 200) {
+              otpModal.hide();
               successModal.show();
               otpSubmitButton.disabled = false;
               otpSubmitButton.innerHTML = "Next";
