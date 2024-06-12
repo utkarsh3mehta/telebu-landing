@@ -2,11 +2,15 @@ var API_URL = "https://telebusocial-api.enpointe.io";
 
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
+  // var submitButton;
   let submitButton = getStartedModal.querySelector(
     "[data-bs-target='#modalOtp']"
   );
+  var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
+
+  var getStartedModalInstance = bootstrap.Modal.getInstance(getStartedModal);
   if (submitButton)
-    submitButton.addEventListener("click", function () {
+    submitButton.addEventListener("click", async function () {
       let name = getStartedModal.querySelector(
         "[placeholder='Your Name']"
       ).value;
@@ -18,31 +22,84 @@ $(document).ready(function () {
       let number = numbers[1].value;
       let city = getStartedModal.querySelector("[placeholder='City']").value;
       let demo = getStartedModal.querySelector("#switch").checked;
+
+      let submitFormButton = document.getElementById("getStartedSubmitButton");
       var xhr = new XMLHttpRequest();
+
       var url = API_URL + "/get-started";
+      const isValidate = validateForm();
+      if (isValidate) {
+        try {
+          submitFormButton.disabled = true;
+          submitFormButton.innerHTML = "Loading...";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
 
-      xhr.open("POST", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            console.log("email sent");
-          } else {
-            alert("Unable to send details to server");
-          }
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                console.log("email sent");
+                getStartedModalInstance.hide();
+                otpModal.show();
+                submitFormButton.disabled = false;
+                submitFormButton.innerHTML = "Next";
+              } else {
+                alert("Unable to send details to server");
+                submitFormButton.disabled = false;
+                submitFormButton.innerHTML = "Next";
+              }
+            }
+          };
+          xhr.send(
+            JSON.stringify({
+              email,
+              name,
+              number,
+              country,
+              city,
+              demo,
+            })
+          );
+          console.log("done");
+        } catch (error) {
+          console.log(error);
         }
-      };
-      xhr.send(
-        JSON.stringify({
-          email,
-          name,
-          number,
-          country,
-          city,
-          demo,
-        })
-      );
+      }
+      // getStarted.hide();
+
+      function validateForm() {
+        document.getElementById("user_name").innerText = "";
+        document.getElementById("user_email").innerText = "";
+
+        var username = document.querySelector(
+          "[placeholder='Your Name']"
+        ).value;
+        var email = document.querySelector("[placeholder='Your Email']").value;
+
+        var isValid = true;
+
+        if (username.trim() === "") {
+          document.getElementById("user_name").innerText = "Name is required.";
+          isValid = false;
+        }
+
+        if (email.trim() === "") {
+          document.getElementById("user_email").innerText =
+            "Email is required.";
+          isValid = false;
+        } else if (!validateEmail(email)) {
+          document.getElementById("user_email").innerText =
+            "Invalid email format.";
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function validateEmail(email) {
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+      }
     });
 
   $(".testimonial-slider").slick({
