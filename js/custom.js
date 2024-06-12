@@ -1,11 +1,11 @@
-// var API_URL = "https://telebusocial-api.enpointe.io";
-var API_URL = "http://localhost:3000";
+var API_URL = "https://telebusocial-api.enpointe.io";
+// var API_URL = "http://localhost:3000";
 
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
   // var submitButton;
   let submitButton = getStartedModal.querySelector(
-    "[data-bs-target='#modalOtp']"
+    "[id='getStartedSubmitButton']"
   );
   var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
   var getStarted = new bootstrap.Modal(
@@ -28,42 +28,42 @@ $(document).ready(function () {
 
       let submitFormButton = document.getElementById("getStartedSubmitButton");
       var xhr = new XMLHttpRequest();
-      otpModal.show();
+      // otpModal.show();
       var url = API_URL + "/get-started";
       const isValidate = validateForm();
       if (isValidate) {
         try {
-          // submitFormButton.disabled = true;
-          // submitFormButton.innerHTML = "Loading...";
-          // localStorage.setItem("email", email);
-          // xhr.open("POST", url, true);
-          // xhr.setRequestHeader("Content-Type", "application/json");
+          submitFormButton.disabled = true;
+          submitFormButton.innerHTML = "Loading...";
+          localStorage.setItem("email", email);
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
 
-          // xhr.onreadystatechange = function () {
-          //   if (xhr.readyState === 4) {
-          //     if (xhr.status === 200) {
-          //       console.log("email sent");
-          //       getStarted.hide();
-          //       otpModal.show();
-          //       submitFormButton.disabled = false;
-          //       submitFormButton.innerHTML = "Next";
-          //     } else {
-          //       alert("Unable to send details to server");
-          //       submitFormButton.disabled = false;
-          //       submitFormButton.innerHTML = "Next";
-          //     }
-          //   }
-          // };
-          // xhr.send(
-          //   JSON.stringify({
-          //     email,
-          //     name,
-          //     number,
-          //     country,
-          //     city,
-          //     demo,
-          //   })
-          // );
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                console.log("email sent");
+                getStarted.hide();
+                otpModal.show();
+                submitFormButton.disabled = false;
+                submitFormButton.innerHTML = "Next";
+              } else {
+                alert("Unable to send details to server");
+                submitFormButton.disabled = false;
+                submitFormButton.innerHTML = "Next";
+              }
+            }
+          };
+          xhr.send(
+            JSON.stringify({
+              email,
+              name,
+              number,
+              country,
+              city,
+              demo,
+            })
+          );
           console.log("done");
         } catch (error) {
           console.log(error);
@@ -105,59 +105,49 @@ $(document).ready(function () {
       }
     });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    var otpSubmitButton = document.querySelector(
-      ".open-otp-modal.mt-25[data-bs-target='#modalSuccess']"
-    );
-    otpSubmitButton.addEventListener("click", async function () {
+  $(document).ready(function () {
+    let otpSubmitButton = document.getElementById("otpSubmitButton");
+    const successModal = document.getElementById("modalSuccess");
+    otpSubmitButton.addEventListener("click", function () {
       var otpInputs = document.querySelectorAll("#otp-inputs input");
       var otp = "";
       otpInputs.forEach((input) => (otp += input.value));
-      var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
+
       var email = localStorage.getItem("email");
 
       if (otp.length !== 6) {
         alert("Please enter a 6-digit OTP.");
         return;
       }
+      var url = API_URL + "/validate-otp";
 
       otpSubmitButton.disabled = true;
       otpSubmitButton.textContent = "Verifying...";
 
-      try {
-        var xhr = new XMLHttpRequest();
-        var url = API_URL + "/verify-otp";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            console.log(xhr);
-            if (xhr.status === 200) {
-              console.log("OTP verified");
-              otpSubmitButton.disabled = false;
-              otpSubmitButton.textContent = "Next";
-              otpModal.hide();
-              var successModal = new bootstrap.Modal(
-                document.getElementById("modalSuccess")
-              );
-              successModal.show();
-            } else {
-              alert("Invalid OTP. Please try again.");
-              otpSubmitButton.disabled = false;
-              otpSubmitButton.textContent = "Next";
-            }
+      var xhr = new XMLHttpRequest();
+
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            successModal.show();
+            otpSubmitButton.disabled = false;
+            otpSubmitButton.innerHTML = "Next";
+          } else {
+            alert("Invalid OTP. Please try again.");
+            otpSubmitButton.disabled = false;
+            otpSubmitButton.innerHTML = "Next";
           }
-        };
-        xhr.send(
-          JSON.stringify({
-            email,
-            otp,
-          })
-        );
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Unable to verify OTP. Please try again.");
-      }
+        }
+      };
+      xhr.send(
+        JSON.stringify({
+          email,
+          otp,
+        })
+      );
     });
   });
 
@@ -268,36 +258,33 @@ $(document).ready(function () {
   if ($("#otp-inputs").length > 0) {
     $("#otp-inputs").otpdesigner({
       onlyNumbers: true,
-      typingDone: function (code) {
-        console.log("Entered OTP code: " + code);
-        const email = localStorage.getItem("email");
+      typingDone: function (otp) {
+        console.log("Entered OTP code: " + otp);
+        otpSubmitButton.disabled = true;
+        otpSubmitButton.textContent = "Verifying...";
+
         var xhr = new XMLHttpRequest();
-        var url = API_URL + "/verify-otp";
+
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
+
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
-            console.log(xhr);
             if (xhr.status === 200) {
-              console.log("OTP verified");
-              otpSubmitButton.disabled = false;
-              otpSubmitButton.textContent = "Next";
-              otpModal.hide();
-              var successModal = new bootstrap.Modal(
-                document.getElementById("modalSuccess")
-              );
               successModal.show();
+              otpSubmitButton.disabled = false;
+              otpSubmitButton.innerHTML = "Next";
             } else {
               alert("Invalid OTP. Please try again.");
               otpSubmitButton.disabled = false;
-              otpSubmitButton.textContent = "Next";
+              otpSubmitButton.innerHTML = "Next";
             }
           }
         };
         xhr.send(
           JSON.stringify({
             email,
-            code,
+            otp,
           })
         );
       },
