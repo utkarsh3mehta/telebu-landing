@@ -134,10 +134,10 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            successModal.show();
+            otpModal.hide();
             otpSubmitButton.disabled = false;
             otpSubmitButton.innerHTML = "Next";
-            otpModal.hide();
+            successModal.show();
           } else {
             alert("Invalid OTP. Please try again.");
             otpSubmitButton.disabled = false;
@@ -278,9 +278,9 @@ $(document).ready(function () {
           if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               otpModal.hide();
-              successModal.show();
               otpSubmitButton.disabled = false;
               otpSubmitButton.innerHTML = "Next";
+              successModal.show();
             } else {
               alert("Invalid OTP. Please try again.");
               otpSubmitButton.disabled = false;
