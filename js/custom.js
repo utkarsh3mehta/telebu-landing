@@ -25,7 +25,6 @@ $(document).ready(function () {
       let number = numbers[1].value;
       let city = getStartedModal.querySelector("[placeholder='City']").value;
       let demo = getStartedModal.querySelector("#switch").checked;
-      otpModal.show();
       let submitFormButton = document.getElementById("getStartedSubmitButton");
       var xhr = new XMLHttpRequest();
       // otpModal.show();
@@ -107,6 +106,7 @@ $(document).ready(function () {
 
   $(document).ready(function () {
     let otpSubmitButton = document.getElementById("otpSubmitButton");
+    var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
     var successModal = new bootstrap.Modal(
       document.getElementById("modalSuccess")
     );
