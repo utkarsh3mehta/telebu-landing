@@ -1,15 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
 const cors = require("cors");
 require("dotenv").config();
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("db");
-// const path = require("path");
+const path = require('path')
 const app = express();
-var AWS = require("aws-sdk");
-
-AWS.config.update({ region: "us-east-1" });
-
+// create reusable transporter object using the default SMTP transport
+const transporter = nodemailer.createTransport({
+  port: 587, // true for 465, false for other ports
+  host: process.env.SMTP,
+  auth: {
+    user: process.env.SMTP_FROM,
+    pass: process.env.SMTP_PASS,
+  },
+  secure: false,
+});
 app.use(cors("*"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -167,16 +174,12 @@ route.post("/validate-otp", (req, res) => {
           );
           stmt.run();
           stmt.finalize();
-          const params = {
-            Destination: {
-              ToAddresses: [process.env.TO_EMAIL],
-            },
-            Source: process.env.SMTP_FROM,
-            Message: {
-              Body: {
-                Html: {
-                  Charset: "UTF-8",
-                  Data: `<!DOCTYPE html>
+          const mailData = {
+            from: process.env.SMTP_FROM,
+            to: process.env.TO_EMAIL,
+            subject: "New interested user",
+            text: "New interested user",
+            html: `<!DOCTYPE html>
             <html lang="en">
               <head>
                 <meta charset="UTF-8" />
@@ -209,30 +212,13 @@ route.post("/validate-otp", (req, res) => {
                   </tbody>
                 </table>
               </body>
-            </html>`,
-                },
-                Text: {
-                  Charset: "UTF-8",
-                  Data: "New interested user",
-                },
-              },
-              Subject: {
-                Charset: "UTF-8",
-                Data: "New interested user",
-              },
-            },
+            </html>
+            `,
           };
-          let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-            .sendEmail(params)
-            .promise();
-          mail
-            .then(function () {
-              res.status(200).send({ message: "Request submitted" });
-            })
-            .catch(function (err) {
-              console.error(err, err.stack);
-              res.status(400).send(err);
-            });
+          transporter.sendMail(mailData, function (err, info) {
+            if (err) console.log(err);
+            res.status(200).send({ message: "Request submitted" });
+          });
         } catch (err) {
           console.log(err);
           res.status(400).send(err);
@@ -252,39 +238,34 @@ route.post("/resend-otp", (req, res) => {
     db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
       if (err) res.status(400).send({ message: "No email found" });
       try {
-        const params = {
-          Destination: {
-            ToAddresses: [email],
-          },
-          Source: process.env.SMTP_FROM,
-          Message: {
-            Body: {
-              Html: {
-                Charset: "UTF-8",
-                Data: OTP_MAIL(row.name, row.otp),
-              },
-              Text: {
-                Charset: "UTF-8",
-                Data: "OTP - Getting started with TelebuSocial",
-              },
+        const mailData = {
+          from: process.env.SMTP_FROM,
+          to: email,
+          subject: "OTP - Getting started with TelebuSocial",
+          text: "OTP - Getting started with TelebuSocial",
+          html: OTP_MAIL(row.name, row.otp),
+          attachments: [
+            {
+              filename: "logo.png",
+              path: path.join(__dirname, "/assets/logo.png"),
+              cid: "logo", //same cid value as in the html img src
             },
-            Subject: {
-              Charset: "UTF-8",
-              Data: "OTP - Getting started with TelebuSocial",
+            {
+              filename: "app-store.png",
+              path: path.join(__dirname, "/assets/app-store.png"),
+              cid: "app-store", //same cid value as in the html img src
             },
-          },
+            {
+              filename: "google-play.png",
+              path: path.join(__dirname, "/assets/google-play.png"),
+              cid: "google-play", //same cid value as in the html img src
+            },
+          ],
         };
-        let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-          .sendEmail(params)
-          .promise();
-        mail
-          .then(function () {
-            res.status(200).send({ message: "Request submitted" });
-          })
-          .catch(function (err) {
-            console.error(err, err.stack);
-            res.status(400).send(err);
-          });
+        transporter.sendMail(mailData, function (err, info) {
+          if (err) console.log(err);
+          res.status(200).send({ message: "Request submitted" });
+        });
       } catch (err) {
         console.log(err);
         res.status(400).send(err);
@@ -299,16 +280,12 @@ route.post("/resend-otp", (req, res) => {
 route.post("/schedule-demo", (req, res) => {
   const { name, email, country, number, city, query } = req.body;
   try {
-    const params = {
-      Destination: {
-        ToAddresses: [process.env.TO_EMAIL],
-      },
-      Source: process.env.SMTP_FROM,
-      Message: {
-        Body: {
-          Html: {
-            Charset: "UTF-8",
-            Data: `<!DOCTYPE html>
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: process.env.TO_EMAIL,
+      subject: "Schedule demo",
+      text: "Schedule demo",
+      html: `<!DOCTYPE html>
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -341,30 +318,13 @@ route.post("/schedule-demo", (req, res) => {
             </tbody>
           </table>
         </body>
-      </html>`,
-          },
-          Text: {
-            Charset: "UTF-8",
-            Data: "Schedule demo",
-          },
-        },
-        Subject: {
-          Charset: "UTF-8",
-          Data: "Schedule demo",
-        },
-      },
+      </html>
+      `,
     };
-    let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-      .sendEmail(params)
-      .promise();
-    mail
-      .then(function () {
-        res.status(200).send({ message: "Request submitted" });
-      })
-      .catch(function (err) {
-        console.error(err, err.stack);
-        res.status(400).send(err);
-      });
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
@@ -374,16 +334,12 @@ route.post("/schedule-demo", (req, res) => {
 route.post("/subscribe", (req, res) => {
   const { email } = req.body;
   try {
-    const params = {
-      Destination: {
-        ToAddresses: [process.env.TO_EMAIL],
-      },
-      Source: process.env.SMTP_FROM,
-      Message: {
-        Body: {
-          Html: {
-            Charset: "UTF-8",
-            Data: `<!DOCTYPE html>
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: process.env.TO_EMAIL,
+      subject: "New subscriber",
+      text: "New subscriber",
+      html: `<!DOCTYPE html>
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -400,30 +356,13 @@ route.post("/subscribe", (req, res) => {
             </tbody>
           </table>
         </body>
-      </html>`,
-          },
-          Text: {
-            Charset: "UTF-8",
-            Data: "New subscriber",
-          },
-        },
-        Subject: {
-          Charset: "UTF-8",
-          Data: "New subscriber",
-        },
-      },
+      </html>
+      `,
     };
-    let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-      .sendEmail(params)
-      .promise();
-    mail
-      .then(function () {
-        res.status(200).send({ message: "Request submitted" });
-      })
-      .catch(function (err) {
-        console.error(err, err.stack);
-        res.status(400).send(err);
-      });
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
@@ -439,39 +378,34 @@ route.post("/get-started", (req, res) => {
     VALUES ('${name}', '${email}', '${country}', '${number}', '${city}', ${demo}, ${otp});`);
     stmt.run();
     stmt.finalize();
-    const params = {
-      Destination: {
-        ToAddresses: [email],
-      },
-      Source: process.env.SMTP_FROM,
-      Message: {
-        Body: {
-          Html: {
-            Charset: "UTF-8",
-            Data: OTP_MAIL(name, otp),
-          },
-          Text: {
-            Charset: "UTF-8",
-            Data: "OTP - Getting started with TelebuSocial",
-          },
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: email,
+      subject: "OTP - Getting started with TelebuSocial",
+      text: "OTP - Getting started with TelebuSocial",
+      html: OTP_MAIL(name, otp),
+      attachments: [
+        {
+          filename: "logo.png",
+          path: "./assets",
+          cid: "logo", //same cid value as in the html img src
         },
-        Subject: {
-          Charset: "UTF-8",
-          Data: "OTP - Getting started with TelebuSocial",
+        {
+          filename: "app-store.png",
+          path: "./assets",
+          cid: "app-store", //same cid value as in the html img src
         },
-      },
+        {
+          filename: "google-play.png",
+          path: "./assets",
+          cid: "google-play", //same cid value as in the html img src
+        },
+      ],
     };
-    let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-      .sendEmail(params)
-      .promise();
-    mail
-      .then(function () {
-        res.status(200).send({ message: "Request submitted" });
-      })
-      .catch(function (err) {
-        console.error(err, err.stack);
-        res.status(400).send(err);
-      });
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
