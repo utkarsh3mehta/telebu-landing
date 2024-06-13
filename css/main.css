@@ -1855,11 +1855,11 @@ p.text-transform-auto {
 }
 
 .custom-checkbox-list {
-  /* display: flex;
-  justify-content: space-between; */
-  display: grid;
+  display: flex;
+  justify-content: space-between;
+  /* display: grid;
   grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-  gap: 20px;
+  gap: 20px; */
 }
 
 .custom-checkbox-list .item {
