@@ -1,5 +1,5 @@
-var API_URL = "https://telebusocial-api.enpointe.io";
-// var API_URL = "http://localhost:3000";
+// var API_URL = "https://telebusocial-api.enpointe.io";
+var API_URL = "http://localhost:3000";
 
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
@@ -27,9 +27,33 @@ $(document).ready(function () {
       let demo = getStartedModal.querySelector("#switch").checked;
       let submitFormButton = document.getElementById("getStartedSubmitButton");
       var xhr = new XMLHttpRequest();
+      var resendOtpButton = document.getElementById("resend_otp");
+      // Need to comment this
       // otpModal.show();
+      // var interval = setInterval(function () {
+      //   resendOtpButton.style.pointerEvents = "none";
+      //   resendOtpButton.style.color = "gray";
+      //   var minutes = parseInt(timer / 60, 10);
+      //   var seconds = parseInt(timer % 60, 10);
+
+      //   minutes = minutes < 10 ? "0" + minutes : minutes;
+      //   seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      //   timerElement.textContent = minutes + ":" + seconds;
+      //   resend_otp.disabled = false;
+      //   if (--timer < 0) {
+      //     clearInterval(interval);
+      //     resendOtpButton.style.pointerEvents = "auto";
+      //     resendOtpButton.style.color = "blue";
+      //     timerElement.textContent = "00:00"; // set to zero
+      //   }
+      // }, 1000);
+      // till here
+      var timerElement = document.getElementById("resend_timer");
+      var resendOTPbutton = document.getElementById("resend_otp");
       var url = API_URL + "/get-started";
       const isValidate = validateForm();
+      let timer = 30;
       if (isValidate) {
         try {
           submitFormButton.disabled = true;
@@ -44,6 +68,24 @@ $(document).ready(function () {
                 console.log("email sent");
                 getStarted.hide();
                 otpModal.show();
+                var interval = setInterval(function () {
+                  resendOtpButton.style.pointerEvents = "none";
+                  resendOtpButton.style.color = "gray";
+                  var minutes = parseInt(timer / 60, 10);
+                  var seconds = parseInt(timer % 60, 10);
+
+                  minutes = minutes < 10 ? "0" + minutes : minutes;
+                  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                  timerElement.textContent = minutes + ":" + seconds;
+                  resend_otp.disabled = false;
+                  if (--timer < 0) {
+                    clearInterval(interval);
+                    resendOtpButton.style.pointerEvents = "auto";
+                    resendOtpButton.style.color = "blue";
+                    timerElement.textContent = "00:00"; // set to zero
+                  }
+                }, 1000);
                 submitFormButton.disabled = false;
                 submitFormButton.innerHTML = "Next";
               } else {
@@ -149,6 +191,92 @@ $(document).ready(function () {
         JSON.stringify({
           email,
           otp,
+        })
+      );
+    });
+  });
+  $(document).ready(function () {
+    let subsSubmitButton = document.getElementById("subs_btn");
+
+    subsSubmitButton.addEventListener("click", function () {
+      var email = document.querySelectorAll("#subs_email");
+
+      var url = API_URL + "/subscribe";
+
+      subsSubmitButton.disabled = true;
+      subsSubmitButton.textContent = "Subscribing...";
+
+      var xhr = new XMLHttpRequest();
+
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            otpModal.hide();
+            otpSubmitButton.disabled = false;
+            otpSubmitButton.innerHTML = "Next";
+            successModal.show();
+          } else {
+            alert("Invalid OTP. Please try again.");
+            otpSubmitButton.disabled = false;
+            otpSubmitButton.innerHTML = "Next";
+          }
+        }
+      };
+      xhr.send(
+        JSON.stringify({
+          email,
+        })
+      );
+    });
+  });
+  $(document).ready(function () {
+    let resendButton = document.getElementById("resend_otp");
+
+    resendButton.addEventListener("click", function () {
+      var email = localStorage.getItem("email");
+
+      var url = API_URL + "/resend-otp";
+
+      var timerElement = document.getElementById("resend_timer");
+      var resendOtpButton = document.getElementById("resend_otp");
+      let time = 0;
+      var xhr = new XMLHttpRequest();
+
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var interval = setInterval(function () {
+              resendOtpButton.style.pointerEvents = "none";
+              resendOtpButton.style.color = "gray";
+              var minutes = parseInt(timer / 60, 10);
+              var seconds = parseInt(timer % 60, 10);
+
+              minutes = minutes < 10 ? "0" + minutes : minutes;
+              seconds = seconds < 10 ? "0" + seconds : seconds;
+
+              timerElement.textContent = minutes + ":" + seconds;
+              resend_otp.disabled = false;
+              if (--timer < 0) {
+                clearInterval(interval);
+                resendOtpButton.style.pointerEvents = "auto";
+                resendOtpButton.style.color = "blue";
+                timerElement.textContent = "00:00"; // set to zero
+              }
+            }, 1000);
+          } else {
+            alert("Something went wrong!");
+          }
+        }
+      };
+      xhr.send(
+        JSON.stringify({
+          email,
         })
       );
     });

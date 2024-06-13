@@ -1141,8 +1141,11 @@
                                 <div class="col-lg-12">
                                     <div class="form">
                                         <div class="form-group">
-                                            <input type="text" value="" placeholder="Email">
-                                            <button class="btn-primary btn-small br-70 mt-20">Subscribe</button>
+                                            <input type="email" value="" name="subs_email" id="subs_email"
+                                                placeholder="Email" />
+
+                                            <button id="subs_btn"
+                                                class="btn-primary btn-small br-70 mt-20">Subscribe</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1280,7 +1283,7 @@
                         <h1 class="modal-title font-32px" id="exampleModalLabel">
                             Verify Mobile Number
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body">
 
@@ -1297,13 +1300,14 @@
 
                         <div class="row justify-content-between">
                             <div class="col-auto">
-                                <p class="font-18px font-w-400 color-494">
+                                <p id="resend_timer" class="font-18px font-w-400 color-494">
                                     00:30
                                 </p>
                             </div>
                             <div class="col-auto">
                                 <p class="font-18px font-w-400 color-494 text-transform-auto">
-                                    Didn't receive a OTP? <a href="#" class="color-primary text-decoration-none">Resend
+                                    Didn't receive a OTP? <a id="resend_otp"
+                                        class="color-primary text-decoration-none">Resend
                                         OTP</a>
                                 </p>
                             </div>

@@ -15,6 +15,10 @@
   visibility: hidden;
 }
 
+#resend_otp {
+  cursor: pointer;
+}
+
 .country-select input,
 .country-select input[type=text] {
   position: relative;
