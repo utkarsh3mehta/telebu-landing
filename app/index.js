@@ -505,7 +505,6 @@ route.post("/resend-otp", (req, res) => {
   const { email } = req.body;
   try {
     db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
-      console.log(err, row);
       if (err) res.status(400).send({ message: "No email found" });
       try {
         const mailData = {
