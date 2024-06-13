@@ -293,7 +293,7 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            alert("Demo scheduled successfully");
+            alert("Demo requested");
           } else {
             alert("Unable to schedule demo");
           }
