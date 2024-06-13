@@ -1,5 +1,5 @@
-var API_URL = "https://telebusocial-api.enpointe.io";
-// var API_URL = "http://localhost:3000";
+// var API_URL = "https://telebusocial-api.enpointe.io";
+var API_URL = "http://localhost:3000";
 
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
@@ -149,7 +149,7 @@ $(document).ready(function () {
 
   $(document).ready(function () {
     let otpSubmitButton = document.getElementById("otpSubmitButton");
-    var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
+
     var successModal = new bootstrap.Modal(
       document.getElementById("modalSuccess")
     );
@@ -159,21 +159,25 @@ $(document).ready(function () {
       otpInputs.forEach((input) => (otp += input.value));
 
       var email = localStorage.getItem("email");
-
+      var getStartedModal = $("#modalGetStarted")[0];
       if (otp.length !== 6) {
         alert("Please enter a 6-digit OTP.");
         return;
       }
       var url = API_URL + "/validate-otp";
-
+      var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
       otpSubmitButton.disabled = true;
       otpSubmitButton.textContent = "Verifying...";
-
+      let name = getStartedModal.querySelector("[placeholder='Your Name']");
+      let _email = getStartedModal.querySelector("[placeholder='Your Email']");
+      let numbers = getStartedModal.querySelectorAll("[placeholder='+00']");
+      let country = numbers[0];
+      let number = numbers[1];
+      let city = getStartedModal.querySelector("[placeholder='City']");
       var xhr = new XMLHttpRequest();
 
       xhr.open("POST", url, true);
       xhr.setRequestHeader("Content-Type", "application/json");
-
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -181,10 +185,32 @@ $(document).ready(function () {
             otpSubmitButton.disabled = false;
             otpSubmitButton.innerHTML = "Next";
             successModal.show();
+            getStartedModal.querySelector("[placeholder='Your Name']").value =
+              "";
+            getStartedModal.querySelector("[placeholder='Your Email']").value =
+              "";
+            let numbers = getStartedModal.querySelectorAll(
+              "[placeholder='+00']"
+            );
+            numbers[0].value = "";
+            numbers[1].value = "";
+            getStartedModal.querySelector("[placeholder='City']").value = "";
+            getStartedModal.querySelector("#switch").checked = false;
           } else {
             alert("Invalid OTP. Please try again.");
             otpSubmitButton.disabled = false;
             otpSubmitButton.innerHTML = "Next";
+            getStartedModal.querySelector("[placeholder='Your Name']").value =
+              "";
+            getStartedModal.querySelector("[placeholder='Your Email']").value =
+              "";
+            let numbers = getStartedModal.querySelectorAll(
+              "[placeholder='+00']"
+            );
+            numbers[0].value = "";
+            numbers[1].value = "";
+            getStartedModal.querySelector("[placeholder='City']").value = "";
+            getStartedModal.querySelector("#switch").checked = false;
           }
         }
       };
@@ -219,11 +245,12 @@ $(document).ready(function () {
           alert("Error in Subscribing");
         }
       };
-      xhr.send(
-        JSON.stringify({
-          email,
-        })
-      );
+      console.log(email[0].value);
+      // xhr.send(
+      //   JSON.stringify({
+      //     email,
+      //   })
+      // );
     });
   });
   $(document).ready(function () {
@@ -279,37 +306,41 @@ $(document).ready(function () {
   //Schedule Demo
   $(document).ready(function () {
     let scheduleDemo = $(".schedule-demo-form")[0];
-    let submitBtn = scheduleDemo.querySelector("#submit_button");
+    if (scheduleDemo) {
+      let submitBtn = scheduleDemo.querySelector("#submit_button");
 
-    submitBtn.addEventListener("click", function () {
-      let name = scheduleDemo.querySelector("#name").value;
-      let email = scheduleDemo.querySelector("#email").value;
-      let number = scheduleDemo.querySelector("#number").value;
-      let query = scheduleDemo.querySelector("#query").value;
-      let country = scheduleDemo.querySelector("#country").value;
-      var xhr = new XMLHttpRequest();
-      var url = API_URL + "/schedule-demo";
-      xhr.open("POST", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            alert("Demo requested");
-          } else {
-            alert("Unable to schedule demo");
-          }
-        }
-      };
-      xhr.send(
-        JSON.stringify({
-          name,
-          email,
-          number,
-          query,
-          country,
-        })
-      );
-    });
+      if (submitBtn) {
+        submitBtn.addEventListener("click", function () {
+          let name = scheduleDemo.querySelector("#name").value;
+          let email = scheduleDemo.querySelector("#email").value;
+          let number = scheduleDemo.querySelector("#number").value;
+          let query = scheduleDemo.querySelector("#query").value;
+          let country = scheduleDemo.querySelector("#country").value;
+          var xhr = new XMLHttpRequest();
+          var url = API_URL + "/schedule-demo";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                alert("Demo requested");
+              } else {
+                alert("Unable to schedule demo");
+              }
+            }
+          };
+          xhr.send(
+            JSON.stringify({
+              name,
+              email,
+              number,
+              query,
+              country,
+            })
+          );
+        });
+      }
+    }
   });
   $(".testimonial-slider").slick({
     dots: false,
@@ -420,6 +451,7 @@ $(document).ready(function () {
       onlyNumbers: true,
       typingDone: function (otp) {
         var url = API_URL + "/validate-otp";
+        var getStartedModal = $("#modalGetStarted")[0];
         console.log("Entered OTP code: " + otp);
         otpSubmitButton.disabled = true;
         otpSubmitButton.textContent = "Verifying...";
@@ -428,18 +460,39 @@ $(document).ready(function () {
         var successModal = new bootstrap.Modal(
           document.getElementById("modalSuccess")
         );
-        var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
             if (xhr.status === 200) {
               otpModal.hide();
+
               otpSubmitButton.disabled = false;
+              getStartedModal.querySelector("[placeholder='Your Name']").value =
+                "";
+              getStartedModal.querySelector(
+                "[placeholder='Your Email']"
+              ).value = "";
+              let numbers = getStartedModal.querySelectorAll(
+                "[placeholder='+00']"
+              );
+              numbers[0].value = "";
+              numbers[1].value = "";
               otpSubmitButton.innerHTML = "Next";
               successModal.show();
             } else {
+              // otpModal.hide();
               alert("Invalid OTP. Please try again.");
+              getStartedModal.querySelector("[placeholder='Your Name']").value =
+                "";
+              getStartedModal.querySelector(
+                "[placeholder='Your Email']"
+              ).value = "";
+              let numbers = getStartedModal.querySelectorAll(
+                "[placeholder='+00']"
+              );
+              numbers[0].value = "";
+              numbers[1].value = "";
               otpSubmitButton.disabled = false;
               otpSubmitButton.innerHTML = "Next";
             }
