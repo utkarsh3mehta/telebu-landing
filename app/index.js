@@ -5,8 +5,9 @@ const cors = require("cors");
 require("dotenv").config();
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("db");
-const path = require('path')
+const path = require("path");
 const app = express();
+
 // create reusable transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
   port: 587, // true for 465, false for other ports
@@ -387,17 +388,17 @@ route.post("/get-started", (req, res) => {
       attachments: [
         {
           filename: "logo.png",
-          path: "./assets",
+          path: path.join(__dirname, "/assets/logo.png"),
           cid: "logo", //same cid value as in the html img src
         },
         {
           filename: "app-store.png",
-          path: "./assets",
+          path: path.join(__dirname, "/assets/app-store.png"),
           cid: "app-store", //same cid value as in the html img src
         },
         {
           filename: "google-play.png",
-          path: "./assets",
+          path: path.join(__dirname, "/assets/google-play.png"),
           cid: "google-play", //same cid value as in the html img src
         },
       ],
