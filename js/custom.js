@@ -1,5 +1,5 @@
-// var API_URL = "https://telebusocial-api.enpointe.io";
-var API_URL = "http://localhost:3000";
+var API_URL = "https://telebusocial-api.enpointe.io";
+// var API_URL = "http://localhost:3000";
 
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
