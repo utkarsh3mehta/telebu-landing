@@ -213,16 +213,9 @@ $(document).ready(function () {
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            otpModal.hide();
-            otpSubmitButton.disabled = false;
-            otpSubmitButton.innerHTML = "Next";
-            successModal.show();
-          } else {
-            alert("Invalid OTP. Please try again.");
-            otpSubmitButton.disabled = false;
-            otpSubmitButton.innerHTML = "Next";
-          }
+          alert("subscribed Successfully");
+        } else {
+          alert("Error in Subscribing");
         }
       };
       xhr.send(
