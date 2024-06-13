@@ -23,95 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const route = express.Router();
 const port = process.env.PORT || 5000;
 
-route.get("/test", (req, res) => {
-  res.status(200).send({ message: "Request submitted" });
-});
-
-route.post("/validate-otp", (req, res) => {
-  const { email, otp } = req.body;
-  try {
-    db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
-      if (err) res.status(400).send({ message: "No email found" });
-      if (row.otp == otp) {
-        try {
-          const stmt = db.prepare(
-            `UPDATE leads SET otpValidated = 1 where email="${email}"`
-          );
-          stmt.run();
-          stmt.finalize();
-          const mailData = {
-            from: process.env.SMTP_FROM,
-            to: process.env.TO_EMAIL,
-            subject: "New interested user",
-            text: "New interested user",
-            html: `<!DOCTYPE html>
-            <html lang="en">
-              <head>
-                <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>New interested user</title>
-              </head>
-              <body>
-                <table border="">
-                  <tbody>
-                    <tr>
-                      <td>Name</td>
-                      <td>${row.name}</td>
-                    </tr>
-                    <tr>
-                      <td>Email</td>
-                      <td>${row.email}</td>
-                    </tr>
-                    <tr>
-                      <td>Number</td>
-                      <td>${row.country} - ${row.number}</td>
-                    </tr>
-                    <tr>
-                      <td>City</td>
-                      <td>${row.city}</td>
-                    </tr>
-                    <tr>
-                      <td>Demo</td>
-                      <td>${row.demo}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </body>
-            </html>
-            `,
-          };
-          transporter.sendMail(mailData, function (err, info) {
-            if (err) console.log(err);
-            res.status(200).send({ message: "Request submitted" });
-          });
-        } catch (err) {
-          console.log(err);
-          res.status(400).send(err);
-        }
-      } else {
-        res.status(401).send({ message: "OTP does not match" });
-      }
-    });
-  } catch (err) {
-    res.status(400).send({ message: "No email found" });
-  }
-});
-
-route.post("/get-started", (req, res) => {
-  const { email, name, number, country, city, demo } = req.body;
-  try {
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    const stmt =
-      db.prepare(`INSERT INTO leads (name, email, country, number, city, demo, otp)
-    VALUES ('${name}', '${email}', '${country}', '${number}', '${city}', ${demo}, ${otp});`);
-    stmt.run();
-    stmt.finalize();
-    const mailData = {
-      from: process.env.SMTP_FROM,
-      to: email,
-      subject: "OTP - Getting started with TelebuSocial",
-      text: "OTP - Getting started with TelebuSocial",
-      html: `
+function OTP_MAIL(name, otp) {
+  return `
       <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -511,7 +424,178 @@ route.post("/get-started", (req, res) => {
   </body>
 </html>
 
+      `;
+}
+
+route.get("/test", (req, res) => {
+  res.status(200).send({ message: "Request submitted" });
+});
+
+route.post("/validate-otp", (req, res) => {
+  const { email, otp } = req.body;
+  try {
+    db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
+      if (err) res.status(400).send({ message: "No email found" });
+      if (row.otp == otp) {
+        try {
+          const stmt = db.prepare(
+            `UPDATE leads SET otpValidated = 1 where email="${email}"`
+          );
+          stmt.run();
+          stmt.finalize();
+          const mailData = {
+            from: process.env.SMTP_FROM,
+            to: process.env.TO_EMAIL,
+            subject: "New interested user",
+            text: "New interested user",
+            html: `<!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>New interested user</title>
+              </head>
+              <body>
+                <table border="">
+                  <tbody>
+                    <tr>
+                      <td>Name</td>
+                      <td>${row.name}</td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td>${row.email}</td>
+                    </tr>
+                    <tr>
+                      <td>Number</td>
+                      <td>${row.country} - ${row.number}</td>
+                    </tr>
+                    <tr>
+                      <td>City</td>
+                      <td>${row.city}</td>
+                    </tr>
+                    <tr>
+                      <td>Demo</td>
+                      <td>${row.demo}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </body>
+            </html>
+            `,
+          };
+          transporter.sendMail(mailData, function (err, info) {
+            if (err) console.log(err);
+            res.status(200).send({ message: "Request submitted" });
+          });
+        } catch (err) {
+          console.log(err);
+          res.status(400).send(err);
+        }
+      } else {
+        res.status(401).send({ message: "OTP does not match" });
+      }
+    });
+  } catch (err) {
+    res.status(400).send({ message: "No email found" });
+  }
+});
+
+route.post("/resend-otp", (req, res) => {
+  const { email } = req.body;
+  try {
+    db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
+      console.log(err, row);
+      if (err) res.status(400).send({ message: "No email found" });
+      try {
+        const mailData = {
+          from: process.env.SMTP_FROM,
+          to: email,
+          subject: "OTP - Getting started with TelebuSocial",
+          text: "OTP - Getting started with TelebuSocial",
+          html: OTP_MAIL(row.name, row.otp),
+        };
+        transporter.sendMail(mailData, function (err, info) {
+          if (err) console.log(err);
+          res.status(200).send({ message: "Request submitted" });
+        });
+      } catch (err) {
+        console.log(err);
+        res.status(400).send(err);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({ message: "No email found" });
+  }
+});
+
+route.post("/schedule-demo", (req, res) => {
+  const { name, email, country, number, city, query } = req.body;
+  try {
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: process.env.TO_EMAIL,
+      subject: "Schedule demo",
+      text: "Schedule demo",
+      html: `<!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Schedule demo</title>
+        </head>
+        <body>
+          <table border="">
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>${name}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>${email}</td>
+              </tr>
+              <tr>
+                <td>Number</td>
+                <td>${country} - ${number}</td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td>${city}</td>
+              </tr>
+              <tr>
+                <td>Query</td>
+                <td>${query}</td>
+              </tr>
+            </tbody>
+          </table>
+        </body>
+      </html>
       `,
+    };
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
+  } catch (err) {}
+});
+
+route.post("/get-started", (req, res) => {
+  const { email, name, number, country, city, demo } = req.body;
+  try {
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    const stmt =
+      db.prepare(`INSERT INTO leads (name, email, country, number, city, demo, otp)
+    VALUES ('${name}', '${email}', '${country}', '${number}', '${city}', ${demo}, ${otp});`);
+    stmt.run();
+    stmt.finalize();
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: email,
+      subject: "OTP - Getting started with TelebuSocial",
+      text: "OTP - Getting started with TelebuSocial",
+      html: OTP_MAIL(name, otp),
     };
     transporter.sendMail(mailData, function (err, info) {
       if (err) console.log(err);
