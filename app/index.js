@@ -578,7 +578,48 @@ route.post("/schedule-demo", (req, res) => {
       if (err) console.log(err);
       res.status(200).send({ message: "Request submitted" });
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
+
+route.post("/subscribe", (req, res) => {
+  const { email } = req.body;
+  try {
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: process.env.TO_EMAIL,
+      subject: "New subscriber",
+      text: "New subscriber",
+      html: `<!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>New subscriber</title>
+        </head>
+        <body>
+          <table border="">
+            <tbody>
+              <tr>
+                <td>Email</td>
+                <td>${email}</td>
+              </tr>
+            </tbody>
+          </table>
+        </body>
+      </html>
+      `,
+    };
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
 });
 
 route.post("/get-started", (req, res) => {
