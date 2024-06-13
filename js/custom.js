@@ -282,6 +282,41 @@ $(document).ready(function () {
     });
   });
 
+  //Schedule Demo
+  $(document).ready(function () {
+    let scheduleDemo = $(".schedule-demo-form")[0];
+    let submitBtn = scheduleDemo.querySelector("#submit_button");
+
+    submitBtn.addEventListener("click", function () {
+      let name = scheduleDemo.querySelector("#name").value;
+      let email = scheduleDemo.querySelector("#email").value;
+      let number = scheduleDemo.querySelector("#number").value;
+      let query = scheduleDemo.querySelector("#query").value;
+      let country = scheduleDemo.querySelector("#country").value;
+      var xhr = new XMLHttpRequest();
+      var url = API_URL + "/schedule-demo";
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            alert("Demo scheduled successfully");
+          } else {
+            alert("Unable to schedule demo");
+          }
+        }
+      };
+      xhr.send(
+        JSON.stringify({
+          name,
+          email,
+          number,
+          query,
+          country,
+        })
+      );
+    });
+  });
   $(".testimonial-slider").slick({
     dots: false,
     arrows: true,
