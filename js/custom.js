@@ -65,8 +65,9 @@ $(document).ready(function () {
           xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
               if (xhr.status === 200) {
-                console.log("email sent");
                 getStarted.hide();
+
+                console.log("email sent");
                 otpModal.show();
                 var interval = setInterval(function () {
                   resendOtpButton.style.pointerEvents = "none";
