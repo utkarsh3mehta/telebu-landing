@@ -1,5 +1,5 @@
-var API_URL = "https://telebusocial-api.enpointe.io";
-// var API_URL = "http://localhost:3000";
+// var API_URL = "https://telebusocial-api.enpointe.io";
+var API_URL = "http://localhost:3000";
 
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
@@ -226,7 +226,7 @@ $(document).ready(function () {
     let subsSubmitButton = document.getElementById("subs_btn");
 
     subsSubmitButton.addEventListener("click", function () {
-      var email = document.querySelectorAll("#subs_email");
+      var _email = document.querySelectorAll("#subs_email");
 
       var url = API_URL + "/subscribe";
 
@@ -237,20 +237,24 @@ $(document).ready(function () {
 
       xhr.open("POST", url, true);
       xhr.setRequestHeader("Content-Type", "application/json");
-
+      var email = _email[0].value;
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-          alert("subscribed Successfully");
-        } else {
-          alert("Error in Subscribing");
+          if (xhr.status === 200) {
+            alert("Subscribed Successfully");
+            subsSubmitButton.disabled = false;
+            subsSubmitButton.textContent = "Subscribe";
+          } else {
+            alert("Error in Subscribing");
+          }
         }
       };
-      console.log(email[0].value);
-      // xhr.send(
-      //   JSON.stringify({
-      //     email,
-      //   })
-      // );
+      // console.log(email[0].value);
+      xhr.send(
+        JSON.stringify({
+          email,
+        })
+      );
     });
   });
   $(document).ready(function () {
