@@ -207,6 +207,10 @@ route.post("/validate-otp", (req, res) => {
                       <td>${row.city}</td>
                     </tr>
                     <tr>
+                      <td>Interest</td>
+                      <td>${row.interest}</td>
+                    </tr>
+                    <tr>
                       <td>Demo</td>
                       <td>${row.demo}</td>
                     </tr>
@@ -279,7 +283,7 @@ route.post("/resend-otp", (req, res) => {
 });
 
 route.post("/schedule-demo", (req, res) => {
-  const { name, email, country, number, city, query } = req.body;
+  const { name, email, country, number, city, query, interest } = req.body;
   try {
     const mailData = {
       from: process.env.SMTP_FROM,
@@ -311,6 +315,10 @@ route.post("/schedule-demo", (req, res) => {
               <tr>
                 <td>City</td>
                 <td>${city}</td>
+              </tr>
+              <tr>
+                <td>Interest</td>
+                <td>${interest}</td>
               </tr>
               <tr>
                 <td>Query</td>
@@ -371,12 +379,12 @@ route.post("/subscribe", (req, res) => {
 });
 
 route.post("/get-started", (req, res) => {
-  const { email, name, number, country, city, demo } = req.body;
+  const { email, name, number, country, city, demo, interest } = req.body;
   try {
     const otp = Math.floor(100000 + Math.random() * 900000);
     const stmt =
-      db.prepare(`INSERT INTO leads (name, email, country, number, city, demo, otp)
-    VALUES ('${name}', '${email}', '${country}', '${number}', '${city}', ${demo}, ${otp});`);
+      db.prepare(`INSERT INTO leads (name, email, country, number, city, demo, otp, interest)
+    VALUES ('${name}', '${email}', '${country}', '${number}', '${city}', ${demo}, ${otp}, '${interest}');`);
     stmt.run();
     stmt.finalize();
     const mailData = {

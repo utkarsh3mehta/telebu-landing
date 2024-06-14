@@ -12,6 +12,7 @@ db.serialize(() => {
       demo TINYINT(1) DEFAULT 1,
       otp VARCHAR(10),
       otpValidated TINYINT(1) DEFAULT 0,
+      interest VARCHAR(400),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`);
   console.log("Done");
