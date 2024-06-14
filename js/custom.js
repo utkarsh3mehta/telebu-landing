@@ -342,6 +342,25 @@ $(document).ready(function() {
             );
         });
     });
+    $(document).ready(function() {
+        const checkboxes = document.querySelectorAll('#intrest_div input[type="checkbox"]');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                let interests = JSON.parse(localStorage.getItem('interest')) || [];
+
+                if (checkbox.checked) {
+                    if (!interests.includes(checkbox.value)) {
+                        interests.push(checkbox.value);
+                    }
+                } else {
+                    interests = interests.filter(interest => interest !== checkbox.value);
+                }
+
+                localStorage.setItem('interest', JSON.stringify(interests));
+            });
+        });
+    });
 
     //Schedule Demo
     $(document).ready(function() {
@@ -360,17 +379,19 @@ $(document).ready(function() {
                             "Email is required.";
                         isValid = false;
                     }
+                    let interest = JSON.parse(localStorage.getItem('interest')) || [];
                     let number = scheduleDemo.querySelector("#number").value;
                     let query = scheduleDemo.querySelector("#query").value;
                     let city = scheduleDemo.querySelector("#city").value;
                     let country = scheduleDemo.querySelector("#country").value;
-                    submitBtn.disabled = true;
-                    submitBtn.textContent = "Scheduling...";
+
                     var xhr = new XMLHttpRequest();
                     var url = API_URL + "/schedule-demo";
                     xhr.open("POST", url, true);
                     xhr.setRequestHeader("Content-Type", "application/json");
                     if (isValid) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = "Scheduling...";
                         xhr.onreadystatechange = function() {
                             if (xhr.readyState === 4) {
                                 if (xhr.status === 200) {
@@ -414,6 +435,7 @@ $(document).ready(function() {
                                 number,
                                 city,
                                 query,
+                                interest,
                                 country,
                             })
                         );
