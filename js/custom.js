@@ -374,7 +374,10 @@ $(document).ready(function() {
                         xhr.onreadystatechange = function() {
                             if (xhr.readyState === 4) {
                                 if (xhr.status === 200) {
-                                    alert("Demo requested");
+                                    // alert("Demo requested");
+                                    var errorDiv = document.getElementById("otp_modal_error");
+                                    errorDiv.innerText = "Demo requested";
+                                    errorDiv.style.color = "green";
                                     let name = (scheduleDemo.querySelector("#name").value = "");
                                     let email = (scheduleDemo.querySelector("#email").value = "");
                                     let number = (scheduleDemo.querySelector("#number").value =
@@ -563,6 +566,7 @@ $(document).ready(function() {
 
                             var errorDiv = document.getElementById("otp_modal_error");
                             errorDiv.innerText = "Invalid OTP. Please try again.";
+                            errorDiv.style.color = "red";
                             getStartedModal.querySelector("[placeholder='Your Name']").value =
                                 "";
                             getStartedModal.querySelector(
