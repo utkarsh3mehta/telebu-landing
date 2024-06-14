@@ -1169,3 +1169,28 @@ p {
     }
 }
 ///======================================= css change end
+
+///======================================= faq redesign css start
+.faq_que_form{
+    background: var(--color-primary);
+    padding: 64px 33px;
+    border-radius: 5px;
+    h6{
+        color: var(--color-white);
+    }
+    p{
+        color: rgba(255, 255, 255, 0.85);
+    }
+    label{
+        color: rgba(255, 255, 255, 0.85);
+    }
+    input.btn{
+        border: 1px solid #fff;
+        &:hover {
+            background-color: #fff;
+            color: var(--color-primary);
+            border: 1px solid transparent;
+        }
+    }
+} 
+/// ///======================================= faq redesign css end

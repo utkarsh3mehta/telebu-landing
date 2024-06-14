@@ -486,4 +486,28 @@
         margin: 0;
         padding: 0 5px;
     }
+    .faq_que_form{
+        padding: 30px 25px;
+    }
+}
+@media (max-width: 480px) {
+    .faq_que_form{
+        h6.font-35px{
+            font-size: 22px !important;
+        }
+    }
+}
+@media (max-width: 420px) {
+    .faq_que_form{
+        .font-18px{
+            font-size: 14px !important;
+        }
+    }
+}
+@media (max-width: 350px) {
+    .faq_que_form{
+        .font-18px{
+            font-size: 12px !important;
+        }
+    }
 }
