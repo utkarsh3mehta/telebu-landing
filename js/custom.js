@@ -2,6 +2,9 @@ var API_URL = "https://telebusocial-api.enpointe.io";
 // var API_URL = "http://localhost:3000";
 
 $(document).ready(function () {
+  var timerElement = document.getElementById("resend_timer");
+  if (timerElement) timerElement.style.visibility = "hidden";
+
   let getStartedModal = $("#modalGetStarted")[0];
   // var submitButton;
   let submitButton = getStartedModal.querySelector(
