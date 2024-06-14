@@ -1,5 +1,5 @@
-var API_URL = "https://telebusocial-api.enpointe.io";
-// var API_URL = "http://localhost:3000";
+// var API_URL = "https://telebusocial-api.enpointe.io";
+var API_URL = "http://localhost:3000";
 
 $(document).ready(function () {
   let getStartedModal = $("#modalGetStarted")[0];
@@ -90,8 +90,22 @@ $(document).ready(function () {
                 submitFormButton.disabled = false;
                 submitFormButton.innerHTML = "Next";
               } else {
-                alert("Unable to send details to server");
+                alert("Email already Registered!!");
                 submitFormButton.disabled = false;
+                getStartedModal.querySelector(
+                  "[placeholder='Your Name']"
+                ).value = "";
+                getStartedModal.querySelector(
+                  "[placeholder='Your Email']"
+                ).value = "";
+                let numbers = getStartedModal.querySelectorAll(
+                  "[placeholder='+00']"
+                );
+                numbers[0].value = "";
+                numbers[1].value = "";
+                getStartedModal.querySelector("[placeholder='City']").value =
+                  "";
+                getStartedModal.querySelector("#switch").checked = false;
                 submitFormButton.innerHTML = "Next";
               }
             }
@@ -319,6 +333,7 @@ $(document).ready(function () {
           let email = scheduleDemo.querySelector("#email").value;
           let number = scheduleDemo.querySelector("#number").value;
           let query = scheduleDemo.querySelector("#query").value;
+          let city = scheduleDemo.querySelector("#city").value;
           let country = scheduleDemo.querySelector("#country").value;
           var xhr = new XMLHttpRequest();
           var url = API_URL + "/schedule-demo";
@@ -338,6 +353,7 @@ $(document).ready(function () {
               name,
               email,
               number,
+              city,
               query,
               country,
             })
