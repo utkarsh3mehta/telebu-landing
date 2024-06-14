@@ -337,8 +337,15 @@ $(document).ready(function () {
 
       if (submitBtn) {
         submitBtn.addEventListener("click", function () {
+          var isValid = true;
           let name = scheduleDemo.querySelector("#name").value;
           let email = scheduleDemo.querySelector("#email").value;
+          console.log(name, email);
+          if (email.trim() === "") {
+            document.getElementById("email_error").innerText =
+              "Email is required.";
+            isValid = false;
+          }
           let number = scheduleDemo.querySelector("#number").value;
           let query = scheduleDemo.querySelector("#query").value;
           let city = scheduleDemo.querySelector("#city").value;
@@ -349,43 +356,47 @@ $(document).ready(function () {
           var url = API_URL + "/schedule-demo";
           xhr.open("POST", url, true);
           xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-              if (xhr.status === 200) {
-                alert("Demo requested");
-                let name = (scheduleDemo.querySelector("#name").value = "");
-                let email = (scheduleDemo.querySelector("#email").value = "");
-                let number = (scheduleDemo.querySelector("#number").value = "");
-                let query = (scheduleDemo.querySelector("#query").value = "");
-                let city = (scheduleDemo.querySelector("#city").value = "");
-                let country = (scheduleDemo.querySelector("#country").value =
-                  "");
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Next";
-              } else {
-                alert("Unable to schedule demo");
-                let name = (scheduleDemo.querySelector("#name").value = "");
-                let email = (scheduleDemo.querySelector("#email").value = "");
-                let number = (scheduleDemo.querySelector("#number").value = "");
-                let query = (scheduleDemo.querySelector("#query").value = "");
-                let city = (scheduleDemo.querySelector("#city").value = "");
-                let country = (scheduleDemo.querySelector("#country").value =
-                  "");
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Next";
+          if (isValid) {
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  alert("Demo requested");
+                  let name = (scheduleDemo.querySelector("#name").value = "");
+                  let email = (scheduleDemo.querySelector("#email").value = "");
+                  let number = (scheduleDemo.querySelector("#number").value =
+                    "");
+                  let query = (scheduleDemo.querySelector("#query").value = "");
+                  let city = (scheduleDemo.querySelector("#city").value = "");
+                  let country = (scheduleDemo.querySelector("#country").value =
+                    "");
+                  submitBtn.disabled = false;
+                  submitBtn.textContent = "Next";
+                } else {
+                  alert("Unable to schedule demo");
+                  let name = (scheduleDemo.querySelector("#name").value = "");
+                  let email = (scheduleDemo.querySelector("#email").value = "");
+                  let number = (scheduleDemo.querySelector("#number").value =
+                    "");
+                  let query = (scheduleDemo.querySelector("#query").value = "");
+                  let city = (scheduleDemo.querySelector("#city").value = "");
+                  let country = (scheduleDemo.querySelector("#country").value =
+                    "");
+                  submitBtn.disabled = false;
+                  submitBtn.textContent = "Next";
+                }
               }
-            }
-          };
-          xhr.send(
-            JSON.stringify({
-              name,
-              email,
-              number,
-              city,
-              query,
-              country,
-            })
-          );
+            };
+            xhr.send(
+              JSON.stringify({
+                name,
+                email,
+                number,
+                city,
+                query,
+                country,
+              })
+            );
+          }
         });
       }
     }
