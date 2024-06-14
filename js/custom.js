@@ -69,24 +69,24 @@ $(document).ready(function () {
 
                 console.log("email sent");
                 otpModal.show();
-                var interval = setInterval(function () {
-                  resendOtpButton.style.pointerEvents = "none";
-                  resendOtpButton.style.color = "gray";
-                  var minutes = parseInt(timer / 60, 10);
-                  var seconds = parseInt(timer % 60, 10);
+                // var interval = setInterval(function () {
+                //   resendOtpButton.style.pointerEvents = "none";
+                //   resendOtpButton.style.color = "gray";
+                //   var minutes = parseInt(timer / 60, 10);
+                //   var seconds = parseInt(timer % 60, 10);
 
-                  minutes = minutes < 10 ? "0" + minutes : minutes;
-                  seconds = seconds < 10 ? "0" + seconds : seconds;
+                //   minutes = minutes < 10 ? "0" + minutes : minutes;
+                //   seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                  timerElement.textContent = minutes + ":" + seconds;
-                  resend_otp.disabled = false;
-                  if (--timer < 0) {
-                    clearInterval(interval);
-                    resendOtpButton.style.pointerEvents = "auto";
-                    resendOtpButton.style.color = "blue";
-                    timerElement.textContent = "00:00"; // set to zero
-                  }
-                }, 1000);
+                //   timerElement.textContent = minutes + ":" + seconds;
+                //   resend_otp.disabled = false;
+                //   if (--timer < 0) {
+                //     clearInterval(interval);
+                //     resendOtpButton.style.pointerEvents = "auto";
+                //     resendOtpButton.style.color = "blue";
+                //     timerElement.textContent = "00:00"; // set to zero
+                //   }
+                // }, 1000);
                 submitFormButton.disabled = false;
                 submitFormButton.innerHTML = "Next";
               } else {
@@ -290,24 +290,22 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            var interval = setInterval(function () {
-              resendOtpButton.style.pointerEvents = "none";
-              resendOtpButton.style.color = "gray";
-              var minutes = parseInt(timer / 60, 10);
-              var seconds = parseInt(timer % 60, 10);
-
-              minutes = minutes < 10 ? "0" + minutes : minutes;
-              seconds = seconds < 10 ? "0" + seconds : seconds;
-
-              timerElement.textContent = minutes + ":" + seconds;
-              resend_otp.disabled = false;
-              if (--timer < 0) {
-                clearInterval(interval);
-                resendOtpButton.style.pointerEvents = "auto";
-                resendOtpButton.style.color = "blue";
-                timerElement.textContent = "00:00"; // set to zero
-              }
-            }, 1000);
+            // var interval = setInterval(function () {
+            //   resendOtpButton.style.pointerEvents = "none";
+            //   resendOtpButton.style.color = "gray";
+            //   var minutes = parseInt(timer / 60, 10);
+            //   var seconds = parseInt(timer % 60, 10);
+            //   minutes = minutes < 10 ? "0" + minutes : minutes;
+            //   seconds = seconds < 10 ? "0" + seconds : seconds;
+            //   timerElement.textContent = minutes + ":" + seconds;
+            //   resend_otp.disabled = false;
+            //   if (--timer < 0) {
+            //     clearInterval(interval);
+            //     resendOtpButton.style.pointerEvents = "auto";
+            //     resendOtpButton.style.color = "blue";
+            //     timerElement.textContent = "00:00"; // set to zero
+            //   }
+            // }, 1000);
           } else {
             alert("Something went wrong!");
           }
