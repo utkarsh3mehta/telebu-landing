@@ -49,6 +49,14 @@ $(document).ready(function () {
       //   }
       // }, 1000);
       // till here
+      console.log({
+        email,
+        name,
+        number,
+        country,
+        city,
+        demo,
+      });
       var timerElement = document.getElementById("resend_timer");
       var resendOTPbutton = document.getElementById("resend_otp");
       var url = API_URL + "/get-started";
@@ -127,14 +135,16 @@ $(document).ready(function () {
       }
 
       function validateForm() {
+        let getStartedModal = $("#modalGetStarted")[0];
         document.getElementById("user_name").innerText = "";
         document.getElementById("user_email").innerText = "";
 
-        var username = document.querySelector(
+        let username = getStartedModal.querySelector(
           "[placeholder='Your Name']"
         ).value;
-        var email = document.querySelector("[placeholder='Your Email']").value;
 
+        var email = document.querySelector("[placeholder='Your Email']").value;
+        console.log(email, username);
         var isValid = true;
 
         if (username.trim() === "") {
@@ -341,8 +351,22 @@ $(document).ready(function () {
             if (xhr.readyState === 4) {
               if (xhr.status === 200) {
                 alert("Demo requested");
+                let name = (scheduleDemo.querySelector("#name").value = "");
+                let email = (scheduleDemo.querySelector("#email").value = "");
+                let number = (scheduleDemo.querySelector("#number").value = "");
+                let query = (scheduleDemo.querySelector("#query").value = "");
+                let city = (scheduleDemo.querySelector("#city").value = "");
+                let country = (scheduleDemo.querySelector("#country").value =
+                  "");
               } else {
                 alert("Unable to schedule demo");
+                let name = (scheduleDemo.querySelector("#name").value = "");
+                let email = (scheduleDemo.querySelector("#email").value = "");
+                let number = (scheduleDemo.querySelector("#number").value = "");
+                let query = (scheduleDemo.querySelector("#query").value = "");
+                let city = (scheduleDemo.querySelector("#city").value = "");
+                let country = (scheduleDemo.querySelector("#country").value =
+                  "");
               }
             }
           };

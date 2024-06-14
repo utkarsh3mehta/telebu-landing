@@ -15,11 +15,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
     <link href="../css/main.css" rel="stylesheet">
-    
+
 </head>
 
 <body>
-    
+
     <header>
         <div class="container">
             <div class="logo">
@@ -210,7 +210,9 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6 mt-md-40">
                     <h1>
-                        Stay <span class="text-lowercase">on</span> Top <span class="text-lowercase">of</span> Your Agents’ Activities with <span class="text-lowercase">a</span> <span class="color-primary">Comprehensive Admin
+                        Stay <span class="text-lowercase">on</span> Top <span class="text-lowercase">of</span> Your
+                        Agents’ Activities with <span class="text-lowercase">a</span> <span
+                            class="color-primary">Comprehensive Admin
                             Dashboard</span>
                     </h1>
 
@@ -282,9 +284,9 @@
                     <p class="font-28px font-lg-24px color-white mt-sm-10 mt-50">
                         TelebuSocial's admin dashboard will empower you to simplify workflows, enhance agent
                         productivity, and make data-driven decisions that drive business growth. By centralising chatbot
-                        management, monitoring agent activity, tracking customer interactions, and generating detailed
-                        reports, you’ll gain invaluable insights into customer behaviour, which leads to increased
-                        customer satisfaction and sales.
+                        management, monitoring agent activity, tracking customer interactions,
+                        and generating detailed reports, you’ll gain invaluable insights into customer behaviour, which
+                        leads to increased customer satisfaction and sales.
                     </p>
                 </div>
             </div>
@@ -616,8 +618,8 @@
                             <div class="accordion-data">
                                 On TelebuSocial, you can grant and deny permission to different agents based on their
                                 responsibility and level of clearance. Plus, TelebuSocial adheres to the highest level
-                                of data security measures, including GDPR and HIPAA, so you and your customer are always
-                                safe
+                                of data security measures, including GDPR and HIPAA, so you and your customer
+                                are always safe
                             </div>
                         </div>
 
@@ -746,12 +748,13 @@
                                         Always know what’s happening
                                     </p>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="form">
-                                        <div class="form-group">
-                                            <input type="text" value="" placeholder="Email">
-                                            <button class="btn-primary btn-small br-70 mt-20">Subscribe</button>
-                                        </div>
+                                <div class="form">
+                                    <div class="form-group">
+                                        <input type="email" value="" name="subs_email" id="subs_email"
+                                            placeholder="Email" />
+                                        <button id="subs_btn" class="btn-primary btn-small br-70 mt-20">
+                                            Subscribe
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -762,8 +765,7 @@
         </div>
 
         <div class="foot">
-            <img src="../images/logo-icon.svg">
-            ©2024, TelebuSocial. All Rights Reserved
+            <img src="../images/logo-icon.svg"> ©2024, TelebuSocial. All Rights Reserved
         </div>
     </footer>
 
@@ -772,40 +774,42 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title font-32px" id="exampleModalLabel">Get <span
-                            class="color-primary">started</span></h1>
+                    <h1 class="modal-title font-32px" id="exampleModalLabel">
+                        Get <span class="color-primary">started</span>
+                    </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="form form-field-white">
                         <div class="form-group">
                             <label>Name:</label>
-                            <input type="text" value="" placeholder="Your Name">
+                            <input type="text" value="" placeholder="Your Name" />
+                            <span id="user_name" class="error"></span>
                         </div>
 
                         <div class="form-group">
                             <label>Email:</label>
-                            <input type="text" value="" placeholder="Your Email">
+                            <input type="text" value="" placeholder="Your Email" />
+                            <span id="user_email" class="error"></span>
                         </div>
 
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="form-group">
                                     <label>Country</label>
-                                    <input type="text" value="" placeholder="+00">
+                                    <input type="text" value="" placeholder="+00" />
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label>Phone number</label>
-                                    <input type="text" value="" placeholder="+00">
+                                    <input type="text" value="" placeholder="+00" />
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>City</label>
-                                    <input type="text" value="" placeholder="City">
+                                    <input type="text" value="" placeholder="City" />
                                 </div>
                             </div>
                         </div>
@@ -816,7 +820,7 @@
                             <div class="d-flex align-items-center">
                                 <p class="font-18px font-sm-14px color-f49 mb-0">No</p>
                                 <div class="custom-switch mx-3">
-                                    <input type="checkbox" id="switch" checked>
+                                    <input type="checkbox" id="switch" checked />
                                     <label for="switch" class="mb-0"></label>
                                 </div>
                                 <p class="font-18px font-sm-14px color-f49 mb-0">Yes</p>
@@ -825,8 +829,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary open-otp-modal" data-bs-toggle="modal"
-                        data-bs-target="#modalOtp">Next</button>
+                    <button type="button" id="getStartedSubmitButton" class="btn btn-primary open-otp-modal">
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -840,10 +845,9 @@
                         <h1 class="modal-title font-32px" id="exampleModalLabel">
                             Verify Mobile Number
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                     </div>
                     <div class="modal-body">
-
                         <h4 class="font-28px font-w-600 mt-25">Enter OTP</h4>
 
                         <p class="font-18px font-w-400 color-494">
@@ -851,28 +855,25 @@
                         </p>
 
                         <div class="form otp-fields">
-                            <div id="otp-inputs" data-inputs-classes="text-danger" data-otp-length="5">
-                            </div>
+                            <div id="otp-inputs" data-inputs-classes="text-danger" data-otp-length="6"></div>
                         </div>
 
                         <div class="row justify-content-between">
                             <div class="col-auto">
-                                <p class="font-18px font-w-400 color-494">
-                                    00:30
-                                </p>
+                                <p id="resend_timer" class="font-18px font-w-400 color-494">00:30</p>
                             </div>
                             <div class="col-auto">
                                 <p class="font-18px font-w-400 color-494 text-transform-auto">
-                                    Didn't receive a OTP? <a href="#" class="color-primary text-decoration-none">Resend
-                                        OTP</a>
+                                    Didn't receive a OTP?
+                                    <a id="resend_otp" class="color-primary text-decoration-none">Resend OTP</a>
                                 </p>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary open-otp-modal mt-25" data-bs-toggle="modal"
-                            data-bs-target="#modalSuccess">Next</button>
+                        <button type="button" id="otpSubmitButton" class="btn btn-primary open-otp-modal mt-25">
+                            Next
+                        </button>
                     </div>
                 </div>
             </div>
