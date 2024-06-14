@@ -343,6 +343,8 @@ $(document).ready(function () {
           let query = scheduleDemo.querySelector("#query").value;
           let city = scheduleDemo.querySelector("#city").value;
           let country = scheduleDemo.querySelector("#country").value;
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Scheduling...";
           var xhr = new XMLHttpRequest();
           var url = API_URL + "/schedule-demo";
           xhr.open("POST", url, true);
@@ -358,6 +360,8 @@ $(document).ready(function () {
                 let city = (scheduleDemo.querySelector("#city").value = "");
                 let country = (scheduleDemo.querySelector("#country").value =
                   "");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Next";
               } else {
                 alert("Unable to schedule demo");
                 let name = (scheduleDemo.querySelector("#name").value = "");
@@ -367,6 +371,8 @@ $(document).ready(function () {
                 let city = (scheduleDemo.querySelector("#city").value = "");
                 let country = (scheduleDemo.querySelector("#country").value =
                   "");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Next";
               }
             }
           };
