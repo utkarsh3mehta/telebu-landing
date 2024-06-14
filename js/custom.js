@@ -1,5 +1,5 @@
-// var API_URL = "https://telebusocial-api.enpointe.io";
-var API_URL = "http://localhost:3000";
+var API_URL = "https://telebusocial-api.enpointe.io";
+// var API_URL = "http://localhost:3000";
 $("#modalGetStarted").on("hidden.bs.modal", function() {
     var errorDiv = document.getElementById("get_started_error");
     errorDiv.innerHTML = "";
@@ -110,7 +110,7 @@ $(document).ready(function() {
                                 submitFormButton.innerHTML = "Next";
                             } else {
                                 // alert("Email already Registered!!");
-                                errorDiv.innerText = "Email already Registered!!";
+                                errorDiv.innerText = "Email already registered!!";
                                 submitFormButton.disabled = false;
                                 getStartedModal.querySelector(
                                     "[placeholder='Your Name']"
@@ -559,7 +559,10 @@ $(document).ready(function() {
                             successModal.show();
                         } else {
                             // otpModal.hide();
-                            alert("Invalid OTP. Please try again.");
+                            // alert("Invalid OTP. Please try again.");
+
+                            var errorDiv = document.getElementById("otp_modal_error");
+                            errorDiv.innerText = "Invalid OTP. Please try again.";
                             getStartedModal.querySelector("[placeholder='Your Name']").value =
                                 "";
                             getStartedModal.querySelector(
