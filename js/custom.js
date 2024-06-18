@@ -415,7 +415,7 @@ $(document).ready(function () {
                   submitBtn.disabled = false;
                   submitBtn.textContent = "Next";
                   var errorDiv = document.getElementById("schedule_error");
-                  errorDiv.innerText = "";
+                  // errorDiv.innerText = "";
                 } else {
                   // alert("Unable to schedule demo");
                   var errorDiv = document.getElementById("schedule_error");
