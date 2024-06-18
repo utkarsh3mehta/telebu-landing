@@ -178,7 +178,7 @@ route.post("/validate-otp", (req, res) => {
           const mailData = {
             from: process.env.SMTP_FROM,
             to: process.env.TO_EMAIL,
-            subject: "New interested user",
+            subject: "New Lead on TelebuSocial",
             text: "New interested user",
             html: `<!DOCTYPE html>
             <html lang="en">
@@ -288,7 +288,7 @@ route.post("/schedule-demo", (req, res) => {
     const mailData = {
       from: process.env.SMTP_FROM,
       to: process.env.TO_EMAIL,
-      subject: "Schedule demo",
+      subject: "Demo Request | TelebuSocial",
       text: "Schedule demo",
       html: `<!DOCTYPE html>
       <html lang="en">
@@ -346,7 +346,7 @@ route.post("/subscribe", (req, res) => {
     const mailData = {
       from: process.env.SMTP_FROM,
       to: process.env.TO_EMAIL,
-      subject: "New subscriber",
+      subject: "New Email Subscriber | TelebuSocial",
       text: "New subscriber",
       html: `<!DOCTYPE html>
       <html lang="en">
