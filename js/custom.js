@@ -257,6 +257,8 @@ $(document).ready(function () {
   });
   $(document).ready(function () {
     let subsSubmitButton = document.getElementById("subs_btn");
+    let parentDiv = subsSubmitButton.parentNode;
+    let resultSpan = document.createElement("span");
 
     subsSubmitButton.addEventListener("click", function () {
       var _email = document.querySelectorAll("#subs_email");
@@ -274,12 +276,16 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            alert("Subscribed Successfully");
+            // alert("Subscribed Successfully");
+            resultSpan.style.color = "green";
+            resultSpan.innerHTML = "Subscribed successfully";
             subsSubmitButton.disabled = false;
             subsSubmitButton.textContent = "Subscribe";
           } else {
-            alert("Error in Subscribing");
+            resultSpan.style.color = "red";
+            resultSpan.innerHTML = "Error subscribing. Retry later.";
           }
+          parentDiv.insertBefore(resultSpan, subsSubmitButton);
         }
       };
       // console.log(email[0].value);
