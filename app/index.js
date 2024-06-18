@@ -212,7 +212,7 @@ route.post("/validate-otp", (req, res) => {
                     </tr>
                     <tr>
                       <td>Demo</td>
-                      <td>${row.demo}</td>
+                      <td>${row.demo ? "Yes" : "No"}</td>
                     </tr>
                   </tbody>
                 </table>
