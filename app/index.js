@@ -381,7 +381,7 @@ route.post("/schedule-demo", async (req, res) => {
     postData.append("Destination.ToAddresses.member.1", process.env.TO_EMAIL);
     postData.append("Message.Subject.Data", "Demo Request | TelebuSocial");
     postData.append(
-      "Message.Body.Text.Data",
+      "Message.Body.Html.Data",
       `<!DOCTYPE html>
       <html lang="en">
         <head>
