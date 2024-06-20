@@ -322,7 +322,7 @@ route.post("/resend-otp", (req, res) => {
 });
 
 route.post("/schedule-demo", async (req, res) => {
-  const { name, email, country, number, city, query } = req.body;
+  const { name, email, country, number, city, query, interest } = req.body;
   try {
     const amz_date = new Date().toISOString().replace(/[:-]|\.\d{3}/g, "");
     const date_stamp = amz_date.slice(0, 8);
