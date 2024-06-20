@@ -29,8 +29,8 @@ const access_key = process.env.AWS_ACCESS_KEY_ID;
 const secret_key = process.env.AWS_SECRET_ACCESS_KEY;
 const region = "us-east-1";
 const service = "ses";
-const host = "email.us-east-1.amazonaws.com";
-const endpoint = "https://email.us-east-1.amazonaws.com/";
+const host = "email-smtp.us-east-1.amazonaws.com";
+const endpoint = "https://email-smtp.us-east-1.amazonaws.com/";
 
 app.use(cors("*"));
 app.use(bodyParser.json());
