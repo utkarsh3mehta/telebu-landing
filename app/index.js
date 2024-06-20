@@ -7,8 +7,29 @@ const db = new sqlite3.Database("db");
 // const path = require("path");
 const app = express();
 var AWS = require("aws-sdk");
+const crypto = require("crypto");
 
 AWS.config.update({ region: "us-east-1" });
+
+function sign(key, msg) {
+  return crypto.createHmac("sha256", key).update(msg).digest();
+}
+
+function getSignatureKey(key, dateStamp, regionName, serviceName) {
+  const kDate = sign("AWS4" + key, dateStamp);
+  const kRegion = sign(kDate, regionName);
+  const kService = sign(kRegion, serviceName);
+  const kSigning = sign(kService, "aws4_request");
+  return kSigning;
+}
+
+// Replace with your own values
+const access_key = process.env.AWS_ACCESS_KEY_ID;
+const secret_key = process.env.AWS_SECRET_ACCESS_KEY;
+const region = "us-east-1";
+const service = "ses";
+const host = "email.us-east-1.amazonaws.com";
+const endpoint = "https://email.us-east-1.amazonaws.com/";
 
 app.use(cors("*"));
 app.use(bodyParser.json());
@@ -300,19 +321,67 @@ route.post("/resend-otp", (req, res) => {
   }
 });
 
-route.post("/schedule-demo", (req, res) => {
+route.post("/schedule-demo", async (req, res) => {
   const { name, email, country, number, city, query } = req.body;
   try {
-    const params = {
-      Destination: {
-        ToAddresses: [process.env.TO_EMAIL],
-      },
-      Source: process.env.SMTP_FROM,
-      Message: {
-        Body: {
-          Html: {
-            Charset: "UTF-8",
-            Data: `<!DOCTYPE html>
+    const amz_date = new Date().toISOString().replace(/[:-]|\.\d{3}/g, "");
+    const date_stamp = amz_date.slice(0, 8);
+
+    const canonical_uri = "/";
+    const canonical_querystring = "";
+    const canonical_headers =
+      "content-type:application/x-www-form-urlencoded\nhost:" +
+      host +
+      "\nx-amz-date:" +
+      amz_date +
+      "\n";
+    const signed_headers = "content-type;host;x-amz-date";
+    const payload_hash = crypto.createHash("sha256").update("").digest("hex");
+
+    const canonical_request =
+      "POST\n" +
+      canonical_uri +
+      "\n" +
+      canonical_querystring +
+      "\n" +
+      canonical_headers +
+      "\n" +
+      signed_headers +
+      "\n" +
+      payload_hash;
+    const algorithm = "AWS4-HMAC-SHA256";
+    const credential_scope =
+      date_stamp + "/" + region + "/" + service + "/" + "aws4_request";
+    const string_to_sign =
+      algorithm +
+      "\n" +
+      amz_date +
+      "\n" +
+      credential_scope +
+      "\n" +
+      crypto.createHash("sha256").update(canonical_request).digest("hex");
+
+    const signing_key = getSignatureKey(
+      secret_key,
+      date_stamp,
+      region,
+      service
+    );
+    const signature = crypto
+      .createHmac("sha256", signing_key)
+      .update(string_to_sign)
+      .digest("hex");
+
+    const authorization_header = `AWS4-HMAC-SHA256 Credential=${access_key}/${credential_scope}, SignedHeaders=${signed_headers}, Signature=${signature}`;
+
+    const postData = new URLSearchParams();
+    postData.append("Action", "SendEmail");
+    postData.append("Source", process.env.SMTP_FROM);
+    postData.append("Destination.ToAddresses.member.1", process.env.TO_EMAIL);
+    postData.append("Message.Subject.Data", "Demo Request | TelebuSocial");
+    postData.append(
+      "Message.Body.Text.Data",
+      `<!DOCTYPE html>
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -349,30 +418,27 @@ route.post("/schedule-demo", (req, res) => {
             </tbody>
           </table>
         </body>
-      </html>`,
-          },
-          Text: {
-            Charset: "UTF-8",
-            Data: "Demo Request | TelebuSocial",
-          },
-        },
-        Subject: {
-          Charset: "UTF-8",
-          Data: "Demo Request | TelebuSocial",
-        },
+      </html>`
+    );
+    const response = await axios.post(endpoint, postData.toString(), {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-Amz-Date": amz_date,
+        Authorization: authorization_header,
       },
-    };
-    let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-      .sendEmail(params)
-      .promise();
-    mail
-      .then(function () {
-        res.status(200).send({ message: "Request submitted" });
-      })
-      .catch(function (err) {
-        console.error(err, err.stack);
-        res.status(400).send(err);
-      });
+    });
+    res.status(200).send({ message: "Request submitted" });
+    // let mail = new AWS.SES({ apiVersion: "2010-12-01" })
+    //   .sendEmail(params)
+    //   .promise();
+    // mail
+    //   .then(function () {
+    //     res.status(200).send({ message: "Request submitted" });
+    //   })
+    //   .catch(function (err) {
+    //     console.error(err, err.stack);
+    //     res.status(400).send(err);
+    //   });
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
