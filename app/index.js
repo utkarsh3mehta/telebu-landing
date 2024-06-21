@@ -1,43 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
 const cors = require("cors");
 require("dotenv").config();
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("db");
-// const path = require("path");
+const path = require("path");
 const app = express();
-var AWS = require("aws-sdk");
-const crypto = require("crypto");
-const axios = require("axios");
 
-const SES_CONFIG = {
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: "us-east-1",
-};
-
-AWS.config.update({ region: "us-east-1" });
-
-function sign(key, msg) {
-  return crypto.createHmac("sha256", key).update(msg).digest();
-}
-
-function getSignatureKey(key, dateStamp, regionName, serviceName) {
-  const kDate = sign("AWS4" + key, dateStamp);
-  const kRegion = sign(kDate, regionName);
-  const kService = sign(kRegion, serviceName);
-  const kSigning = sign(kService, "aws4_request");
-  return kSigning;
-}
-
-// Replace with your own values
-const access_key = process.env.AWS_ACCESS_KEY_ID;
-const secret_key = process.env.AWS_SECRET_ACCESS_KEY;
-const region = "us-east-1";
-const service = "ses";
-const host = "email-smtp.us-east-1.amazonaws.com";
-const endpoint = "https://email-smtp.us-east-1.amazonaws.com/";
-
+// create reusable transporter object using the default SMTP transport
+const transporter = nodemailer.createTransport({
+  port: 587, // true for 465, false for other ports
+  host: process.env.SMTP,
+  auth: {
+    user: "apikey",
+    pass: process.env.SMTP_PASS,
+  },
+  secure: false,
+});
 app.use(cors("*"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -195,16 +175,13 @@ route.post("/validate-otp", (req, res) => {
           );
           stmt.run();
           stmt.finalize();
-          const params = {
-            Destination: {
-              ToAddresses: [process.env.TO_EMAIL],
-            },
-            Source: process.env.SMTP_FROM,
-            Message: {
-              Body: {
-                Html: {
-                  Charset: "UTF-8",
-                  Data: `<!DOCTYPE html>
+          const mailData = {
+            from: process.env.SMTP_FROM,
+            to: process.env.TO_EMAIL,
+            cc: process.env.CC_EMAIL,
+            subject: "New Lead on TelebuSocial",
+            text: "New interested user",
+            html: `<!DOCTYPE html>
             <html lang="en">
               <head>
                 <meta charset="UTF-8" />
@@ -241,30 +218,13 @@ route.post("/validate-otp", (req, res) => {
                   </tbody>
                 </table>
               </body>
-            </html>`,
-                },
-                Text: {
-                  Charset: "UTF-8",
-                  Data: "New interested user",
-                },
-              },
-              Subject: {
-                Charset: "UTF-8",
-                Data: "New Lead on TelebuSocial",
-              },
-            },
+            </html>
+            `,
           };
-          let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-            .sendEmail(params)
-            .promise();
-          mail
-            .then(function () {
-              res.status(200).send({ message: "Request submitted" });
-            })
-            .catch(function (err) {
-              console.error(err, err.stack);
-              res.status(400).send(err);
-            });
+          transporter.sendMail(mailData, function (err, info) {
+            if (err) console.log(err);
+            res.status(200).send({ message: "Request submitted" });
+          });
         } catch (err) {
           console.log(err);
           res.status(400).send(err);
@@ -284,40 +244,35 @@ route.post("/resend-otp", (req, res) => {
     db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
       if (err) res.status(400).send({ message: "No email found" });
       try {
-        const params = {
-          Destination: {
-            ToAddresses: [email],
-          },
-          Source: process.env.SMTP_FROM,
-          Message: {
-            Body: {
-              Html: {
-                Charset: "UTF-8",
-                Data: OTP_MAIL(row.name, row.otp),
-              },
-              Text: {
-                Charset: "UTF-8",
-                Data: "OTP - Getting started with TelebuSocial",
-              },
+        const mailData = {
+          from: process.env.SMTP_FROM,
+          to: email,
+          replyTo: "noreply@telebusocial.com",
+          subject: "OTP - Getting started with TelebuSocial",
+          text: "OTP - Getting started with TelebuSocial",
+          html: OTP_MAIL(row.name, row.otp),
+          attachments: [
+            {
+              filename: "logo.png",
+              path: path.join(__dirname, "/assets/logo.png"),
+              cid: "logo", //same cid value as in the html img src
             },
-            Subject: {
-              Charset: "UTF-8",
-              Data: "OTP - Getting started with TelebuSocial",
+            {
+              filename: "app-store.png",
+              path: path.join(__dirname, "/assets/app-store.png"),
+              cid: "app-store", //same cid value as in the html img src
             },
-          },
+            {
+              filename: "google-play.png",
+              path: path.join(__dirname, "/assets/google-play.png"),
+              cid: "google-play", //same cid value as in the html img src
+            },
+          ],
         };
-
-        let mail = new AWS.SES(SES_CONFIG)
-          .sendEmail(params)
-          .promise();
-        mail
-          .then(function () {
-            res.status(200).send({ message: "Request submitted" });
-          })
-          .catch(function (err) {
-            console.error(err, err.stack);
-            res.status(400).send(err);
-          });
+        transporter.sendMail(mailData, function (err, info) {
+          if (err) console.log(err);
+          res.status(200).send({ message: "Request submitted" });
+        });
       } catch (err) {
         console.log(err);
         res.status(400).send(err);
@@ -329,67 +284,16 @@ route.post("/resend-otp", (req, res) => {
   }
 });
 
-route.post("/schedule-demo", async (req, res) => {
+route.post("/schedule-demo", (req, res) => {
   const { name, email, country, number, city, query, interest } = req.body;
   try {
-    const amz_date = new Date().toISOString().replace(/[:-]|\.\d{3}/g, "");
-    const date_stamp = amz_date.slice(0, 8);
-
-    const canonical_uri = "/";
-    const canonical_querystring = "";
-    const canonical_headers =
-      "content-type:application/x-www-form-urlencoded\nhost:" +
-      host +
-      "\nx-amz-date:" +
-      amz_date +
-      "\n";
-    const signed_headers = "content-type;host;x-amz-date";
-    const payload_hash = crypto.createHash("sha256").update("").digest("hex");
-
-    const canonical_request =
-      "POST\n" +
-      canonical_uri +
-      "\n" +
-      canonical_querystring +
-      "\n" +
-      canonical_headers +
-      "\n" +
-      signed_headers +
-      "\n" +
-      payload_hash;
-    const algorithm = "AWS4-HMAC-SHA256";
-    const credential_scope =
-      date_stamp + "/" + region + "/" + service + "/" + "aws4_request";
-    const string_to_sign =
-      algorithm +
-      "\n" +
-      amz_date +
-      "\n" +
-      credential_scope +
-      "\n" +
-      crypto.createHash("sha256").update(canonical_request).digest("hex");
-
-    const signing_key = getSignatureKey(
-      secret_key,
-      date_stamp,
-      region,
-      service
-    );
-    const signature = crypto
-      .createHmac("sha256", signing_key)
-      .update(string_to_sign)
-      .digest("hex");
-
-    const authorization_header = `AWS4-HMAC-SHA256 Credential=${access_key}/${credential_scope}, SignedHeaders=${signed_headers}, Signature=${signature}`;
-
-    const postData = new URLSearchParams();
-    postData.append("Action", "SendEmail");
-    postData.append("Source", process.env.SMTP_FROM);
-    postData.append("Destination.ToAddresses.member.1", process.env.TO_EMAIL);
-    postData.append("Message.Subject.Data", "Demo Request | TelebuSocial");
-    postData.append(
-      "Message.Body.Html.Data",
-      `<!DOCTYPE html>
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: process.env.TO_EMAIL,
+      cc: process.env.CC_EMAIL,
+      subject: "Demo Request | TelebuSocial",
+      text: "Schedule demo",
+      html: `<!DOCTYPE html>
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -426,27 +330,13 @@ route.post("/schedule-demo", async (req, res) => {
             </tbody>
           </table>
         </body>
-      </html>`
-    );
-    const response = await axios.post(endpoint, postData.toString(), {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "X-Amz-Date": amz_date,
-        Authorization: authorization_header,
-      },
+      </html>
+      `,
+    };
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
     });
-    res.status(200).send({ message: "Request submitted" });
-    // let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-    //   .sendEmail(params)
-    //   .promise();
-    // mail
-    //   .then(function () {
-    //     res.status(200).send({ message: "Request submitted" });
-    //   })
-    //   .catch(function (err) {
-    //     console.error(err, err.stack);
-    //     res.status(400).send(err);
-    //   });
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
@@ -456,16 +346,13 @@ route.post("/schedule-demo", async (req, res) => {
 route.post("/subscribe", (req, res) => {
   const { email } = req.body;
   try {
-    const params = {
-      Destination: {
-        ToAddresses: [process.env.TO_EMAIL],
-      },
-      Source: process.env.SMTP_FROM,
-      Message: {
-        Body: {
-          Html: {
-            Charset: "UTF-8",
-            Data: `<!DOCTYPE html>
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: process.env.TO_EMAIL,
+      cc: process.env.CC_EMAIL,
+      subject: "New Email Subscriber | TelebuSocial",
+      text: "New subscriber",
+      html: `<!DOCTYPE html>
       <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -482,30 +369,13 @@ route.post("/subscribe", (req, res) => {
             </tbody>
           </table>
         </body>
-      </html>`,
-          },
-          Text: {
-            Charset: "UTF-8",
-            Data: "New Email Subscriber | TelebuSocial",
-          },
-        },
-        Subject: {
-          Charset: "UTF-8",
-          Data: "New Email Subscriber | TelebuSocial",
-        },
-      },
+      </html>
+      `,
     };
-    let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-      .sendEmail(params)
-      .promise();
-    mail
-      .then(function () {
-        res.status(200).send({ message: "Request submitted" });
-      })
-      .catch(function (err) {
-        console.error(err, err.stack);
-        res.status(400).send(err);
-      });
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
@@ -521,40 +391,35 @@ route.post("/get-started", (req, res) => {
     VALUES ('${name}', '${email}', '${country}', '${number}', '${city}', ${demo}, ${otp}, '${interest}');`);
     stmt.run();
     stmt.finalize();
-    const params = {
-      Destination: {
-        ToAddresses: [email],
-      },
-      Source: process.env.SMTP_FROM,
-      Message: {
-        Body: {
-          Html: {
-            Charset: "UTF-8",
-            Data: OTP_MAIL(name, otp),
-          },
-          Text: {
-            Charset: "UTF-8",
-            Data: "OTP - Getting started with TelebuSocial",
-          },
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: email,
+      replyTo: "noreply@telebusocial.com",
+      subject: "OTP - Getting started with TelebuSocial",
+      text: "OTP - Getting started with TelebuSocial",
+      html: OTP_MAIL(name, otp),
+      attachments: [
+        {
+          filename: "logo.png",
+          path: path.join(__dirname, "/assets/logo.png"),
+          cid: "logo", //same cid value as in the html img src
         },
-        Subject: {
-          Charset: "UTF-8",
-          Data: "OTP - Getting started with TelebuSocial",
+        {
+          filename: "app-store.png",
+          path: path.join(__dirname, "/assets/app-store.png"),
+          cid: "app-store", //same cid value as in the html img src
         },
-      },
+        {
+          filename: "google-play.png",
+          path: path.join(__dirname, "/assets/google-play.png"),
+          cid: "google-play", //same cid value as in the html img src
+        },
+      ],
     };
-
-    let mail = new AWS.SES({ apiVersion: "2010-12-01" })
-      .sendEmail(params)
-      .promise();
-    mail
-      .then(function () {
-        res.status(200).send({ message: "Request submitted" });
-      })
-      .catch(function (err) {
-        console.error(err, err.stack);
-        res.status(400).send(err);
-      });
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
   } catch (err) {
     console.log(err);
     res.status(400).send(err);
