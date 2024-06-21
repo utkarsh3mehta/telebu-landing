@@ -8,7 +8,13 @@ const db = new sqlite3.Database("db");
 const app = express();
 var AWS = require("aws-sdk");
 const crypto = require("crypto");
-const axios = require('axios');
+const axios = require("axios");
+
+const SES_CONFIG = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: "us-east-1",
+};
 
 AWS.config.update({ region: "us-east-1" });
 
@@ -300,7 +306,8 @@ route.post("/resend-otp", (req, res) => {
             },
           },
         };
-        let mail = new AWS.SES({ apiVersion: "2010-12-01" })
+
+        let mail = new AWS.SES(SES_CONFIG)
           .sendEmail(params)
           .promise();
         mail
@@ -537,7 +544,6 @@ route.post("/get-started", (req, res) => {
       },
     };
 
-    
     let mail = new AWS.SES({ apiVersion: "2010-12-01" })
       .sendEmail(params)
       .promise();
