@@ -1194,3 +1194,34 @@ p {
     }
 } 
 /// ///======================================= faq redesign css end
+header{
+    transition: all 0.20s ease-in-out;
+}
+.sticky{
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    z-index: 1000 !important;
+    border-bottom: 1px solid #efefef;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .05);
+    animation: 0.55s fade-in ease-out;
+    animation-fill-mode: both;
+    background-color: #fcfcfc;
+}
+header.sticky .logo img {
+    max-width: 150px;
+}
+header .logo img{
+    transition: all 0.35s ease-in-out;
+}
+@keyframes fade-in{
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 8px, 0);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

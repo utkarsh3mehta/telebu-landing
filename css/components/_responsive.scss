@@ -1,5 +1,9 @@
 @import "../import/variables";
-
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1240px;
+    }
+}
 @media (max-width: 1366px) {
     .custom-accordion .item {
         background-position: 98% 15px;
@@ -30,7 +34,12 @@
         right: 60px;
     }
 }
-
+@media (max-width: 1210px) {
+    header nav {
+        padding-left: 0;
+        justify-content: flex-end;
+    }
+}
 @media (max-width: 1200px) {
     header {
         position: relative;
@@ -41,8 +50,9 @@
     }
 
     header nav ul li {
-        margin: 0 13px -20px;
+        margin: 0 13px -30px;
         position: static;
+        padding-bottom: 30px;
     }
 
     header nav ul li .btn-primary {
@@ -102,6 +112,20 @@
         .item {
             max-width: none;
             width: 50%;
+        }
+    }
+}
+
+@media (max-width: 1060px) {
+    header{
+        nav{
+            ul{
+                li{
+                    a:not(.btn-primary) {
+                        font-size: 16px;
+                    }
+                }
+            }
         }
     }
 }

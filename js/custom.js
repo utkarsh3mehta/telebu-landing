@@ -662,3 +662,13 @@ $(document).ready(function () {
     $(this).parent().find(".dropdown").slideToggle();
   });
 });
+// add sticky header function start
+var headerHeight = $('header').innerHeight();
+$(window).scroll(function() {
+    if ($(this).scrollTop() > headerHeight) {
+      $('header').addClass('sticky');
+    } else {
+      $('header').removeClass('sticky')
+    }
+});
+// add sticky header function end
