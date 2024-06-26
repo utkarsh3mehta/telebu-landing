@@ -662,3 +662,118 @@ $(document).ready(function () {
     $(this).parent().find(".dropdown").slideToggle();
   });
 });
+// add sticky header function start
+var headerHeight = $('header').innerHeight();
+$(window).scroll(function() {
+    if ($(this).scrollTop() > headerHeight) {
+      $('header').addClass('sticky');
+    } else {
+      $('header').removeClass('sticky')
+    }
+});
+// add sticky header function end
+
+
+// country code function
+document.addEventListener("DOMContentLoaded", function() {
+  var phoneNumberInput = document.querySelector("#mobile-number");
+  var countryCodeInput = document.querySelector("#country-code");
+
+  var iti = window.intlTelInput(countryCodeInput, {
+    initialCountry: "in",
+      separateDialCode: false,
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      flagSize: 80
+  });
+  countryCodeInput.setAttribute("placeholder", "");
+// Set initial country code
+var initialDialCode = iti.getSelectedCountryData().dialCode;
+phoneNumberInput.value = "+" + initialDialCode;
+
+countryCodeInput.addEventListener("countrychange", function() {
+    var dialCode = iti.getSelectedCountryData().dialCode;
+    phoneNumberInput.value = "+" + dialCode;
+    countryCodeInput.setAttribute("placeholder", "");
+});
+
+phoneNumberInput.addEventListener("input", function() {
+    var dialCode = iti.getSelectedCountryData().dialCode;
+    countryCodeInput.value = "+" + dialCode;
+});
+
+
+// schedule demo page
+
+var phoneNumberschedule = document.querySelector("#schedulefrom-number");
+var countryCodeschedule = document.querySelector("#schedulefrom-country");
+
+  var iti = window.intlTelInput(countryCodeschedule, {
+    initialCountry: "in",
+      separateDialCode: false,
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      flagSize: 80
+  });
+  countryCodeschedule.setAttribute("placeholder", "");
+// Set initial country code
+var initialDialCode = iti.getSelectedCountryData().dialCode;
+phoneNumberschedule.value = "+" + initialDialCode;
+
+countryCodeschedule.addEventListener("countrychange", function() {
+    var dialCode = iti.getSelectedCountryData().dialCode;
+    phoneNumberschedule.value = "+" + dialCode;
+    countryCodeschedule.setAttribute("placeholder", "");
+});
+
+phoneNumberschedule.addEventListener("input", function() {
+    var dialCode = iti.getSelectedCountryData().dialCode;
+    countryCodeschedule.value = "+" + dialCode;
+});
+
+
+});
+
+// Remove html from url
+document.addEventListener('DOMContentLoaded', function() {
+    const url = window.location.pathname;
+    if (url.endsWith('.html')) {
+        const newUrl = url.replace('.html', '');
+        window.history.replaceState({}, '', newUrl);
+    }
+});
+// home page slider
+$('.slider-for').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  autoplay:true,
+  autoplaySpeed:2000,
+  asNavFor: '.slider-nav'
+});
+$('.slider-nav').slick({
+  slidesToShow: 8,
+  infinite: false,
+  autoplay:true,
+  autoplaySpeed:2000,
+  arrows:false,
+  asNavFor: '.slider-for',
+  dots: false,
+  focusOnSelect: true,
+  responsive: [
+    {
+      breakpoint: 991,
+      settings: {
+        slidesToShow: 5,
+        autoplaySpeed:3000,
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        infinite: true,
+        slidesToShow: 3,
+        autoplaySpeed:3500,
+      }
+    }
+  ]
+});

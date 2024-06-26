@@ -1194,3 +1194,133 @@ p {
     }
 } 
 /// ///======================================= faq redesign css end
+header{
+    transition: all 0.20s ease-in-out;
+}
+.sticky{
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    z-index: 1000 !important;
+    border-bottom: 1px solid #efefef;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .05);
+    animation: 0.55s fade-in ease-out;
+    animation-fill-mode: both;
+    background-color: #fcfcfc;
+}
+header.sticky .logo img {
+    max-width: 150px;
+}
+header .logo img{
+    transition: all 0.35s ease-in-out;
+}
+@keyframes fade-in{
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 8px, 0);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+.quote-mark{
+    .fa-quote-left{
+        position: absolute;
+        top: -8px;
+        left: -24px;
+    }
+    .fa-quote-right{
+        position: absolute;
+        bottom: -5px;
+        padding-left: 5px;
+    }
+    .fa-quote{
+        color: #333;
+        font-size: 24px;
+    }
+}
+.custom-tabs-slider{
+    border: 1px solid var(--color-5ec);
+    background: var(--color-white);
+    height: 130px;
+    box-shadow: 0px 0px 31px var(--color-1fc);
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    --hoverColor: 236, 244, 255;
+    .slick-track{
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .slick-list{
+        width: 100%;
+    }
+    .item{
+        width: 12.5%;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        font-weight: 300;
+        position: relative;
+        &::after {
+            content: "";
+            width: 117px;
+            height: 8px;
+            border-radius: 3px 3px 0px 0px;
+            background: var(--color-primary);
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+    }
+    .item.slick-current{
+        background: rgba(var(--hoverColor), 0.5);
+        &::after {
+            opacity: 1;
+        }
+    }
+}
+.tab-data-slider{
+    .w-70{
+        width: 70%;
+        object-fit: cover;
+    }
+}
+#modalGetStarted {
+    .iti__flag-container{
+        width: 100%;
+        .iti__selected-flag{
+            justify-content: center;
+        }
+    }
+}
+#modalGetStarted .iti--allow-dropdown .iti__flag-container:hover .iti__selected-flag{
+    background-color: transparent !important;
+}
+#country-code{
+    pointer-events: none;
+    color: #fff;
+}
+#schedulefrom-country{
+    pointer-events: none;
+    color: #fff;
+}
+.customer_detail_section{
+    .customer_detail_block{
+        font-size: 18px;
+        border-radius: 16px;
+        filter: drop-shadow(0px 20px 30px rgba(13, 138, 210, .15));
+        background-color: #fff;
+        border: 1px solid #d1eeff;
+        padding: 32px;
+        height: 100%;
+    }
+}
