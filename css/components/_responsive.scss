@@ -4,6 +4,14 @@
         max-width: 1240px;
     }
 }
+@media (min-width: 992px) {
+    .custom-tabs-slider{
+        .slick-track{
+            transform: translate3d(0px, 0px, 0px) !important;
+            width: 100% !important;
+        }
+    }
+}
 @media (max-width: 1366px) {
     .custom-accordion .item {
         background-position: 98% 15px;
@@ -512,6 +520,18 @@
     }
     .faq_que_form{
         padding: 30px 25px;
+    }
+    .quote-mark{
+        padding: 0 25px;
+        .fa-quote-left{
+            top: -12px;
+            left: 0px;
+        }
+    }
+    .tab-data-slider{
+        .w-70{
+            width: 100%;
+        }
     }
 }
 @media (max-width: 480px) {
