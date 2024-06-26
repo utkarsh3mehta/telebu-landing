@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   port: 587, // true for 465, false for other ports
   host: process.env.SMTP,
   auth: {
-    user: process.env.SMTP_FROM,
+    user: "apikey",
     pass: process.env.SMTP_PASS,
   },
   secure: false,
@@ -178,6 +178,7 @@ route.post("/validate-otp", (req, res) => {
           const mailData = {
             from: process.env.SMTP_FROM,
             to: process.env.TO_EMAIL,
+            cc: process.env.CC_EMAIL,
             subject: "New Lead on TelebuSocial",
             text: "New interested user",
             html: `<!DOCTYPE html>
@@ -246,6 +247,7 @@ route.post("/resend-otp", (req, res) => {
         const mailData = {
           from: process.env.SMTP_FROM,
           to: email,
+          replyTo: "noreply@telebusocial.com",
           subject: "OTP - Getting started with TelebuSocial",
           text: "OTP - Getting started with TelebuSocial",
           html: OTP_MAIL(row.name, row.otp),
@@ -288,6 +290,7 @@ route.post("/schedule-demo", (req, res) => {
     const mailData = {
       from: process.env.SMTP_FROM,
       to: process.env.TO_EMAIL,
+      cc: process.env.CC_EMAIL,
       subject: "Demo Request | TelebuSocial",
       text: "Schedule demo",
       html: `<!DOCTYPE html>
@@ -346,6 +349,7 @@ route.post("/subscribe", (req, res) => {
     const mailData = {
       from: process.env.SMTP_FROM,
       to: process.env.TO_EMAIL,
+      cc: process.env.CC_EMAIL,
       subject: "New Email Subscriber | TelebuSocial",
       text: "New subscriber",
       html: `<!DOCTYPE html>
@@ -390,6 +394,7 @@ route.post("/get-started", (req, res) => {
     const mailData = {
       from: process.env.SMTP_FROM,
       to: email,
+      replyTo: "noreply@telebusocial.com",
       subject: "OTP - Getting started with TelebuSocial",
       text: "OTP - Getting started with TelebuSocial",
       html: OTP_MAIL(name, otp),
