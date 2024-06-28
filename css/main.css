@@ -2965,7 +2965,50 @@ header .logo img {
   background-color: #fff;
   border: 1px solid #d1eeff;
   padding: 32px;
-  height: 100%;
+  height: calc(100% - 34px);
+}
+
+#whatsapp-icon {
+  position: fixed;
+  bottom: 26px;
+  right: 40px;
+  cursor: pointer;
+  z-index: 9999 !important;
+}
+#whatsapp-icon .notification {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: absolute;
+  background: var(--color-3fc);
+  border-radius: 8px;
+  padding: 5px 18px;
+  font-size: 12px;
+  line-height: 3;
+  right: 65px;
+  top: 0px;
+}
+#whatsapp-icon .notification #chatMessage {
+  color: #333;
+  font-weight: 500;
+  font-family: "Poppins";
+}
+
+.iti__flag-container {
+  width: 100%;
+}
+.iti__flag-container .iti__selected-flag {
+  justify-content: center;
+}
+.iti__flag-container:hover .iti__selected-flag {
+  background-color: inherit !important;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 :root {

@@ -30,15 +30,19 @@ $(document).ready(function () {
         "[placeholder='Your Name']"
       ).value;
       let email = getStartedModal.querySelector(
-        "[placeholder='Your Email']"
+        "#business-email"
       ).value;
       let interest = localStorage.getItem("interest");
-      let numbers = getStartedModal.querySelectorAll("[placeholder='+00']");
-      let country = numbers[0].value;
-      let number = numbers[1].value;
-      let city = getStartedModal.querySelector("[placeholder='City']").value;
+      console.log(interest);
+      let numbers = getStartedModal.querySelectorAll("#mobile-number");
+      let countryCodeName = getStartedModal.querySelector("#country-code");
+      let number = numbers[0].value;
+      let country = countryCodeName.dataset.countryName;
+      //let city = getStartedModal.querySelector("[placeholder='City']").value;
       let demo = getStartedModal.querySelector("#switch").checked;
+      console.log("demo" + demo)
       let submitFormButton = document.getElementById("getStartedSubmitButton");
+      console.log("demsubmitFormButtono" + submitFormButton)
       var xhr = new XMLHttpRequest();
       var resendOtpButton = document.getElementById("resend_otp");
       // Need to comment this
@@ -110,14 +114,15 @@ $(document).ready(function () {
                   "[placeholder='Your Name']"
                 ).value = "";
                 getStartedModal.querySelector(
-                  "[placeholder='Your Email']"
+                  "#business-email"
                 ).value = "";
                 let numbers = getStartedModal.querySelectorAll(
-                  "[placeholder='+00']"
+                  "#mobile-number"
                 );
                 numbers[0].value = "";
-                numbers[1].value = "";
-                getStartedModal.querySelector("[placeholder='City']").value =
+                console.log(numbers)
+                //numbers[1].value = "";
+                //getStartedModal.querySelector("[placeholder='City']").value =
                   "";
                 getStartedModal.querySelector("#switch").checked = false;
                 submitFormButton.innerHTML = "Next";
@@ -130,7 +135,7 @@ $(document).ready(function () {
               name,
               number,
               country,
-              city,
+              //city,
               demo,
               interest,
             })
@@ -150,7 +155,7 @@ $(document).ready(function () {
           "[placeholder='Your Name']"
         ).value;
 
-        var email = document.querySelector("[placeholder='Your Email']").value;
+        var email = document.querySelector("#business-email").value;
         console.log(email, username);
         var isValid = true;
 
@@ -200,11 +205,11 @@ $(document).ready(function () {
       otpSubmitButton.disabled = true;
       otpSubmitButton.textContent = "Verifying...";
       let name = getStartedModal.querySelector("[placeholder='Your Name']");
-      let _email = getStartedModal.querySelector("[placeholder='Your Email']");
-      let numbers = getStartedModal.querySelectorAll("[placeholder='+00']");
+      let _email = getStartedModal.querySelector("#business-email");
+      let numbers = getStartedModal.querySelector("#mobile-number");
       let country = numbers[0];
       let number = numbers[1];
-      let city = getStartedModal.querySelector("[placeholder='City']");
+      //let city = getStartedModal.querySelector("[placeholder='City']");
       var xhr = new XMLHttpRequest();
 
       xhr.open("POST", url, true);
@@ -218,13 +223,11 @@ $(document).ready(function () {
             successModal.show();
             getStartedModal.querySelector("[placeholder='Your Name']").value =
               "";
-            getStartedModal.querySelector("[placeholder='Your Email']").value =
+            getStartedModal.querySelector("#business-email").value =
               "";
-            let numbers = getStartedModal.querySelectorAll(
-              "[placeholder='+00']"
-            );
+            let numbers = getStartedModal.querySelectorAll("#mobile-number");
             numbers[0].value = "";
-            numbers[1].value = "";
+            //numbers[1].value = "";
             getStartedModal.querySelector("[placeholder='City']").value = "";
             getStartedModal.querySelector("#switch").checked = false;
           } else {
@@ -235,14 +238,12 @@ $(document).ready(function () {
             otpSubmitButton.innerHTML = "Next";
             getStartedModal.querySelector("[placeholder='Your Name']").value =
               "";
-            getStartedModal.querySelector("[placeholder='Your Email']").value =
+            getStartedModal.querySelector("#business-email").value =
               "";
-            let numbers = getStartedModal.querySelectorAll(
-              "[placeholder='+00']"
-            );
+            let numbers = getStartedModal.querySelectorAll("#mobile-number");
             numbers[0].value = "";
-            numbers[1].value = "";
-            getStartedModal.querySelector("[placeholder='City']").value = "";
+            //numbers[1].value = "";
+            //getStartedModal.querySelector("[placeholder='City']").value = "";
             getStartedModal.querySelector("#switch").checked = false;
           }
         }
@@ -385,10 +386,10 @@ $(document).ready(function () {
             isValid = false;
           }
           let interest = localStorage.getItem("interest");
-          let number = scheduleDemo.querySelector("#number").value;
+          let number = scheduleDemo.querySelector("#schedulefrom-number").value;
           let query = scheduleDemo.querySelector("#query").value;
           let city = scheduleDemo.querySelector("#city").value;
-          let country = scheduleDemo.querySelector("#country").value;
+          let country = scheduleDemo.querySelector("#schedulefrom-country").value;
 
           var xhr = new XMLHttpRequest();
           var url = API_URL + "/schedule-demo";
@@ -577,14 +578,10 @@ $(document).ready(function () {
               otpSubmitButton.disabled = false;
               getStartedModal.querySelector("[placeholder='Your Name']").value =
                 "";
-              getStartedModal.querySelector(
-                "[placeholder='Your Email']"
-              ).value = "";
-              let numbers = getStartedModal.querySelectorAll(
-                "[placeholder='+00']"
-              );
+              getStartedModal.querySelector("#business-email").value = "";
+              let numbers = getStartedModal.querySelectorAll("#mobile-number");
               numbers[0].value = "";
-              numbers[1].value = "";
+              //numbers[1].value = "";
               otpSubmitButton.innerHTML = "Next";
               successModal.show();
             } else {
@@ -676,60 +673,48 @@ $(window).scroll(function() {
 
 // country code function
 document.addEventListener("DOMContentLoaded", function() {
-  var phoneNumberInput = document.querySelector("#mobile-number");
-  var countryCodeInput = document.querySelector("#country-code");
+  var phoneInputGroups = document.querySelectorAll('.phone-input-group');
+  phoneInputGroups.forEach(function(group) {
+      var phoneNumberInput = group.querySelector(".mobile-number");
+      var countryCodeInput = group.querySelector(".country-code");
 
-  var iti = window.intlTelInput(countryCodeInput, {
-    initialCountry: "in",
-      separateDialCode: false,
-      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-      flagSize: 80
+      var iti = window.intlTelInput(countryCodeInput, {
+          initialCountry: "in",
+          separateDialCode: false,
+          utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+          flagSize: 80
+      });
+      var countryData = iti.getSelectedCountryData();
+      var countryName = countryData.name;
+      countryCodeInput.setAttribute("data-country-name", countryName);
+
+
+      function getCountryName() {
+        var countryData = iti.getSelectedCountryData();
+        var countryName = countryData.name;
+        countryCodeInput.setAttribute("data-country-name", countryName);
+      }
+
+      countryCodeInput.addEventListener('countrychange', function() {
+        getCountryName();
+  
+      });
+      countryCodeInput.setAttribute("placeholder", "");
+
+      var initialDialCode = iti.getSelectedCountryData().dialCode;
+      phoneNumberInput.value = "+" + initialDialCode;
+
+      countryCodeInput.addEventListener("countrychange", function() {
+          var dialCode = iti.getSelectedCountryData().dialCode;
+          phoneNumberInput.value = "+" + dialCode;
+          countryCodeInput.setAttribute("placeholder", "");
+      });
+
+      phoneNumberInput.addEventListener("input", function() {
+          var dialCode = iti.getSelectedCountryData().dialCode;
+          countryCodeInput.value = "+" + dialCode;
+      });
   });
-  countryCodeInput.setAttribute("placeholder", "");
-// Set initial country code
-var initialDialCode = iti.getSelectedCountryData().dialCode;
-phoneNumberInput.value = "+" + initialDialCode;
-
-countryCodeInput.addEventListener("countrychange", function() {
-    var dialCode = iti.getSelectedCountryData().dialCode;
-    phoneNumberInput.value = "+" + dialCode;
-    countryCodeInput.setAttribute("placeholder", "");
-});
-
-phoneNumberInput.addEventListener("input", function() {
-    var dialCode = iti.getSelectedCountryData().dialCode;
-    countryCodeInput.value = "+" + dialCode;
-});
-
-
-// schedule demo page
-
-var phoneNumberschedule = document.querySelector("#schedulefrom-number");
-var countryCodeschedule = document.querySelector("#schedulefrom-country");
-
-  var iti = window.intlTelInput(countryCodeschedule, {
-    initialCountry: "in",
-      separateDialCode: false,
-      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-      flagSize: 80
-  });
-  countryCodeschedule.setAttribute("placeholder", "");
-// Set initial country code
-var initialDialCode = iti.getSelectedCountryData().dialCode;
-phoneNumberschedule.value = "+" + initialDialCode;
-
-countryCodeschedule.addEventListener("countrychange", function() {
-    var dialCode = iti.getSelectedCountryData().dialCode;
-    phoneNumberschedule.value = "+" + dialCode;
-    countryCodeschedule.setAttribute("placeholder", "");
-});
-
-phoneNumberschedule.addEventListener("input", function() {
-    var dialCode = iti.getSelectedCountryData().dialCode;
-    countryCodeschedule.value = "+" + dialCode;
-});
-
-
 });
 
 // Remove html from url
@@ -777,3 +762,4 @@ $('.slider-nav').slick({
     }
   ]
 });
+// home page slider end

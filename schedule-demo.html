@@ -7,7 +7,7 @@
       name="google-site-verification"
       content="q7AbFskcx5yCZpGbM5q7c_4NiFs3v3xUTKi9196tLSI"
     />
-    <title>Schedule Demo</title>
+    <title>WhatsApp Chatbot Demo with TelebuSocial</title>
     <meta name="title" content="WhatsApp Chatbot Demo with TelebuSocial" />
     <meta
       name="description"
@@ -465,12 +465,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row phone-input-group">
                     <div class="col-lg-2">
                       <div class="form-group">
                         <label>Country</label>
                         <input
                           id="schedulefrom-country"
+                          class="country-code"
                           type="text"
                           value=""
                           placeholder=""
@@ -483,6 +484,7 @@
                         <input
                           id="schedulefrom-number"
                           type="text"
+                          class="mobile-number"
                           value=""
                           placeholder=""
                         />
@@ -739,16 +741,17 @@
 
               <div class="form-group">
                 <label>Business Email:</label>
-                <input type="text" value="" placeholder="Your Business Email" />
+                <input type="text" id="business-email" value="" placeholder="Your Business Email" />
                 <span id="user_email" class="error"></span>
               </div>
 
-              <div class="row">
+              <div class="row phone-input-group">
                 <div class="col-sm-2 col-3">
                   <div class="form-group">
                     <label>Country</label>
                     <input
                       id="country-code"
+                      class="country-code"
                       type="text"
                       value=""
                       placeholder=""
@@ -761,6 +764,7 @@
                     <input
                       id="mobile-number"
                       type="tel"
+                      class="mobile-number"
                       value=""
                       placeholder=""
                     />
