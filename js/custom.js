@@ -15,9 +15,7 @@ $(document).ready(function () {
 
   let getStartedModal = $("#modalGetStarted")[0];
   // var submitButton;
-  let submitButton = getStartedModal.querySelector(
-    "[id='getStartedSubmitButton']"
-  );
+  let submitButton = document.getElementById("getStartedSubmitButton");
   var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
   var getStarted = new bootstrap.Modal(
     document.getElementById("modalGetStarted")
@@ -33,18 +31,16 @@ $(document).ready(function () {
         "#business-email"
       ).value;
       let interest = localStorage.getItem("interest");
-      console.log(interest);
+      // console.log(interest);
       let numbers = getStartedModal.querySelectorAll("#mobile-number");
       let countryCodeName = getStartedModal.querySelector("#country-code");
       let number = numbers[0].value;
       let country = countryCodeName.dataset.countryName;
       //let city = getStartedModal.querySelector("[placeholder='City']").value;
       let demo = getStartedModal.querySelector("#switch").checked;
-      console.log("demo" + demo)
-      let submitFormButton = document.getElementById("getStartedSubmitButton");
-      console.log("demsubmitFormButtono" + submitFormButton)
+      // console.log("demo" + demo)
       var xhr = new XMLHttpRequest();
-      var resendOtpButton = document.getElementById("resend_otp");
+      // var resendOtpButton = document.getElementById("resend_otp");
       // Need to comment this
       // otpModal.show();
       // var interval = setInterval(function () {
@@ -66,15 +62,13 @@ $(document).ready(function () {
       //   }
       // }, 1000);
       // till here
-      var timerElement = document.getElementById("resend_timer");
-      var resendOTPbutton = document.getElementById("resend_otp");
       var url = API_URL + "/get-started";
       const isValidate = validateForm();
-      let timer = 30;
+      // let timer = 30;
       if (isValidate) {
         try {
-          submitFormButton.disabled = true;
-          submitFormButton.innerHTML = "Loading...";
+          submitButton.disabled = true;
+          submitButton.innerHTML = "Loading...";
           localStorage.setItem("email", email);
           xhr.open("POST", url, true);
           xhr.setRequestHeader("Content-Type", "application/json");
@@ -84,7 +78,7 @@ $(document).ready(function () {
               if (xhr.status === 200) {
                 getStarted.hide();
 
-                console.log("email sent");
+                // console.log("email sent");
                 otpModal.show();
                 // var interval = setInterval(function () {
                 //   resendOtpButton.style.pointerEvents = "none";
@@ -104,12 +98,12 @@ $(document).ready(function () {
                 //     timerElement.textContent = "00:00"; // set to zero
                 //   }
                 // }, 1000);
-                submitFormButton.disabled = false;
-                submitFormButton.innerHTML = "Next";
+                submitButton.disabled = false;
+                submitButton.innerHTML = "Next";
               } else {
                 // alert("Email already Registered!!");
                 errorDiv.innerText = "Email already registered!!";
-                submitFormButton.disabled = false;
+                submitButton.disabled = false;
                 getStartedModal.querySelector(
                   "[placeholder='Your Name']"
                 ).value = "";
@@ -120,12 +114,12 @@ $(document).ready(function () {
                   "#mobile-number"
                 );
                 numbers[0].value = "";
-                console.log(numbers)
+                // console.log(numbers)
                 //numbers[1].value = "";
                 //getStartedModal.querySelector("[placeholder='City']").value =
-                  "";
+                  // "";
                 getStartedModal.querySelector("#switch").checked = false;
-                submitFormButton.innerHTML = "Next";
+                submitButton.innerHTML = "Next";
               }
             }
           };
@@ -140,7 +134,6 @@ $(document).ready(function () {
               interest,
             })
           );
-          console.log("done");
         } catch (error) {
           console.log(error);
         }
@@ -156,7 +149,7 @@ $(document).ready(function () {
         ).value;
 
         var email = document.querySelector("#business-email").value;
-        console.log(email, username);
+        // console.log(email, username);
         var isValid = true;
 
         if (username.trim() === "") {
@@ -204,11 +197,6 @@ $(document).ready(function () {
       var otpModal = new bootstrap.Modal(document.getElementById("modalOtp"));
       otpSubmitButton.disabled = true;
       otpSubmitButton.textContent = "Verifying...";
-      let name = getStartedModal.querySelector("[placeholder='Your Name']");
-      let _email = getStartedModal.querySelector("#business-email");
-      let numbers = getStartedModal.querySelector("#mobile-number");
-      let country = numbers[0];
-      let number = numbers[1];
       //let city = getStartedModal.querySelector("[placeholder='City']");
       var xhr = new XMLHttpRequest();
 
@@ -305,9 +293,9 @@ $(document).ready(function () {
 
       var url = API_URL + "/resend-otp";
 
-      var timerElement = document.getElementById("resend_timer");
-      var resendOtpButton = document.getElementById("resend_otp");
-      let time = 0;
+      // var timerElement = document.getElementById("resend_timer");
+      // var resendOtpButton = document.getElementById("resend_otp");
+      // let time = 0;
       var xhr = new XMLHttpRequest();
 
       xhr.open("POST", url, true);
@@ -379,7 +367,7 @@ $(document).ready(function () {
           var isValid = true;
           let name = scheduleDemo.querySelector("#name").value;
           let email = scheduleDemo.querySelector("#email").value;
-          console.log(name, email);
+          // console.log(name, email);
           if (email.trim() === "") {
             document.getElementById("email_error").innerText =
               "Email is required.";
@@ -405,12 +393,12 @@ $(document).ready(function () {
                   var errorDiv = document.getElementById("otp_modal_error");
                   errorDiv.innerText = "Demo requested";
                   errorDiv.style.color = "green";
-                  let name = (scheduleDemo.querySelector("#name").value = "");
-                  let email = (scheduleDemo.querySelector("#email").value = "");
-                  let number = (scheduleDemo.querySelector("#schedulefrom-number").value = "");
-                  let query = (scheduleDemo.querySelector("#query").value = "");
-                  let city = (scheduleDemo.querySelector("#city").value = "");
-                  let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country")
+                  scheduleDemo.querySelector("#name").value = ""
+                  scheduleDemo.querySelector("#email").value = ""
+                  scheduleDemo.querySelector("#schedulefrom-number").value = ""
+                  scheduleDemo.querySelector("#query").value = ""
+                  scheduleDemo.querySelector("#city").value = ""
+                  // let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country")
                   submitBtn.disabled = false;
                   submitBtn.textContent = "Next";
                   var errorDiv = document.getElementById("schedule_error");
@@ -419,13 +407,13 @@ $(document).ready(function () {
                   // alert("Unable to schedule demo");
                   var errorDiv = document.getElementById("schedule_error");
                   errorDiv.innerText = "Unable to schedule demo";
-                  let name = (scheduleDemo.querySelector("#name").value = "");
-                  let email = (scheduleDemo.querySelector("#email").value = "");
-                  let number = (scheduleDemo.querySelector("#schedulefrom-number").value =
-                    "");
-                  let query = (scheduleDemo.querySelector("#query").value = "");
-                  let city = (scheduleDemo.querySelector("#city").value = "");
-                  let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country");
+                  scheduleDemo.querySelector("#name").value = ""
+                  scheduleDemo.querySelector("#email").value = ""
+                  scheduleDemo.querySelector("#schedulefrom-number").value =
+                    ""
+                  scheduleDemo.querySelector("#query").value = ""
+                  scheduleDemo.querySelector("#city").value = ""
+                  // let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country");
                   submitBtn.disabled = false;
                   submitBtn.textContent = "Next";
                 }
@@ -439,7 +427,7 @@ $(document).ready(function () {
                 city,
                 query,
                 interest,
-                countryschedulecode,
+                country: countryschedulecode,
               })
             );
           }
@@ -590,14 +578,9 @@ $(document).ready(function () {
               errorDiv.style.color = "red";
               getStartedModal.querySelector("[placeholder='Your Name']").value =
                 "";
-              getStartedModal.querySelector(
-                "[placeholder='Your Email']"
-              ).value = "";
-              let numbers = getStartedModal.querySelectorAll(
-                "[placeholder='+00']"
-              );
+              getStartedModal.querySelector("#business-email").value = "";
+              let numbers = getStartedModal.querySelectorAll("#mobile-number");
               numbers[0].value = "";
-              numbers[1].value = "";
               otpSubmitButton.disabled = false;
               otpSubmitButton.innerHTML = "Next";
             }
