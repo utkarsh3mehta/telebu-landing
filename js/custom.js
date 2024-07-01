@@ -389,8 +389,8 @@ $(document).ready(function () {
           let number = scheduleDemo.querySelector("#schedulefrom-number").value;
           let query = scheduleDemo.querySelector("#query").value;
           let city = scheduleDemo.querySelector("#city").value;
-          let country = scheduleDemo.querySelector("#schedulefrom-country").value;
-
+          let countryschedule = scheduleDemo.querySelector("#schedulefrom-country");
+          let countryschedulecode = countryschedule.dataset.countryName;
           var xhr = new XMLHttpRequest();
           var url = API_URL + "/schedule-demo";
           xhr.open("POST", url, true);
@@ -407,12 +407,10 @@ $(document).ready(function () {
                   errorDiv.style.color = "green";
                   let name = (scheduleDemo.querySelector("#name").value = "");
                   let email = (scheduleDemo.querySelector("#email").value = "");
-                  let number = (scheduleDemo.querySelector("#number").value =
-                    "");
+                  let number = (scheduleDemo.querySelector("#schedulefrom-number").value = "");
                   let query = (scheduleDemo.querySelector("#query").value = "");
                   let city = (scheduleDemo.querySelector("#city").value = "");
-                  let country = (scheduleDemo.querySelector("#country").value =
-                    "");
+                  let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country")
                   submitBtn.disabled = false;
                   submitBtn.textContent = "Next";
                   var errorDiv = document.getElementById("schedule_error");
@@ -423,12 +421,11 @@ $(document).ready(function () {
                   errorDiv.innerText = "Unable to schedule demo";
                   let name = (scheduleDemo.querySelector("#name").value = "");
                   let email = (scheduleDemo.querySelector("#email").value = "");
-                  let number = (scheduleDemo.querySelector("#number").value =
+                  let number = (scheduleDemo.querySelector("#schedulefrom-number").value =
                     "");
                   let query = (scheduleDemo.querySelector("#query").value = "");
                   let city = (scheduleDemo.querySelector("#city").value = "");
-                  let country = (scheduleDemo.querySelector("#country").value =
-                    "");
+                  let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country");
                   submitBtn.disabled = false;
                   submitBtn.textContent = "Next";
                 }
@@ -442,7 +439,7 @@ $(document).ready(function () {
                 city,
                 query,
                 interest,
-                country,
+                countryschedulecode,
               })
             );
           }

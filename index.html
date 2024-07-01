@@ -83,9 +83,20 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
     />
     <link href="css/main.css" rel="stylesheet" />
+    <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NM7ZD9R4');</script>
+    <!-- End Google Tag Manager -->
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NM7ZD9R4"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header>
       <div class="container">
         <div class="logo">
@@ -1302,11 +1313,12 @@
       </div>
     </section>
 
-    <!-- <footer class="sec-space pt-sm-30 pb-20">
+    <footer class="sec-space pt-sm-30 pb-0 position-relative">
+      <img src="images/footer-gradient.png" class="gradient-img position-absolute w-100 h-100"/>
       <div class="container">
         <div class="row">
-          <div class="col-lg-3">
-            <div class="footer-logo mb-28 text-center text-md-start">
+          <div class="col-lg-3 col-md-12">
+            <div class="footer-logo mb-28 text-center text-lg-start">
               <img src="images/logo.svg" alt="" width="180" />
             </div>
             <p class="font-17px font-w-600 color-333">
@@ -1320,34 +1332,33 @@
             </p>
             <div class="footer-social d-flex align-items-center mt-5 mt-md-10">
               <a
-                href="https://www.facebook.com/wearetelebu/"
+                href="https://www.linkedin.com/company/wearetelebu"
                 class="text-decoration-none font-21px"
               >
-                <i class="fa-brands fa-facebook color-primary"></i>
+              <img src="images/linkden.png"/>
               </a>
-
               <a
-                href="https://www.linkedin.com/company/wearetelebu"
+                href="https://www.facebook.com/wearetelebu/"
                 class="text-decoration-none font-21px ml-12"
               >
-                <i class="fa-brands fa-linkedin color-primary"></i>
+                <img src="images/icon-fb.svg"/>
               </a>
 
               <a
                 href="https://twitter.com/wearetelebu"
                 class="text-decoration-none font-21px ml-12"
               >
-                <i class="fa-brands fa-twitter color-primary"></i>
+              <img src="images/twitter.png"/>
               </a>
 
               <a
                 href="https://www.instagram.com/wearetelebu/"
                 class="text-decoration-none font-21px ml-12"
               >
-                <i class="fa-brands fa-instagram color-primary"></i>
+              <img src="images/insta-icon.png"/>
               </a>
             </div>
-            <p class="font-18px font-sm-16px font-w-500 color-333 mt-55">
+            <p class="font-17px font-sm-16px font-w-600 color-333 mt-55">
               Always know what’s happening
             </p>
             <div class="form">
@@ -1357,15 +1368,16 @@
                   value=""
                   name="subs_email"
                   id="subs_email"
-                  placeholder="Email"
+                  placeholder="Your Email Address"
+                  class="border-0"
                 />
-                <button id="subs_btn" class="btn-primary btn-small br-70 mt-20">
+                <button id="subs_btn" class="btn-primary btn-small br-15 mt-20">
                   Subscribe
                 </button>
               </div>
             </div>
           </div>
-          <div class="col-lg-2 offset-lg-1">
+          <div class="col-lg-2 offset-lg-1 col-md-4 col-sm-4 col-6">
             <p
               class="font-20px font-sm-18px font-w-600 color-primary mt-0 mb-20"
             >
@@ -1463,7 +1475,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-lg-3 d-flex justify-content-center">
+          <div class="col-lg-3 d-lg-flex justify-content-center col-md-4 col-sm-4 col-6">
             <div>
               <p
                 class="font-20px font-sm-18px font-w-600 color-primary mt-0 mb-14"
@@ -1587,7 +1599,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-9">
             <p
               class="font-20px font-sm-18px font-w-600 color-primary mt-0 mb-14"
             >
@@ -1689,35 +1701,36 @@
             </div>
           </div>
         </div>
-        <div class="row mt-60">
+        <div class="row mt-20">
           <div class="col-md-6"></div>
           <div class="col-md-4 offset-md-2 mt-sm-30"></div>
         </div>
       </div>
 
       <div class="foot">
-        <img src="images/logo-icon.svg" /> ©2024, TelebuSocial. All Rights
+        ©2024, TelebuSocial. All Rights
         Reserved
       </div>
-    </footer> -->
-    <!-- <div id="whatsapp-icon">
-      <div class="notification">
-        <div class="message">
-          <div id="chatMessage">Chat with us</div>
-        </div>
-      </div>
+    </footer>
+    <div id="whatsapp-icon">
       <div>
         <a
           href="https://wa.me/918044664511?text=Hi TelebuSocial team"
           target="_blank"
-          ><img
+          >
+          <div class="notification">
+            <div class="message">
+              <div id="chatMessage">Chat with us</div>
+            </div>
+          </div>
+          <img
             src="images/whatsapp.png"
             alt="WhatsApp Icon"
-            style="width: 50px"
+            style="width: 70px"
         /></a>
       </div>
-    </div> -->
-    <footer class="sec-space pt-sm-30 pb-20">
+    </div>
+    <!-- <footer class="sec-space pt-sm-30 pb-20">
       <div class="container">
         <div class="row">
           <div class="col-lg-5">
@@ -1858,7 +1871,7 @@
         <img src="images/logo-icon.svg" /> ©2024, TelebuSocial. All Rights
         Reserved
       </div>
-    </footer>
+    </footer> -->
     <div
       class="modal fade modal-default"
       id="modalGetStarted"
