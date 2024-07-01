@@ -210,6 +210,11 @@
         background-size: 100%;
         height: 420px;
     }
+    footer{
+        .form-group{
+            width: 50%;
+        }
+    }
 }
 
 @media (max-width: 767px) {
@@ -533,6 +538,16 @@
             width: 100%;
         }
     }
+    .marquee {
+        .js-marquee{
+            gap: 0 70px;
+        }
+    }
+    .marquee-rev{
+        .js-marquee{
+            gap: 0 70px;
+        }
+    }
 }
 @media (max-width: 480px) {
     .faq_que_form{
@@ -540,11 +555,31 @@
             font-size: 22px !important;
         }
     }
+    .marquee {
+        .js-marquee{
+            gap: 0 30px;
+        }
+    }
+    .marquee-rev{
+        .js-marquee{
+            gap: 0 30px;
+        }
+    }
+    .trusted-by-businesses{
+        img{
+            max-width: 90px;
+        }
+    }
 }
 @media (max-width: 420px) {
     .faq_que_form{
         .font-18px{
             font-size: 14px !important;
+        }
+    }
+    footer{
+        .form-group{
+            width: 100%;
         }
     }
 }

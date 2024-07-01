@@ -1321,6 +1321,47 @@ header .logo img{
         background-color: #fff;
         border: 1px solid #d1eeff;
         padding: 32px;
-        height: 100%;
+        height: calc(100% - 34px);
     }
+}
+#whatsapp-icon{
+    position: fixed;
+    bottom: 26px;
+    right: 40px;
+    cursor: pointer;
+    z-index: 9999 !important;
+    .notification {
+        width: max-content;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        position: absolute;
+        background: var(--color-3fc);
+        border-radius: 8px;
+        padding: 4px 18px;
+        font-size: 12px;
+        line-height: 3;
+        right: 90px;
+        top: 16px;
+
+        #chatMessage{
+            color: #333;
+            font-weight: 500;
+            font-family: 'Poppins';
+        }
+    }
+}
+.iti__flag-container {
+    width: 100%;
+    .iti__selected-flag{
+        justify-content: center;
+    }
+    &:hover {
+        .iti__selected-flag{
+            background-color: inherit !important;
+        }
+    }
+}
+.error{
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
 }

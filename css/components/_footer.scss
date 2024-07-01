@@ -1,32 +1,43 @@
 @import "../import/variables";
 
 footer {
-    .footer-menu {
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            li {
-                display: block;
-                a {
-                    color: #666;
-                    font-size: 18px;
-                    font-weight: 400;
-                    text-decoration: none;
+        .footer-menu {
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                li {
+                    display: block;
+                    a {
+                        color: #333;
+                        font-size: 16px;
+                        text-decoration: none;
+                    }
                 }
             }
         }
-    }
-
     .foot {
-        border-top: 7px solid var(--color-primary);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #666;
-        font-size: 18px;
-        font-weight: 500;
-        margin-top: 50px;
-        padding-top: 10px;
+        font-size: 14px;
+        font-weight: 300;
+        padding: 16px 0;
+        color: #fff;
+        background-color: #3553d2;
+    }
+    .gradient-img{
+        z-index: -1;
+        top: 0;
+    }
+    .footer-social{
+        img{
+            height: 26px;
+            width: 26px;
+            object-fit: cover;
+        }
+    }
+    .br-15{
+        border-radius: 15px;
     }
 }
