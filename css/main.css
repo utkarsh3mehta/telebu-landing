@@ -3022,6 +3022,47 @@ header .logo img {
   font-weight: 500;
 }
 
+.custom-pricing-section .custom-pricing-form {
+  padding: 62px 40px;
+  height: 100%;
+}
+.custom-pricing-section .pricing-bg-block img {
+  z-index: -1;
+}
+.custom-pricing-section .pricing-bg-inner {
+  padding: 85px 54px;
+}
+.custom-pricing-section .pricing-bg-inner h4 {
+  color: #fff;
+}
+.custom-pricing-section .pricing-bg-inner p {
+  color: #fff;
+}
+
+.pricing-form-group .iti {
+  width: 100%;
+}
+.pricing-form-group .iti .iti__flag-container {
+  width: auto;
+}
+.pricing-form-group .iti .iti__flag-container .iti__selected-flag {
+  justify-content: start;
+  background: #f8f8f8;
+  border-radius: 17px;
+}
+.pricing-form-group .iti .iti__flag-container .iti__selected-flag .iti__flag {
+  display: none;
+}
+.pricing-form-group .iti .iti__flag-container .iti__selected-flag .iti__arrow {
+  border: solid #3166de;
+  border-width: 0 2px 2px 0;
+  height: 8px;
+  width: 8px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  margin-bottom: 3px;
+}
+
 :root {
   --base-body-font-family: "Poppins";
   --color-primary: #3166de;
@@ -14736,6 +14777,34 @@ header nav ul li .dropdown.width-256 {
   .marquee-rev .js-marquee {
     gap: 0 70px;
   }
+  .check-col .item::before {
+    top: 0px;
+  }
+  .pricing-communication .row .item .icon-box {
+    width: 70px;
+    height: 70px;
+  }
+  .pricing-communication .row .item .icon-box img {
+    width: 30px;
+    height: 30px;
+  }
+  .custom-pricing-section .custom-pricing-form {
+    padding: 62px 30px;
+  }
+  .custom-pricing-section .pricing-bg-inner {
+    padding: 85px 30px;
+  }
+}
+@media (max-width: 580px) {
+  .pricing-communication .row .item {
+    padding: 35px 35px;
+  }
+  .pricing-communication .row .item .icon-box {
+    width: 60px;
+    height: 60px;
+    left: -5px;
+    top: -30px;
+  }
 }
 @media (max-width: 480px) {
   .faq_que_form h6.font-35px {
@@ -14749,6 +14818,15 @@ header nav ul li .dropdown.width-256 {
   }
   .trusted-by-businesses img {
     max-width: 90px;
+  }
+  .custom-pricing-section .custom-pricing-form {
+    padding: 62px 15px;
+  }
+  .custom-pricing-section .pricing-bg-inner {
+    padding: 85px 25px;
+  }
+  .custom-pricing-section .pricing-bg-inner .font-sm-40px {
+    font-size: 36px !important;
   }
 }
 @media (max-width: 420px) {

@@ -548,6 +548,50 @@
             gap: 0 70px;
         }
     }
+    .check-col {
+        .item {
+            &::before {
+                top: 0px;
+            }
+        }
+    }
+    .pricing-communication{
+        .row{
+            .item{
+                .icon-box{
+                    width: 70px;
+                    height: 70px;
+                    img{
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+    .custom-pricing-section{
+        .custom-pricing-form{
+            padding: 62px 30px;
+        }
+        .pricing-bg-inner{
+            padding: 85px 30px;
+        }
+    }
+}
+@media (max-width: 580px) {
+    .pricing-communication{
+        .row{
+            .item{
+                padding: 35px 35px;
+                .icon-box{
+                    width: 60px;
+                    height: 60px;
+                    left: -5px;
+                    top: -30px;
+                }
+            }
+        }
+    }
 }
 @media (max-width: 480px) {
     .faq_que_form{
@@ -568,6 +612,17 @@
     .trusted-by-businesses{
         img{
             max-width: 90px;
+        }
+    }
+    .custom-pricing-section{
+        .custom-pricing-form{
+            padding: 62px 15px;
+        }
+        .pricing-bg-inner{
+            padding: 85px 25px;
+            .font-sm-40px{
+                font-size: 36px !important;
+            }
         }
     }
 }
