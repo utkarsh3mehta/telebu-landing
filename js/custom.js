@@ -251,27 +251,48 @@ $(document).ready(function () {
 
     subsSubmitButton.addEventListener("click", function () {
       var _email = document.querySelectorAll("#subs_email");
-
+      var email = _email[0].value;
+      var subIsValid = true;
+      var errorMessage = "";
+          if (email.trim() === "") {
+            errorMessage = "Email is required";
+            
+            subIsValid = false;
+          } else if (!validateEmail(email)) {
+            errorMessage = "Invalid email format.";
+            subIsValid = false;
+          }
+          if(subIsValid == false){
+            resultSpan.innerHTML = errorMessage;
+            resultSpan.style.color = "red";
+            resultSpan.style.marginTop = '20px';
+            resultSpan.style.display = 'inline-block';
+            parentDiv.insertBefore(resultSpan, subsSubmitButton);
+          }
       var url = API_URL + "/subscribe";
-
-      subsSubmitButton.disabled = true;
-      subsSubmitButton.textContent = "Subscribing...";
+      if(subIsValid){
+        subsSubmitButton.disabled = true;
+        subsSubmitButton.textContent = "Subscribing...";
 
       var xhr = new XMLHttpRequest();
 
       xhr.open("POST", url, true);
       xhr.setRequestHeader("Content-Type", "application/json");
-      var email = _email[0].value;
+      
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             // alert("Subscribed Successfully");
             resultSpan.style.color = "green";
+            resultSpan.style.marginTop = '20px';
+            resultSpan.style.display = 'inline-block';
             resultSpan.innerHTML = "Subscribed successfully";
             subsSubmitButton.disabled = false;
             subsSubmitButton.textContent = "Subscribe";
           } else {
             resultSpan.style.color = "red";
+            resultSpan.style.marginTop = '20px';
+            resultSpan.style.display = 'inline-block';
             resultSpan.innerHTML = "Error subscribing. Retry later.";
           }
           parentDiv.insertBefore(resultSpan, subsSubmitButton);
@@ -283,6 +304,11 @@ $(document).ready(function () {
           email,
         })
       );
+      }
+      function validateEmail(email) {
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+      }
     });
   });
   $(document).ready(function () {
@@ -695,8 +721,20 @@ document.addEventListener("DOMContentLoaded", function() {
           countryCodeInput.value = "+" + dialCode;
       });
   });
-});
+const pricingCountryCode = document.querySelector("#pricing-form-number");
+if(pricingCountryCode){
+  window.intlTelInput(pricingCountryCode, {
+    initialCountry: "in",
+    separateDialCode: true,
+    formatOnDisplay: true,
+    nationalMode: false,
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    nationalMode: false,
+    
+  });
+}
 
+});
 // Remove html from url
 document.addEventListener('DOMContentLoaded', function() {
     const url = window.location.pathname;

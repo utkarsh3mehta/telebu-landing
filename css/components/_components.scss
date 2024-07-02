@@ -1365,3 +1365,49 @@ header .logo img{
     font-size: 14px;
     font-weight: 500;
 }
+.custom-pricing-section{
+    .custom-pricing-form{
+        padding: 62px 40px;
+        height: 100%;
+    }
+    .pricing-bg-block{
+        img{
+            z-index: -1;
+        }
+    }
+    .pricing-bg-inner{
+        padding: 85px 54px;
+        h4{
+            color: #fff;
+        }
+        p{
+            color: #fff;
+        }
+    }
+}
+.pricing-form-group{
+    .iti{
+        width: 100%;
+        .iti__flag-container{
+            width: auto;
+            .iti__selected-flag{
+                justify-content: start;
+                background: #f8f8f8;
+                border-radius: 17px;
+                .iti__flag{
+                    display: none;
+                }
+                .iti__arrow{
+                    border: solid #3166de;
+                    border-width: 0 2px 2px 0;
+                    height: 8px;
+                    width: 8px;
+                    transform: rotate(45deg);
+                    -webkit-transform: rotate(45deg);
+                    margin-bottom: 3px;
+                }
+
+            }
+        }
+    }
+}

@@ -311,22 +311,22 @@
         </div>
 
         <div class="check-col mt-70 mt-sm-30">
-          <div class="item">
+          <div class="item mb-sm-15">
             <p class="font-24px font-sm-16px font-w-600 color-white mb-0">
               Free Trial
             </p>
           </div>
-          <div class="item">
+          <div class="item mb-sm-15">
             <p class="font-24px font-sm-16px font-w-600 color-white mb-0">
               Pricing that scales with you
             </p>
           </div>
-          <div class="item">
+          <div class="item mb-sm-15">
             <p class="font-24px font-sm-16px font-w-600 color-white mb-0">
               Tailored plans for your business
             </p>
           </div>
-          <div class="item">
+          <div class="item mb-sm-15">
             <p class="font-24px font-sm-16px font-w-600 color-white mb-0">
               Maximise impact with add-ons
             </p>
@@ -609,14 +609,14 @@
         </div>
       </div>
     </section>
-    <section class="sec-space communication-section position-relative">
+    <section class="sec-space communication-section pricing-communication position-relative">
       <div class="container">
         <h5 class="font-48px font-lg-40px font-sm-25px color-333 text-center">
           <span class="color-primary"
             >We’re changing the game in communication.  Are you ready?</span
           >
         </h5>
-        <p class="font-28px text-center mt-40 px-5">
+        <p class="font-28px text-center mt-40 px-sm-5 font-sm-24px">
           Transform your communication strategy with TelebuSocial, where instant
           messaging meets customer satisfaction and conversion. Enhance the way
           you engage with your audience, driving unparalleled results.
@@ -636,7 +636,7 @@
               </p>
             </div>
           </div>
-          <div class="col-lg-6 pl-43 pl-sm-13 mt-sm-30">
+          <div class="col-lg-6 pl-43 pl-sm-13 mt-sm-50">
             <div class="item">
               <div class="icon-box">
                 <img src="images/layer_2.png" alt="" />
@@ -650,7 +650,7 @@
               </p>
             </div>
           </div>
-          <div class="col-lg-6 pr-43 pr-sm-15 mt-70 mt-sm-30">
+          <div class="col-lg-6 pr-43 pr-sm-15 mt-70 mt-sm-50">
             <div class="item">
               <div class="icon-box">
                 <img src="images/layer_3.png" alt="" />
@@ -664,7 +664,7 @@
               </p>
             </div>
           </div>
-          <div class="col-lg-6 pl-43 pl-sm-15 mt-70 mt-sm-30">
+          <div class="col-lg-6 pl-43 pl-sm-15 mt-70 mt-sm-50">
             <div class="item">
               <div class="icon-box">
                 <img src="images/layer_4.png" alt="" />
@@ -786,6 +786,63 @@
                 data-bs-target="#modalGetStarted"
                 >Get started</a
               >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec-space custom-pricing-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="pricing-bg-block position-relative h-100">
+              <img class="position-absolute w-100 h-100" src="images/custon-pricing-form-bg.png" />
+              <div class="pricing-bg-inner">
+                <h4 class="font-48px font-w-600 mb-42 font-sm-40px">Get The Perfect Plan For Your Business.</h4>
+                <p class="font-22px font-w-400">Our pricing plans don’t meet your business needs? Fill out this form for a custom plan and pricing that suits your budget and business requirements.</p>
+                <img class="pricing-social-img w-100 mt-30" src="images/social-connect.png">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="custom-pricing-form">
+              <p class="font-20px font-weight-500 mb-26">Get custom pricing tailored to your business needs and size.</p>
+              <div class="pricing-form-block form">
+                <div class="form-group required">
+                  <label>Name:</label>
+                  <input type="text" value="Your Name" placeholder="">
+                </div>
+                <div class="form-group required pricing-form-group">
+                  <label>Phone number</label>
+                  <input id="pricing-form-number" type="tel" class="pricing-form-number" value="" placeholder="Your Number">
+                </div>
+                <div class="form-group required">
+                  <label>Business Email:</label>
+                  <input type="text" id="pricing-email" value="" placeholder="Email Address">
+                  
+                </div>
+                <div class="form-group required">
+                  <label>Company Name</label>
+                  <input type="text" id="business-email" value="" placeholder="Your Company Name">
+                  
+                </div>
+                <div class="form-group">
+                  <label>Anything else you would like to discuss?</label>
+                  <select>
+                      <option>Select</option>
+                      <option>Feature Related</option>
+                      <option>Customisations</option>
+                      <option>Integrations with platforms</option>
+                      <option>API-related</option>
+                  </select>
+              </div>
+              <div class="form-group text-center">
+                <button id="pricing_subs_btn" class="btn-primary btn-small br-15 mt-0">
+                  Get Your Plan
+                </button>
+              </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1276,7 +1333,7 @@
           >
           <div class="notification">
             <div class="message">
-              <div id="chatMessage">Chat with us</div>
+              <div id="chatMessage">Let our chatbot find a solution for you</div>
             </div>
           </div>
           <img
@@ -1287,193 +1344,133 @@
       </div>
     </div>
 
-    <div
-      class="modal fade modal-default"
-      id="modalGetStarted"
-      tabindex="-1"
-      aria-labelledby="modalGetStartedModalLabel"
-    >
+    <div class="modal fade modal-default" id="modalGetStarted" tabindex="-1" aria-labelledby="modalGetStartedModalLabel">
       <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title font-32px" id="exampleModalLabel">
-              Get <span class="color-primary">started</span>
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="form form-field-white">
-              <div class="form-group">
-                <label>Name:</label>
-                <input type="text" value="" placeholder="Your Name" />
-                <span id="user_name" class="error"></span>
-              </div>
-
-              <div class="form-group">
-                <label>Business Email:</label>
-                <input type="text" id="business-email" value="" placeholder="Your Business Email" />
-                <span id="user_email" class="error"></span>
-              </div>
-
-              <div class="row phone-input-group">
-                <div class="col-sm-2 col-3">
-                  <div class="form-group">
-                    <label>Country</label>
-                    <input
-                      id="country-code" class="country-code"
-                      type="text"
-                      value=""
-                      placeholder=""
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-5 col-6">
-                  <div class="form-group">
-                    <label>Phone number</label>
-                    <input
-                      id="mobile-number" class="mobile-number"
-                      type="tel"
-                      value=""
-                      placeholder=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Are you looking for a 1:1 Demo?</label>
-
-                <div class="d-flex align-items-center">
-                  <p class="font-18px font-sm-14px color-f49 mb-0">No</p>
-                  <div class="custom-switch mx-3">
-                    <input type="checkbox" id="switch" checked />
-                    <label for="switch" class="mb-0"></label>
-                  </div>
-                  <p class="font-18px font-sm-14px color-f49 mb-0">Yes</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              id="getStartedSubmitButton"
-              class="btn btn-primary open-otp-modal"
-            >
-              Next
-            </button>
-          </div>
-          <div
-            id="get_started_error"
-            style="width: 100%; text-align: center; font-size: 18px; color: red"
-          ></div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade modal-default modal-otp"
-      id="modalOtp"
-      tabindex="-1"
-      aria-labelledby="modalOtpModalLabel"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
           <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title font-32px" id="exampleModalLabel">
-                Verify Email
-              </h1>
-              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-            </div>
-            <div class="modal-body">
-              <h4 class="font-28px font-w-600 mt-25">Enter OTP</h4>
-
-              <p class="font-18px font-w-400 color-494">
-                sent to your email ID
-              </p>
-
-              <div class="form otp-fields">
-                <div
-                  id="otp-inputs"
-                  data-inputs-classes="text-danger"
-                  data-otp-length="6"
-                ></div>
+              <div class="modal-header">
+                  <h1 class="modal-title font-32px" id="exampleModalLabel">
+                      Get <span class="color-primary">started</span>
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+              <div class="modal-body">
+                  <div class="form form-field-white">
+                      <div class="form-group">
+                          <label>Name:</label>
+                          <input type="text" value="" placeholder="Your Name" />
+                          <span id="user_name" class="error"></span>
+                      </div>
 
-              <div class="row justify-content-between">
-                <div class="col-auto">
-                  <p id="resend_timer" class="font-18px font-w-400 color-494">
-                    00:30
-                  </p>
-                </div>
-                <div class="col-auto">
-                  <p class="font-18px font-w-400 color-494 text-transform-auto">
-                    Didn't receive a OTP?
-                    <a
-                      id="resend_otp"
-                      class="color-primary text-decoration-none"
-                      >Resend OTP</a
-                    >
-                  </p>
-                </div>
+                      <div class="form-group">
+                          <label>Business Email:</label>
+                          <input type="text" id="business-email" value="" placeholder="Your Business Email" />
+                          <span id="user_email" class="error"></span>
+                      </div>
+
+                      <div class="row phone-input-group">
+                          <div class="col-sm-2 col-3">
+                          <div class="form-group">
+                              <label>Country</label>
+                              <input id="country-code" class="country-code" type="text" value="" placeholder="" />
+                          </div>
+                          </div>
+                          <div class="col-sm-5 col-6">
+                          <div class="form-group">
+                              <label>Phone number</label>
+                              <input id="mobile-number" class="mobile-number" type="tel" value="" placeholder="" />
+                          </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label>Are you looking for a 1:1 Demo?</label>
+
+                          <div class="d-flex align-items-center">
+                              <p class="font-18px font-sm-14px color-f49 mb-0">No</p>
+                              <div class="custom-switch mx-3">
+                                  <input type="checkbox" id="switch" checked />
+                                  <label for="switch" class="mb-0"></label>
+                              </div>
+                              <p class="font-18px font-sm-14px color-f49 mb-0">Yes</p>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                id="otpSubmitButton"
-                class="btn btn-primary open-otp-modal mt-25"
-              >
-                Next
-              </button>
-            </div>
-            <div
-              id="otp_modal_error"
-              style="
-                width: 100%;
-                text-align: center;
-                font-size: 18px;
-                color: red;
-              "
-            ></div>
+              <div class="modal-footer">
+                  <button type="button" id="getStartedSubmitButton" class="btn btn-primary open-otp-modal">
+          Next
+        </button>
+              </div>
+              <div id="get_started_error" style="width: 100%; text-align: center;font-size: 18px; color: red;">
+
+              </div>
           </div>
-        </div>
       </div>
-    </div>
+  </div>
 
-    <div
-      class="modal fade modal-default modal-success"
-      id="modalSuccess"
-      tabindex="-1"
-      aria-labelledby="modalOtpModalLabel"
-    >
+  <div class="modal fade modal-default modal-otp" id="modalOtp" tabindex="-1" aria-labelledby="modalOtpModalLabel">
       <div class="modal-dialog">
-        <div class="modal-content">
           <div class="modal-content">
-            <div class="modal-header">
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body text-center">
-              <img src="images/icon-success-big.svg" alt="" />
-              <p class="font-32px font-w-700 color-333 mt-40 mb-40">
-                Thank You!
-              </p>
-            </div>
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title font-32px" id="exampleModalLabel">
+                          Verify Email
+                      </h1>
+                      <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                  </div>
+                  <div class="modal-body">
+                      <h4 class="font-28px font-w-600 mt-25">Enter OTP</h4>
+
+                      <p class="font-18px font-w-400 color-494">
+                          sent to your email ID
+                      </p>
+
+                      <div class="form otp-fields">
+                          <div id="otp-inputs" data-inputs-classes="text-danger" data-otp-length="6"></div>
+                      </div>
+
+                      <div class="row justify-content-between">
+                          <div class="col-auto">
+                              <p id="resend_timer" class="font-18px font-w-400 color-494">00:30</p>
+                          </div>
+                          <div class="col-auto">
+                              <p class="font-18px font-w-400 color-494 text-transform-auto">
+                                  Didn't receive a OTP?
+                                  <a id="resend_otp" class="color-primary text-decoration-none">Resend OTP</a>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" id="otpSubmitButton" class="btn btn-primary open-otp-modal mt-25">
+            Next
+          </button>
+                  </div>
+                  <div id="otp_modal_error" style="width: 100%; text-align: center;font-size: 18px; color: red;">
+
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
+  </div>
+
+  <div class="modal fade modal-default modal-success" id="modalSuccess" tabindex="-1" aria-labelledby="modalOtpModalLabel">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                      <img src="images/icon-success-big.svg" alt="">
+                      <p class="font-32px font-w-700 color-333 mt-40 mb-40">
+                          Thank You!
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
