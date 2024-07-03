@@ -215,6 +215,9 @@
             width: 50%;
         }
     }
+    .custom-accordion{
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -421,7 +424,7 @@
     }
     .custom-accordion .item .accordion-title {
         font-size: 16px;
-        max-width: 90%;
+        max-width: 100%;
     }
     .custom-accordion .item .accordion-data {
         font-size: 14px;
@@ -637,11 +640,39 @@
             width: 100%;
         }
     }
+    #whatsapp-icon{
+        right: 10px;
+    }
 }
 @media (max-width: 350px) {
     .faq_que_form{
         .font-18px{
             font-size: 12px !important;
+        }
+    }
+}
+@media (min-width: 1200px) and (max-device-width: 1380px){
+    .container{
+        max-width: 1040px;
+    }
+    header {
+        .container{
+            max-width: 1040px;
+            nav{
+                ul{
+                    li{
+                        margin: 0 10px -30px;
+                        a:not(.btn-primary) {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .banner-home{
+        .custom-checkbox{
+            gap: 10px;
         }
     }
 }
