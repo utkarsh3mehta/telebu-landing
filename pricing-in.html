@@ -343,8 +343,11 @@
 
     <section class="plans-bundles">
       <div class="container">
-        <div class="custom-tabs">
-          <div class="item">PLANS</div>
+        <div class="d-flex justify-content-center custom-tab-block">
+          <div class="custom-tabs">
+            <div class="item text-uppercase font-18px font-sm-16px">PLANS</div>
+            <div class="item custom-pricing-tab text-uppercase font-18px font-sm-16px">Custom Pricing</div>
+          </div>
         </div>
 
         <div class="row justify-content-center">
@@ -674,7 +677,7 @@
                 <p
                   class="font-20px font-sm-16px mb-0 text-transform-auto color-1d2"
                 >
-                  <strong>Mr. Chintan, Founder, Magnus</strong>
+                  <strong>Mr. Chintan, Founder</strong>
                 </p>
                 <p class="font-12px mb-0">Real Estate</p>
               </div>
@@ -699,7 +702,7 @@
                 <p
                   class="font-20px font-sm-16px mb-0 text-transform-auto color-1d2"
                 >
-                  <strong>Mr. Osama Marketing Manager</strong>
+                  <strong>Mr. Osama, Marketing Manager</strong>
                 </p>
                 <p class="font-12px mb-0">Sunface Medical Center</p>
               </div>
@@ -758,13 +761,18 @@
                 </div>
                 <div class="form-group">
                   <label>Anything else you would like to discuss?</label>
-                  <select>
-                      <option>Select</option>
-                      <option>Feature Related</option>
-                      <option>Customisations</option>
-                      <option>Integrations with platforms</option>
-                      <option>API-related</option>
+                  <select class="pricing-select">
+                    <option value="">Select</option>
+                    <option value="feature related">Feature Related</option>
+                    <option value="customisations">Customisations</option>
+                    <option value="integrations with platforms">Integrations with platforms</option>
+                    <option value="api-related">API-related</option>
+                    <option value="other">Others</option>
                   </select>
+              </div>
+              <div class="form-group other-query">
+                <label>Tell Us</label>
+                <textarea class = "form-control" rows = "5" placeholder = "Write here"></textarea>
               </div>
               <div class="form-group text-center">
                 <button id="pricing_subs_btn" class="btn-primary btn-small br-15 mt-0">
@@ -778,103 +786,13 @@
       </div>
     </section>
 
-    <!-- <section class="sec-space bg-9fd">
-      <div class="container">
-        <h5 class="font-48px font-lg-40px font-sm-25px color-333 text-center">
-          Frequently Asked Questions
-        </h5>
-
-        <div class="row justify-content-center mt-70 mt-sm-30">
-          <div class="col-lg-12 col-xl-8">
-            <div class="custom-accordion">
-              <div class="item">
-                <div class="accordion-title">
-                  What is TelebuSocial's WhatsApp API, and how can it benefit my
-                  business?
-                </div>
-                <div class="accordion-data">
-                  TelebuSocial's WhatsApp API allows you to engage with your
-                  customers directly on WhatsApp, offering personalised
-                  experiences that can positively impact your bottom line. It's
-                  designed to help you connect with your audience where they
-                  spend their time.
-                </div>
-              </div>
-              <div class="item">
-                <div class="accordion-title">
-                  How do TelebuSocial's AI-driven chatbots enhance customer
-                  interaction?
-                </div>
-                <div class="accordion-data">
-                  Our interactive chatbot flow uses AI to guide conversations,
-                  answer frequently asked questions, and nurture leads. This
-                  helps you close deals faster and boosts your overall
-                  efficiency and customer engagement.
-                </div>
-              </div>
-              <div class="item">
-                <div class="accordion-title">
-                  Can TelebuSocial help me reach a wider audience with my
-                  marketing efforts?
-                </div>
-                <div class="accordion-data">
-                  Yes, with TelebuSocial's Broadcast feature, you can send
-                  messages to a broader audience, enhancing your marketing
-                  campaigns and helping you onboard more customers easily.
-                </div>
-              </div>
-              <div class="item">
-                <div class="accordion-title">
-                  What makes TelebuSocial's live chat feature unique?
-                </div>
-                <div class="accordion-data">
-                  TelebuSocial's live chat allows for meaningful two-way
-                  conversations across various social media platforms, including
-                  WhatsApp, Instagram, and Facebook. You can use our in-built
-                  CRM to manage your customer base. You can also transfer
-                  conversations from one agent/team member to another.
-                </div>
-              </div>
-
-              <div class="item">
-                <div class="accordion-title">
-                  How does TelebuSocial integrate with third-party tools, and
-                  what are the benefits?
-                </div>
-                <div class="accordion-data">
-                  Our platform integrates with a Google Sheet, SalesForce,
-                  Zapier, and a variety of third-party tools to streamline your
-                  sales, marketing, and customer support processes. It's simple
-                  to set up and can significantly accelerate your business
-                  operations.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
     <section class="sec-space bg-9fd">
       <div class="container">
           <h5 class="font-48px font-lg-40px font-sm-25px color-333 text-center">
-              Frequently Asked Questions
+              Frequently Asked <span class="color-primary">Questions</span>
           </h5>
 
           <div class="row justify-content-center mt-70 mt-sm-30">
-              <div class="col-lg-5">
-                  <div class="faq_que_form">
-                      <h6 class="font-35px mb-30">Frequently Asked Questions</h6>
-                      <p class="font-18px mb-25">Cant find your query?</p>
-                      <form>
-                          <div class = "form-group">
-                              <label class="font-18px mb-10">Ask us and we will respond back to you.</label>
-                              <textarea class = "form-control" rows = "9" placeholder = "Write your message"></textarea>
-                           </div>
-                          <input type="submit" class="btn btn-primary mt-15 mt-18px">
-                        </form>
-                  </div>
-              </div>
               <div class="col-lg-7">
                 <div class="custom-accordion">
                   <div class="item">
@@ -941,6 +859,24 @@
                   </div>
                 </div>
               </div>
+              <div class="col-lg-5">
+                <div class="faq_que_form">
+                    <h6 class="font-32px mb-30">Can’t find your Query?
+                      <svg xmlns="http://www.w3.org/2000/svg" width="368" height="3" viewBox="0 0 368 3" fill="none">
+                        <path d="M2 1.5H366" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                      </svg>
+                    </h6>
+                    <form>
+                        <div class = "form-group">
+                            <label class="font-18px mb-6 font-w-400">Ask us and we will respond back to you.</label>
+                            <textarea class = "form-control" rows = "14" placeholder = "Write Your message..."></textarea>
+                         </div>
+                         <div class="submit_btn d-flex justify-content-center">
+                          <input type="submit" class="btn btn-primary mt-32 mt-18px" value="Ask">
+                         </div>
+                      </form>
+                </div>
+            </div>
           </div>
       </div>
     </section>
@@ -1352,7 +1288,7 @@
           >
           <div class="notification">
             <div class="message">
-              <div id="chatMessage">Let our chatbot find a solution for you</div>
+              <div id="chatMessage">Experience WhatsApp Bot for Your Industry</div>
             </div>
           </div>
           <img

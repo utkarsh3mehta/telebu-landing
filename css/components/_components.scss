@@ -296,16 +296,16 @@ p {
         &::after {
             content: "";
             display: block;
-            background: url("../images/chevron.right.png") no-repeat;
-            height: 14px;
-            width: 14px;
+            background: url("../images/down-arrow.png") no-repeat;
+            height: 20px;
+            width: 20px;
             position: absolute;
             right: 20px;
             top: 33px;
             pointer-events: none;
         }
         .accordion-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 500;
             color: #000;
             user-select: none;
@@ -316,12 +316,12 @@ p {
             padding-top: 15px;
             max-width: 94%;
             display: none;
-            color: rgba(60, 60, 67, 0.85);
-            font-size: 18px;
+            color: #000;
+            font-size: 14px;
         }
         &.active {
             &::after {
-                transform: rotate(90deg);
+                transform: rotate(180deg);
             }
         }
     }
@@ -740,6 +740,12 @@ p {
         gap: 0 100px;
         align-items: center;
     }
+    .item{
+        img{
+            width: auto;
+            height: auto;
+        }
+    }
 }
 
 ///======================================= Components End
@@ -988,14 +994,34 @@ p {
 }
 
 .plans-bundles {
-    .custom-tabs {
-        max-width: 276px;
+    .custom-tab-block{
         margin: -40px auto 0;
-        .item {
-            width: 100%;
-            &::after {
-                border-radius: 20px 20px 0px 0px;
-                width: 90%;
+        border: 1px solid var(--color-5ec);
+        background: var(--color-white);
+        height: 130px;
+        box-shadow: 0px 0px 31px var(--color-1fc);
+        border-radius: 20px;
+        display: flex;
+        overflow: hidden;
+        --hoverColor: 236, 244, 255;
+        width: max-content;
+        .custom-tabs {
+            border: 0;
+            background: inherit;
+            height: auto;
+            box-shadow: none;
+            border-radius: 0;
+            display: flex;
+            overflow: hidden;
+            .item {
+                width: 100%;
+                max-width: 276px;
+                min-width: 276px;
+                color: #000;
+                &::after {
+                    border-radius: 20px 20px 0px 0px;
+                    width: 90%;
+                }
             }
         }
     }
@@ -1185,7 +1211,7 @@ p {
 ///======================================= faq redesign css start
 .faq_que_form{
     background: var(--color-primary);
-    padding: 64px 33px;
+    padding: 64px 54px;
     border-radius: 5px;
     h6{
         color: var(--color-white);
@@ -1194,7 +1220,7 @@ p {
         color: rgba(255, 255, 255, 0.85);
     }
     label{
-        color: rgba(255, 255, 255, 0.85);
+        color: #fff;
     }
     input.btn{
         border: 1px solid #fff;
@@ -1203,6 +1229,26 @@ p {
             color: var(--color-primary);
             border: 1px solid transparent;
         }
+    }
+    .submit_btn{
+        input{
+            width: fit-content;
+            min-width: 125px;
+            padding: 16px 48px;
+            display: flex;
+            justify-content: center;
+            margin-top: 32px;
+            line-height: 6px;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+        }
+    }
+    textarea::placeholder{
+        color: #000;
+    }
+    svg{
+        width: 100%;
     }
 } 
 /// ///======================================= faq redesign css end
@@ -1422,4 +1468,7 @@ header .logo img{
             }
         }
     }
+}
+.other-query{
+    display: none;
 }

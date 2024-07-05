@@ -218,6 +218,14 @@
     .custom-accordion{
         margin-top: 20px;
     }
+    .custom-accordion{
+        margin-bottom: 20px;
+    }
+    .faq_que_form{
+        h6{
+            text-align: center;
+        }
+    }
 }
 
 @media (max-width: 767px) {
@@ -580,6 +588,22 @@
             padding: 85px 30px;
         }
     }
+    .plans-bundles{
+        .custom-tab-block{
+            width: 100%;
+            height: 100px;
+            .custom-tabs{
+                width: 100%;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                .item{
+                    width: 100%;
+                    max-width: inherit;
+                    min-width: inherit;
+                }
+            }
+        }
+    }
 }
 @media (max-width: 580px) {
     .pricing-communication{
@@ -628,6 +652,11 @@
             }
         }
     }
+    .faq_que_form{
+        h6{
+            font-size: 24px !important;
+        }
+    }
 }
 @media (max-width: 420px) {
     .faq_que_form{
@@ -643,17 +672,35 @@
     #whatsapp-icon{
         right: 10px;
     }
-}
-@media (max-width: 350px) {
-    .faq_que_form{
-        .font-18px{
-            font-size: 12px !important;
+    #whatsapp-icon{
+        .notification{
+            width: 230px;
+            #chatMessage{
+                line-height: 20px;
+            }
         }
     }
 }
-@media (min-width: 1200px) and (max-device-width: 1380px){
+@media (max-width: 350px) {
+    .faq_que_form{
+        padding: 30px 20px;
+        .font-18px{
+            font-size: 12px !important;
+        }
+        h6{
+            font-size: 22px !important;
+        }
+    }
+}
+@media (min-width: 1200px) and (max-device-width: 1395px){
     .container{
         max-width: 1040px;
+    }
+    .faq_que_form{
+        padding: 64px 30px;
+        h6{
+            font-size: 28px !important;
+        }
     }
     header {
         .container{

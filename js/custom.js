@@ -781,3 +781,22 @@ $('.slider-nav').slick({
   ]
 });
 // home page slider end
+
+//pricing page scroll to from and from select option
+
+$('.custom-pricing-tab').click(function(event) {
+  $('html, body').animate({
+      scrollTop: $('.custom-pricing-section').offset().top - 180
+  }, 1000); // Adjust the duration as needed
+});
+$('.pricing-select').on('change', function() {
+  if($(this).val() != ''){
+    $('.other-query').slideDown();
+  } else{
+    $('.other-query').slideUp();
+  }
+  // if ($(this).val() === 'other') {
+  //   console.log('test')
+  //     $('.other-query').removeClass('d-none');
+  // }
+});
