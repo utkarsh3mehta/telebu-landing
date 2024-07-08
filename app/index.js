@@ -382,6 +382,39 @@ route.post("/subscribe", (req, res) => {
   }
 });
 
+
+route.post("/raise-query", (req, res) => {
+  const { query } = req.body;
+  try {
+    const mailData = {
+      from: process.env.SMTP_FROM,
+      to: process.env.TO_EMAIL,
+      cc: process.env.CC_EMAIL,
+      subject: "New FAQ | TelebuSocial",
+      text: "New FAQ",
+      html: `<!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>New FAQ</title>
+        </head>
+        <body>
+          <p>Query: ${query}</p>
+        </body>
+      </html>
+      `,
+    };
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      res.status(200).send({ message: "Request submitted" });
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
+
 route.post("/get-started", (req, res) => {
   const { email, name, number, country, city, demo, interest } = req.body;
   try {
