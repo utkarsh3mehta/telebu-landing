@@ -311,6 +311,34 @@ $(document).ready(function () {
       }
     });
   });
+
+
+//  Faq form submit
+
+$(document).ready(function(){
+  let QueryForm = document.getElementById("query-submit");
+  let QueryMessage = document.getElementById("query-message");
+  let errorMessage = document.getElementById("errormessage");
+  
+  QueryForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    var message = QueryMessage.value.trim();
+    if (message === "") {
+      errorMessage.innerHTML = "Message is required";
+      errorMessage.style.color = "red";
+        return;
+    }
+    sendEmail(message);
+    errorMessage.innerHTML = "Message is successfully send";
+    errorMessage.style.color = "white";
+});
+
+function sendEmail(message) {
+  console.log(message + " message is send");
+}
+})
+
+
   $(document).ready(function () {
     let resendButton = document.getElementById("resend_otp");
 

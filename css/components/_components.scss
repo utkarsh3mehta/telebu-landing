@@ -326,7 +326,17 @@ p {
         }
     }
 }
-
+.new-custom-accordion{
+    .custom-accordion{
+        .item{
+            box-shadow: 0px 1px 1.6px 0px rgba(0, 0, 0, 0.25);
+            background: #f7f7f7;
+        }
+        .item.active{
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+    }
+}
 .custom-accordion-2 {
     .item {
         margin-bottom: 30px;
@@ -1471,4 +1481,7 @@ header .logo img{
 }
 .other-query{
     display: none;
+}
+#errormessage{
+    color: red;
 }
