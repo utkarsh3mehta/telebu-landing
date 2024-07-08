@@ -27,9 +27,7 @@ $(document).ready(function () {
       let name = getStartedModal.querySelector(
         "[placeholder='Your Name']"
       ).value;
-      let email = getStartedModal.querySelector(
-        "#business-email"
-      ).value;
+      let email = getStartedModal.querySelector("#business-email").value;
       let interest = localStorage.getItem("interest");
       // console.log(interest);
       let numbers = getStartedModal.querySelectorAll("#mobile-number");
@@ -107,17 +105,14 @@ $(document).ready(function () {
                 getStartedModal.querySelector(
                   "[placeholder='Your Name']"
                 ).value = "";
-                getStartedModal.querySelector(
-                  "#business-email"
-                ).value = "";
-                let numbers = getStartedModal.querySelectorAll(
-                  "#mobile-number"
-                );
+                getStartedModal.querySelector("#business-email").value = "";
+                let numbers =
+                  getStartedModal.querySelectorAll("#mobile-number");
                 numbers[0].value = "";
                 // console.log(numbers)
                 //numbers[1].value = "";
                 //getStartedModal.querySelector("[placeholder='City']").value =
-                  // "";
+                // "";
                 getStartedModal.querySelector("#switch").checked = false;
                 submitButton.innerHTML = "Next";
               }
@@ -211,8 +206,7 @@ $(document).ready(function () {
             successModal.show();
             getStartedModal.querySelector("[placeholder='Your Name']").value =
               "";
-            getStartedModal.querySelector("#business-email").value =
-              "";
+            getStartedModal.querySelector("#business-email").value = "";
             let numbers = getStartedModal.querySelectorAll("#mobile-number");
             numbers[0].value = "";
             //numbers[1].value = "";
@@ -226,8 +220,7 @@ $(document).ready(function () {
             otpSubmitButton.innerHTML = "Next";
             getStartedModal.querySelector("[placeholder='Your Name']").value =
               "";
-            getStartedModal.querySelector("#business-email").value =
-              "";
+            getStartedModal.querySelector("#business-email").value = "";
             let numbers = getStartedModal.querySelectorAll("#mobile-number");
             numbers[0].value = "";
             //numbers[1].value = "";
@@ -254,56 +247,56 @@ $(document).ready(function () {
       var email = _email[0].value;
       var subIsValid = true;
       var errorMessage = "";
-          if (email.trim() === "") {
-            errorMessage = "Email is required";
-            
-            subIsValid = false;
-          } else if (!validateEmail(email)) {
-            errorMessage = "Invalid email format.";
-            subIsValid = false;
-          }
-          if(subIsValid == false){
-            resultSpan.innerHTML = errorMessage;
-            resultSpan.style.color = "red";
-            resultSpan.style.marginTop = '20px';
-            resultSpan.style.display = 'inline-block';
-            parentDiv.insertBefore(resultSpan, subsSubmitButton);
-          }
+      if (email.trim() === "") {
+        errorMessage = "Email is required";
+
+        subIsValid = false;
+      } else if (!validateEmail(email)) {
+        errorMessage = "Invalid email format.";
+        subIsValid = false;
+      }
+      if (subIsValid == false) {
+        resultSpan.innerHTML = errorMessage;
+        resultSpan.style.color = "red";
+        resultSpan.style.marginTop = "20px";
+        resultSpan.style.display = "inline-block";
+        parentDiv.insertBefore(resultSpan, subsSubmitButton);
+      }
       var url = API_URL + "/subscribe";
-      if(subIsValid){
+      if (subIsValid) {
         subsSubmitButton.disabled = true;
         subsSubmitButton.textContent = "Subscribing...";
 
-      var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
-      xhr.open("POST", url, true);
-      xhr.setRequestHeader("Content-Type", "application/json");
-      
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            // alert("Subscribed Successfully");
-            resultSpan.style.color = "green";
-            resultSpan.style.marginTop = '20px';
-            resultSpan.style.display = 'inline-block';
-            resultSpan.innerHTML = "Subscribed successfully";
-            subsSubmitButton.disabled = false;
-            subsSubmitButton.textContent = "Subscribe";
-          } else {
-            resultSpan.style.color = "red";
-            resultSpan.style.marginTop = '20px';
-            resultSpan.style.display = 'inline-block';
-            resultSpan.innerHTML = "Error subscribing. Retry later.";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              // alert("Subscribed Successfully");
+              resultSpan.style.color = "green";
+              resultSpan.style.marginTop = "20px";
+              resultSpan.style.display = "inline-block";
+              resultSpan.innerHTML = "Subscribed successfully";
+              subsSubmitButton.disabled = false;
+              subsSubmitButton.textContent = "Subscribe";
+            } else {
+              resultSpan.style.color = "red";
+              resultSpan.style.marginTop = "20px";
+              resultSpan.style.display = "inline-block";
+              resultSpan.innerHTML = "Error subscribing. Retry later.";
+            }
+            parentDiv.insertBefore(resultSpan, subsSubmitButton);
           }
-          parentDiv.insertBefore(resultSpan, subsSubmitButton);
-        }
-      };
-      // console.log(email[0].value);
-      xhr.send(
-        JSON.stringify({
-          email,
-        })
-      );
+        };
+        // console.log(email[0].value);
+        xhr.send(
+          JSON.stringify({
+            email,
+          })
+        );
       }
       function validateEmail(email) {
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -312,28 +305,25 @@ $(document).ready(function () {
     });
   });
 
+  //  Faq form submit
 
-//  Faq form submit
+  $(document).ready(function () {
+    let QueryForm = document.getElementById("query-submit");
+    let QueryMessage = document.getElementById("query-message");
+    let errorMessage = document.getElementById("errormessage");
 
-$(document).ready(function(){
-  let QueryForm = document.getElementById("query-submit");
-  let QueryMessage = document.getElementById("query-message");
-  let errorMessage = document.getElementById("errormessage");
-  
-  QueryForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    var message = QueryMessage.value.trim();
-    if (message === "") {
-      errorMessage.innerHTML = "Message is required";
-      errorMessage.style.color = "red";
+    QueryForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var message = QueryMessage.value.trim();
+      if (message === "") {
+        errorMessage.innerHTML = "Message is required";
+        errorMessage.style.color = "red";
         return;
-    }
-    sendEmail(message);
-    errorMessage.innerHTML = "Message is successfully send";
-    errorMessage.style.color = "white";
-});
+      }
+      sendEmail(message);
+    });
 
-function sendEmail(message) {
+    function sendEmail(message) {
       var url = API_URL + "/raise-query";
       var xhr = new XMLHttpRequest();
 
@@ -452,7 +442,9 @@ function sendEmail(message) {
           let number = scheduleDemo.querySelector("#schedulefrom-number").value;
           let query = scheduleDemo.querySelector("#query").value;
           let city = scheduleDemo.querySelector("#city").value;
-          let countryschedule = scheduleDemo.querySelector("#schedulefrom-country");
+          let countryschedule = scheduleDemo.querySelector(
+            "#schedulefrom-country"
+          );
           let countryschedulecode = countryschedule.dataset.countryName;
           var xhr = new XMLHttpRequest();
           var url = API_URL + "/schedule-demo";
@@ -468,11 +460,11 @@ function sendEmail(message) {
                   var errorDiv = document.getElementById("otp_modal_error");
                   errorDiv.innerText = "Demo requested";
                   errorDiv.style.color = "green";
-                  scheduleDemo.querySelector("#name").value = ""
-                  scheduleDemo.querySelector("#email").value = ""
-                  scheduleDemo.querySelector("#schedulefrom-number").value = ""
-                  scheduleDemo.querySelector("#query").value = ""
-                  scheduleDemo.querySelector("#city").value = ""
+                  scheduleDemo.querySelector("#name").value = "";
+                  scheduleDemo.querySelector("#email").value = "";
+                  scheduleDemo.querySelector("#schedulefrom-number").value = "";
+                  scheduleDemo.querySelector("#query").value = "";
+                  scheduleDemo.querySelector("#city").value = "";
                   // let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country")
                   submitBtn.disabled = false;
                   submitBtn.textContent = "Next";
@@ -482,12 +474,11 @@ function sendEmail(message) {
                   // alert("Unable to schedule demo");
                   var errorDiv = document.getElementById("schedule_error");
                   errorDiv.innerText = "Unable to schedule demo";
-                  scheduleDemo.querySelector("#name").value = ""
-                  scheduleDemo.querySelector("#email").value = ""
-                  scheduleDemo.querySelector("#schedulefrom-number").value =
-                    ""
-                  scheduleDemo.querySelector("#query").value = ""
-                  scheduleDemo.querySelector("#city").value = ""
+                  scheduleDemo.querySelector("#name").value = "";
+                  scheduleDemo.querySelector("#email").value = "";
+                  scheduleDemo.querySelector("#schedulefrom-number").value = "";
+                  scheduleDemo.querySelector("#query").value = "";
+                  scheduleDemo.querySelector("#city").value = "";
                   // let countryschedulecode = scheduleDemo.querySelector("#schedulefrom-country");
                   submitBtn.disabled = false;
                   submitBtn.textContent = "Next";
@@ -715,100 +706,97 @@ function sendEmail(message) {
   });
 });
 // add sticky header function start
-var headerHeight = $('header').innerHeight();
-$(window).scroll(function() {
-    if ($(this).scrollTop() > headerHeight) {
-      $('header').addClass('sticky');
-    } else {
-      $('header').removeClass('sticky')
-    }
+var headerHeight = $("header").innerHeight();
+$(window).scroll(function () {
+  if ($(this).scrollTop() > headerHeight) {
+    $("header").addClass("sticky");
+  } else {
+    $("header").removeClass("sticky");
+  }
 });
 // add sticky header function end
 
-
 // country code function
-document.addEventListener("DOMContentLoaded", function() {
-  var phoneInputGroups = document.querySelectorAll('.phone-input-group');
-  phoneInputGroups.forEach(function(group) {
-      var phoneNumberInput = group.querySelector(".mobile-number");
-      var countryCodeInput = group.querySelector(".country-code");
+document.addEventListener("DOMContentLoaded", function () {
+  var phoneInputGroups = document.querySelectorAll(".phone-input-group");
+  phoneInputGroups.forEach(function (group) {
+    var phoneNumberInput = group.querySelector(".mobile-number");
+    var countryCodeInput = group.querySelector(".country-code");
 
-      var iti = window.intlTelInput(countryCodeInput, {
-          initialCountry: "in",
-          separateDialCode: false,
-          utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-          flagSize: 80
-      });
+    var iti = window.intlTelInput(countryCodeInput, {
+      initialCountry: "in",
+      separateDialCode: false,
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      flagSize: 80,
+    });
+    var countryData = iti.getSelectedCountryData();
+    var countryName = countryData.name;
+    countryCodeInput.setAttribute("data-country-name", countryName);
+
+    function getCountryName() {
       var countryData = iti.getSelectedCountryData();
       var countryName = countryData.name;
       countryCodeInput.setAttribute("data-country-name", countryName);
+    }
 
+    countryCodeInput.addEventListener("countrychange", function () {
+      getCountryName();
+    });
+    countryCodeInput.setAttribute("placeholder", "");
 
-      function getCountryName() {
-        var countryData = iti.getSelectedCountryData();
-        var countryName = countryData.name;
-        countryCodeInput.setAttribute("data-country-name", countryName);
-      }
+    var initialDialCode = iti.getSelectedCountryData().dialCode;
+    phoneNumberInput.value = "+" + initialDialCode;
 
-      countryCodeInput.addEventListener('countrychange', function() {
-        getCountryName();
-  
-      });
+    countryCodeInput.addEventListener("countrychange", function () {
+      var dialCode = iti.getSelectedCountryData().dialCode;
+      phoneNumberInput.value = "+" + dialCode;
       countryCodeInput.setAttribute("placeholder", "");
+    });
 
-      var initialDialCode = iti.getSelectedCountryData().dialCode;
-      phoneNumberInput.value = "+" + initialDialCode;
-
-      countryCodeInput.addEventListener("countrychange", function() {
-          var dialCode = iti.getSelectedCountryData().dialCode;
-          phoneNumberInput.value = "+" + dialCode;
-          countryCodeInput.setAttribute("placeholder", "");
-      });
-
-      phoneNumberInput.addEventListener("input", function() {
-          var dialCode = iti.getSelectedCountryData().dialCode;
-          countryCodeInput.value = "+" + dialCode;
-      });
+    phoneNumberInput.addEventListener("input", function () {
+      var dialCode = iti.getSelectedCountryData().dialCode;
+      countryCodeInput.value = "+" + dialCode;
+    });
   });
-const pricingCountryCode = document.querySelector("#pricing-form-number");
-if(pricingCountryCode){
-  window.intlTelInput(pricingCountryCode, {
-    initialCountry: "in",
-    separateDialCode: true,
-    formatOnDisplay: true,
-    nationalMode: false,
-    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    nationalMode: false,
-    
-  });
-}
-
+  const pricingCountryCode = document.querySelector("#pricing-form-number");
+  if (pricingCountryCode) {
+    window.intlTelInput(pricingCountryCode, {
+      initialCountry: "in",
+      separateDialCode: true,
+      formatOnDisplay: true,
+      nationalMode: false,
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      nationalMode: false,
+    });
+  }
 });
 // Remove html from url
-document.addEventListener('DOMContentLoaded', function() {
-    const url = window.location.pathname;
-    if (url.endsWith('.html')) {
-        const newUrl = url.replace('.html', '');
-        window.history.replaceState({}, '', newUrl);
-    }
+document.addEventListener("DOMContentLoaded", function () {
+  const url = window.location.pathname;
+  if (url.endsWith(".html")) {
+    const newUrl = url.replace(".html", "");
+    window.history.replaceState({}, "", newUrl);
+  }
 });
 // home page slider
-$('.slider-for').slick({
+$(".slider-for").slick({
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
   fade: true,
-  autoplay:true,
-  autoplaySpeed:2000,
-  asNavFor: '.slider-nav'
+  autoplay: true,
+  autoplaySpeed: 2000,
+  asNavFor: ".slider-nav",
 });
-$('.slider-nav').slick({
+$(".slider-nav").slick({
   slidesToShow: 8,
   infinite: false,
-  autoplay:true,
-  autoplaySpeed:2000,
-  arrows:false,
-  asNavFor: '.slider-for',
+  autoplay: true,
+  autoplaySpeed: 2000,
+  arrows: false,
+  asNavFor: ".slider-for",
   dots: false,
   focusOnSelect: true,
   responsive: [
@@ -816,33 +804,36 @@ $('.slider-nav').slick({
       breakpoint: 991,
       settings: {
         slidesToShow: 5,
-        autoplaySpeed:3000,
-      }
+        autoplaySpeed: 3000,
+      },
     },
     {
       breakpoint: 767,
       settings: {
         infinite: true,
         slidesToShow: 3,
-        autoplaySpeed:3500,
-      }
-    }
-  ]
+        autoplaySpeed: 3500,
+      },
+    },
+  ],
 });
 // home page slider end
 
 //pricing page scroll to from and from select option
 
-$('.custom-pricing-tab').click(function(event) {
-  $('html, body').animate({
-      scrollTop: $('.custom-pricing-section').offset().top - 180
-  }, 1000); // Adjust the duration as needed
+$(".custom-pricing-tab").click(function (event) {
+  $("html, body").animate(
+    {
+      scrollTop: $(".custom-pricing-section").offset().top - 180,
+    },
+    1000
+  ); // Adjust the duration as needed
 });
-$('.pricing-select').on('change', function() {
-  if($(this).val() != ''){
-    $('.other-query').slideDown();
-  } else{
-    $('.other-query').slideUp();
+$(".pricing-select").on("change", function () {
+  if ($(this).val() != "") {
+    $(".other-query").slideDown();
+  } else {
+    $(".other-query").slideUp();
   }
   // if ($(this).val() === 'other') {
   //   console.log('test')
