@@ -588,69 +588,13 @@
         </div>
     </section>
 
-    <!-- <section class="sec-space bg-g-skyblue-top-bottom">
-        <div class="container">
-            <h5 class="font-48px font-lg-40px font-sm-25px color-333 text-center">
-                Frequently Asked Questions
-            </h5>
-
-            <div class="row justify-content-center mt-70 mt-sm-30">
-                <div class="col-lg-8">
-                    <div class="custom-accordion">
-                        <div class="item">
-                            <div class="accordion-title">
-                                How can TelebuSocial's admin control and supervision feature contribute to a positive customer experience?
-                            </div>
-                            <div class="accordion-data">
-                                TelebuSocial's admin control and supervision feature fosters a positive customer experience. It helps you make your agents knowledgeable to minimise customer frustration by preventing miscommunications and errors through feedback, coaching, and timely
-                                intervention at the tap of a button.
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="accordion-title">
-                                What level of control do admins have over agents' conversations?
-                            </div>
-                            <div class="accordion-data">
-                                Admins can monitor conversations in real-time, review past conversations, and provide feedback from their dashboards to enhance the agents’ performance and boost customer interactions.
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="accordion-title">
-                                How can admins protect sensitive customer information on TelebuSocial?
-                            </div>
-                            <div class="accordion-data">
-                                On TelebuSocial, you can grant and deny permission to different agents based on their responsibility and level of clearance. Plus, TelebuSocial adheres to the highest level of data security measures, including GDPR and HIPAA, so you and your customer
-                                are always safe
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </section> -->
-    <section class="sec-space bg-9fd">
+    <section class="sec-space new-custom-accordion">
       <div class="container">
           <h5 class="font-48px font-lg-40px font-sm-25px color-333 text-center">
-              Frequently Asked Questions
+              Frequently Asked <span class="color-primary">Questions</span>
           </h5>
 
           <div class="row justify-content-center mt-70 mt-sm-30">
-              <div class="col-lg-5">
-                  <div class="faq_que_form">
-                      <h6 class="font-35px mb-30">Frequently Asked Questions</h6>
-                      <p class="font-18px mb-25">Cant find your query?</p>
-                      <form>
-                          <div class = "form-group">
-                              <label class="font-18px mb-10">Ask us and we will respond back to you.</label>
-                              <textarea class = "form-control" rows = "9" placeholder = "Write your message"></textarea>
-                           </div>
-                          <input type="submit" class="btn btn-primary mt-15 mt-18px">
-                        </form>
-                  </div>
-              </div>
               <div class="col-lg-7">
                 <div class="custom-accordion">
                   <div class="item">
@@ -682,6 +626,25 @@
 
                 </div>
               </div>
+              <div class="col-lg-5">
+                <div class="faq_que_form">
+                    <h6 class="font-32px mb-30">Can’t find your Query?
+                      <svg xmlns="http://www.w3.org/2000/svg" width="368" height="3" viewBox="0 0 368 3" fill="none">
+                        <path d="M2 1.5H366" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                      </svg>
+                    </h6>
+                    <form id="query-submit">
+                      <div class = "form-group">
+                          <label class="font-18px mb-6 font-w-400">Ask us and we will respond back to you.</label>
+                          <textarea id="query-message" class = "form-control" rows = "14" placeholder = "Write Your message..."></textarea>
+                          <span id="errormessage" class="mt-2 d-inline-block font-w-500" style="color: red;"></span>
+                       </div>
+                       <div class="submit_btn d-flex justify-content-center">
+                        <input type="submit" class="btn btn-primary mt-32 mt-18px" id="query-sub" value="Ask">
+                       </div>
+                  </form>
+                </div>
+            </div>
           </div>
       </div>
     </section>
@@ -1093,7 +1056,7 @@
         >
         <div class="notification">
             <div class="message">
-            <div id="chatMessage">Let our chatbot find a solution for you</div>
+            <div id="chatMessage">Experience WhatsApp Bot for Your Industry</div>
             </div>
         </div>
         <img
