@@ -334,10 +334,31 @@ $(document).ready(function(){
 });
 
 function sendEmail(message) {
-  console.log(message + " message is send");
-}
-})
+      var url = API_URL + "/raise-query";
+      var xhr = new XMLHttpRequest();
 
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            errorMessage.innerHTML = "Message is successfully send";
+            errorMessage.style.color = "white";
+          } else {
+            errorMessage.innerHTML = "Error sending your query";
+            errorMessage.style.color = "red";
+          }
+        }
+      };
+      // console.log(email[0].value);
+      xhr.send(
+        JSON.stringify({
+          query: message,
+        })
+      );
+    }
+  });
 
   $(document).ready(function () {
     let resendButton = document.getElementById("resend_otp");
