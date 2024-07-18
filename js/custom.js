@@ -316,8 +316,12 @@ $(document).ready(function () {
       event.preventDefault();
       var message = QueryMessage.value.trim();
       if (message === "") {
-        errorMessage.innerHTML = "Message is required";
-        errorMessage.style.color = "red";
+        errorMessage.innerHTML = "<i class='fas fa-exclamation-triangle mr-5'></i>Message is required";
+        errorMessage.style.color = "white";
+        errorMessage.classList.add('shake');
+        setTimeout(function() {
+          errorMessage.classList.remove('shake');
+      }, 800);
         return;
       }
       sendEmail(message);
@@ -337,7 +341,7 @@ $(document).ready(function () {
             errorMessage.style.color = "white";
           } else {
             errorMessage.innerHTML = "Error sending your query";
-            errorMessage.style.color = "red";
+            errorMessage.style.color = "white";
           }
         }
       };
@@ -842,53 +846,54 @@ $(".pricing-select").on("change", function () {
        $(".other-query").slideUp();
     }
 });
-
-$(".slick-slider").slick({
-   slidesToShow: 1,
-   infinite:true,
-   slidesToScroll: 1,
-   autoplay: true,
-   autoplaySpeed: 1500,
-   dots: true, 
-  arrows: false,
-  variableWidth: true,
-  customPaging: function(slider, i) {
-    return '<span class="custom-dot"></span>';
-  },
-  responsive: [
-    {
-       breakpoint: 421,
-       settings: {
-        variableWidth: false,
-       }
-    }
- ]
-  });
-  $('.custom-button-next').on('click', function() {
-    $('.slick-slider').slick('slickNext');
-  });
-  $('.custom-button-previous').on('click', function() {
-    $('.slick-slider').slick('slickNext');
-  });
-  // Move the dots into the controls div
-  $('.slick-dots').appendTo('.custom-dots');
-  function adjustTestimonialSlider() {
-    let TestimonialSectionWidth = $('.client-testimonial').width();
-    let TestimonialContainerWidth = $('.client-testimonial .container').width();
-    let TestimonialTotal = TestimonialSectionWidth - TestimonialContainerWidth;
-    let TestimonialValue = (TestimonialTotal/2) + 160;
-    let TestimonialMobileValue = (TestimonialTotal/2) + 40;
-    $('.client-testimonial-slider').css('left', TestimonialValue);
-    if ($(window).width() <= 767) {
-      $('.client-testimonial-slider').css('left', TestimonialMobileValue);
-    }
-  }
-  
-  adjustTestimonialSlider();
-  
-  $(window).resize(function() {
-    adjustTestimonialSlider();
-  });
+if($(".slick-slider").length == 1){
+  $(".slick-slider").slick({
+    slidesToShow: 1,
+    infinite:true,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    dots: true, 
+   arrows: false,
+   variableWidth: true,
+   customPaging: function(slider, i) {
+     return '<span class="custom-dot"></span>';
+   },
+   responsive: [
+     {
+        breakpoint: 421,
+        settings: {
+         variableWidth: false,
+        }
+     }
+  ]
+   });
+   $('.custom-button-next').on('click', function() {
+     $('.slick-slider').slick('slickNext');
+   });
+   $('.custom-button-previous').on('click', function() {
+     $('.slick-slider').slick('slickNext');
+   });
+   // Move the dots into the controls div
+   $('.slick-dots').appendTo('.custom-dots');
+   function adjustTestimonialSlider() {
+     let TestimonialSectionWidth = $('.client-testimonial').width();
+     let TestimonialContainerWidth = $('.client-testimonial .container').width();
+     let TestimonialTotal = TestimonialSectionWidth - TestimonialContainerWidth;
+     let TestimonialValue = (TestimonialTotal/2) + 160;
+     let TestimonialMobileValue = (TestimonialTotal/2) + 40;
+     $('.client-testimonial-slider').css('left', TestimonialValue);
+     if ($(window).width() <= 767) {
+       $('.client-testimonial-slider').css('left', TestimonialMobileValue);
+     }
+   }
+   
+   adjustTestimonialSlider();
+   
+   $(window).resize(function() {
+     adjustTestimonialSlider();
+   });
+}
 
 
   $(".thank-page-marquee").marquee({
@@ -903,3 +908,9 @@ $(".slick-slider").slick({
     //true or false - should the marquee be duplicated to show an effect of continues flow
     duplicated: true,
   });
+  $(document).ready(function(){
+    $('.close-notification').click(function(e){
+      e.preventDefault();
+      $(this).parents('.notification').hide();
+    })
+  })  

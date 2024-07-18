@@ -3066,15 +3066,28 @@ header .logo img {
   background: var(--color-3fc);
   border-radius: 8px;
   padding: 4px 18px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 3;
   right: 90px;
   top: 16px;
+  cursor: auto;
 }
 #whatsapp-icon .notification #chatMessage {
   color: #333;
   font-weight: 500;
   font-family: "Poppins";
+}
+#whatsapp-icon .notification .message i {
+  position: absolute;
+  right: 6px;
+  font-size: 15px;
+  top: 6px;
+  cursor: pointer;
+  color: #333;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 4px 2px 3px;
+  line-height: 9px;
 }
 
 .iti__flag-container {
@@ -3142,9 +3155,53 @@ header .logo img {
 }
 
 #errormessage {
-  color: red;
+  color: white;
+  font-weight: 600;
 }
 
+.shake {
+  display: inline-block;
+  -webkit-animation: shake 0.5s;
+          animation: shake 0.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 .thank-banner-block .banner-bg {
   border-radius: 1173.364px;
   background-color: #C3DFFF;
@@ -14593,6 +14650,11 @@ hr {
     width: 100% !important;
   }
 }
+@media (max-width: 1440px) {
+  .custom-checkbox-list {
+    gap: 20px;
+  }
+}
 @media (max-width: 1366px) {
   .custom-accordion .item {
     background-position: 98% 15px;
@@ -14782,6 +14844,7 @@ hr {
   .custom-checkbox-list {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 0;
   }
   .custom-checkbox-list .item {
     margin: 0 20px 30px;
