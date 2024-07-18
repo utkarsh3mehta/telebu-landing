@@ -1404,16 +1404,33 @@ header .logo img{
         position: absolute;
         background: var(--color-3fc);
         border-radius: 8px;
+        //padding: 12px 30px 12px;
         padding: 4px 18px;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 3;
         right: 90px;
+        //top: 10px;
         top: 16px;
+        cursor: auto;
 
         #chatMessage{
             color: #333;
             font-weight: 500;
             font-family: 'Poppins';
+        }
+        .message{
+            i{
+                position: absolute;
+                right: 6px;
+                font-size: 15px;
+                top: 6px;
+                cursor: pointer;
+                color: #333;
+                border: 1px solid;
+                border-radius: 3px;
+                padding: 4px 2px 3px;
+                line-height: 9px;
+            }
         }
     }
 }
@@ -1490,9 +1507,22 @@ header .logo img{
     display: none;
 }
 #errormessage{
-    color: red;
+    color: white;
+    font-weight: 600;
 }
+.shake {
+    display: inline-block;
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+  }
 
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
 // thank you page css
 .thank-banner-block{
     .banner-bg{

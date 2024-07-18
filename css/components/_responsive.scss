@@ -20,6 +20,11 @@
         }
     }
 }
+@media (max-width: 1440px) {
+    .custom-checkbox-list{
+        gap: 20px;
+    }
+}
 @media (max-width: 1366px) {
     .custom-accordion .item {
         background-position: 98% 15px;
@@ -261,6 +266,7 @@
     .custom-checkbox-list {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 0;
     }
     .custom-checkbox-list .item {
         margin: 0 20px 30px;
