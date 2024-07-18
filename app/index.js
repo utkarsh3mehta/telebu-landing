@@ -26,137 +26,116 @@ const port = process.env.PORT || 5000;
 
 function OTP_MAIL(name, otp) {
   return `
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="google-site-verification"
-      content="q7AbFskcx5yCZpGbM5q7c_4NiFs3v3xUTKi9196tLSI"
-    />
-    <title>Email</title>
+    <title>One Time Password</title>
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-      p {
-        padding: 0 10px;
-        font-size: 18px;
+      body {
         font-family: Poppins;
+        background: linear-gradient(
+          90deg,
+          rgb(53, 83, 210) 0%,
+          rgb(53, 83, 210) 50%,
+          rgb(124, 138, 224) 100%
+        );
+        margin: 0;
+        padding-top: 0px;
+        border-radius: 5px;
+      }
+      .container {
+        max-width: 520px;
+        margin: 30px auto;
+        padding-top: 40px;
+      }
+      .table-container {
+        background-color: #fff;
+        padding: 40px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .content {
+        text-align: center;
+        padding: 20px;
+      }
+      .otp {
+        font-size: 48px;
+        margin: 20px 0;
+        font-weight: 700;
         color: #000;
       }
-      #copy_button {
-        margin: 18px 0;
-        background: #3166de;
-        box-shadow: none;
-        border: 0;
+      p {
+        color: #000;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 12px;
         color: #fff;
-        padding: 10px 35px;
-        border-radius: 5px;
-        font-family: Poppins;
-        cursor: pointer;
+        text-align: center;
+      }
+      .footer p {
+        color: #fff;
+      }
+      .footer p a {
+        color: #fff;
+        text-decoration: none;
       }
     </style>
   </head>
-
   <body>
-    <table
-      width="100%"
-      style="border: 1px solid #000"
-      cellpadding="0"
-      cellspacing="0"
-    >
-      <tbody>
+    <div class="container">
+      <table
+        class="table-container"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+      >
         <tr>
-          <td align="center" style="padding: 15px 0">
-            <img
-              style="width: 15%"
-              src="cid:logo"
-            />
+          <td align="center">
+            <img src="cid:email" width="150" height="150" />
           </td>
         </tr>
         <tr>
-          <td
-            align="center"
-            style="border-top: 1px solid #000; border-bottom: 1px solid #000"
-          >
-            <p style="font-size: 32px; font-weight: 700">Your OTP</p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p><span style="font-weight: 600"> Dear </span>${name}</p>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" style="border-top: 1px solid #000">
-            <p>Here’s your OTP to Sign up on TelebuSocial</p>
-            <p class="copy_otp">${otp}</p>
-          </td>
-        </tr>
-        <tr>
-          <td
-            align="center"
-            style="border-top: 1px solid #000; border-bottom: 1px solid #000"
-          >
-            <p>
-              If you have any questions, please contact our
-              <a
-                href="mailto:support@telebusocial.com"
-                style="text-decoration: none; color: #3166de"
-                >Customer Success team</a
-              >.
+          <td class="content">
+            <p style="margin: 0; font-size: 20px; font-weight: 600">Hi ${name}</p>
+            <p style="margin: 0; font-size: 20px; font-weight: 600">
+              Welcome to TelebuSocial
             </p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p style="margin-bottom: 0">Warm regards.</p>
-            <p style="margin-top: 0">TelebuSocial Team.</p>
-          </td>
-        </tr>
-        <tr>
-          <td
-            align="center"
-            style="border-top: 1px solid #000; border-bottom: 1px solid #000"
-          >
-            <p>Download the latest TelebuSocial mobile app.</p>
+            <p>Here’s your OTP to Sign up on TelebuSocial</p>
+            <div class="otp">${otp}</div>
+            <p>
+              If you have any questions, please contact our <br /><a
+                href="mailto:support@telebusocial.com"
+                style="color: #3166de; text-decoration: underline"
+                >Customer Success team.</a
+              >
+            </p>
           </td>
         </tr>
         <tr>
           <td align="center">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.telebusocial.mobileapp"
-              style="display: inline-block; width: 12%"
-            >
-              <img
-                width="100%"
-                src="cid:google-play"
-                alt="Google Play store"
-              />
-            </a>
-            <a
-              href="https://apps.apple.com/ae/app/telebu-social/id6463861190"
-              style="display: inline-block; width: 12%; margin: 18px 0"
-            >
-              <img width="100%" 
-              src="cid:app-store"
-              alt="Apple Play store"
-            </a>
+            <img src="cid:logo" width="150" height="50" />
           </td>
         </tr>
+      </table>
+      <table cellpadding="0" cellspacing="0" width="100%">
         <tr>
-          <td align="center" style="border-top: 1px solid #000">
+          <td class="footer">
             <p>
-              Telebu Communications LLP, Madhapur, Hyderabad, IN 500081, India
+              <a href="#">Terms & Conditions</a> |
+              <a href="https://www.telebusocial.com/contact.html">Contact Us</a>
             </p>
           </td>
         </tr>
-      </tbody>
-    </table>
+      </table>
+    </div>
   </body>
 </html>
-      `;
+`;
 }
 
 route.get("/test", (req, res) => {
@@ -258,14 +237,9 @@ route.post("/resend-otp", (req, res) => {
               cid: "logo", //same cid value as in the html img src
             },
             {
-              filename: "app-store.png",
-              path: path.join(__dirname, "/assets/app-store.png"),
-              cid: "app-store", //same cid value as in the html img src
-            },
-            {
-              filename: "google-play.png",
-              path: path.join(__dirname, "/assets/google-play.png"),
-              cid: "google-play", //same cid value as in the html img src
+              filename: "email.jpg",
+              path: path.join(__dirname, "/assets/email.jpg"),
+              cid: "email", //same cid value as in the html img src
             },
           ],
         };
@@ -382,7 +356,6 @@ route.post("/subscribe", (req, res) => {
   }
 });
 
-
 route.post("/raise-query", (req, res) => {
   const { query } = req.body;
   try {
@@ -438,14 +411,9 @@ route.post("/get-started", (req, res) => {
           cid: "logo", //same cid value as in the html img src
         },
         {
-          filename: "app-store.png",
-          path: path.join(__dirname, "/assets/app-store.png"),
-          cid: "app-store", //same cid value as in the html img src
-        },
-        {
-          filename: "google-play.png",
-          path: path.join(__dirname, "/assets/google-play.png"),
-          cid: "google-play", //same cid value as in the html img src
+          filename: "email.jpg",
+          path: path.join(__dirname, "/assets/email.jpg"),
+          cid: "email", //same cid value as in the html img src
         },
       ],
     };
