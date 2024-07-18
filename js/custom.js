@@ -822,21 +822,84 @@ $(".slider-nav").slick({
 //pricing page scroll to from and from select option
 
 $(".custom-pricing-tab").click(function (event) {
+  event.preventDefault();
   $("html, body").animate(
     {
-      scrollTop: $(".custom-pricing-section").offset().top - 180,
+      scrollTop: $(".custom-pricing-section").offset().top - 140,
     },
     1000
   ); // Adjust the duration as needed
 });
 $(".pricing-select").on("change", function () {
-  if ($(this).val() != "") {
-    $(".other-query").slideDown();
-  } else {
-    $(".other-query").slideUp();
-  }
-  // if ($(this).val() === 'other') {
-  //   console.log('test')
-  //     $('.other-query').removeClass('d-none');
+  // if ($(this).val() != "") {
+  //   $(".other-query").slideDown();
+  // } else {
+  //   $(".other-query").slideUp();
   // }
+  if ($(this).val() === 'other') {
+    $(".other-query").slideDown();   
+  } else {
+       $(".other-query").slideUp();
+    }
 });
+
+$(".slick-slider").slick({
+   slidesToShow: 1,
+   infinite:true,
+   slidesToScroll: 1,
+   autoplay: true,
+   autoplaySpeed: 1500,
+   dots: true, 
+  arrows: false,
+  variableWidth: true,
+  customPaging: function(slider, i) {
+    return '<span class="custom-dot"></span>';
+  },
+  responsive: [
+    {
+       breakpoint: 421,
+       settings: {
+        variableWidth: false,
+       }
+    }
+ ]
+  });
+  $('.custom-button-next').on('click', function() {
+    $('.slick-slider').slick('slickNext');
+  });
+  $('.custom-button-previous').on('click', function() {
+    $('.slick-slider').slick('slickNext');
+  });
+  // Move the dots into the controls div
+  $('.slick-dots').appendTo('.custom-dots');
+  function adjustTestimonialSlider() {
+    let TestimonialSectionWidth = $('.client-testimonial').width();
+    let TestimonialContainerWidth = $('.client-testimonial .container').width();
+    let TestimonialTotal = TestimonialSectionWidth - TestimonialContainerWidth;
+    let TestimonialValue = (TestimonialTotal/2) + 160;
+    let TestimonialMobileValue = (TestimonialTotal/2) + 40;
+    $('.client-testimonial-slider').css('left', TestimonialValue);
+    if ($(window).width() <= 767) {
+      $('.client-testimonial-slider').css('left', TestimonialMobileValue);
+    }
+  }
+  
+  adjustTestimonialSlider();
+  
+  $(window).resize(function() {
+    adjustTestimonialSlider();
+  });
+
+
+  $(".thank-page-marquee").marquee({
+    //speed in milliseconds of the marquee
+    duration: 15000,
+    //gap in pixels between the tickers
+    gap: 50,
+    //time in milliseconds before the marquee will start animating
+    delayBeforeStart: 0,
+    //'left' or 'right'
+    direction: "left",
+    //true or false - should the marquee be duplicated to show an effect of continues flow
+    duplicated: true,
+  });

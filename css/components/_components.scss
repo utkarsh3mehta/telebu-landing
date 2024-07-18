@@ -1452,6 +1452,13 @@ header .logo img{
             color: #fff;
         }
     }
+    .form {
+        .form-group{
+            input:not([type=radio]){
+                color: #000;
+            }
+        }
+    } 
 }
 .pricing-form-group{
     .iti{
@@ -1484,4 +1491,199 @@ header .logo img{
 }
 #errormessage{
     color: red;
+}
+
+// thank you page css
+.thank-banner-block{
+    .banner-bg{
+        border-radius: 1173.364px;
+        background-color: #C3DFFF;
+        filter: blur(350px);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+    }
+    h1{
+        color: #3553d2;
+    }
+    .thankyou-btn{
+        gap: 20px;
+        a{
+            display: inline-flex;
+            height: 40px;
+            padding: 10px 22px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            border: 1px solid #000;
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            
+        }
+        a.read_blog_btn{
+            background: #000;
+            color: #fff;
+        }
+    }
+    p{
+        font-family: "Jost", sans-serif;
+    }
+    a{
+        font-family: "Jost", sans-serif;
+    }
+}
+.client-testimonial{
+    .client-testimonial-block{
+        h2{
+            color: #333;
+        }
+    }
+}
+.left-vertical-line{
+    background: #3553d2;
+    width: 25px;
+    height: calc(100% - 254px);
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+}
+.right-vertical-line{
+    background: #3553d2;
+    width: 25px;
+    height: calc(100% - 210px);
+    top: 0;
+    right: 0;
+    z-index: 99;
+}
+.client-testimonial{
+    .slider-left-block{
+        h3{
+            color: #202020;
+            line-height: 34px;
+            margin-left: -50px;
+            font-size: 32px;
+        }
+    }
+    .slide-bg{
+        background: linear-gradient(0deg, rgba(53, 83, 210, 0.6) 0%, rgba(53, 83, 210, 0.6) 100%), url(../images/slider-bg.png) lightgray 50% / cover no-repeat;
+        height: 575px;
+    }
+    .client-testimonial-slider{
+        position: absolute;
+        width: auto;
+        right: 0px;
+        top: 326px;
+        .slick-track{
+            display: flex;
+            gap: 40px;
+        }
+    }
+    .client-feedback-block{
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+        background: #fff;
+        border-radius: 10px;
+        padding: 40px;
+        width: 600px;
+        height: auto;
+        p{
+            color: #202020;
+        }
+        h6{
+            color: #3e66df;
+        }
+        .user-img{
+            img{
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+            }
+        }
+        .user-name{
+            p{
+                color: #808080;
+            }
+        }
+    }
+    .custom-dots{
+        .slick-dots{
+            display: flex;
+            align-items: center;
+            margin: 0 80px;
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            li{
+                width: 10px;
+                height: 10px;
+                background: #eaeaea;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            li.slick-active{
+                background: #3553d2;
+            }
+        }
+    }
+    .custom-button-next{
+        cursor: pointer;
+        display: none;
+    }
+    .custom-button-previous{
+        cursor: pointer;
+        display: none;
+    }
+}
+.jost-font{
+    font-family: "Jost", sans-serif;
+}
+.thank-page-marquee.marquee{
+    max-width: 100%;
+}
+.check-demo{
+    margin-top: 100px;
+    .check-demo-block{
+        .message-icon{
+            top: -100px;
+            left: 150px;
+        }
+    }
+    .check-now-btn{
+        a{
+            display: inline-flex;
+            height: 40px;
+            padding: 10px 22px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            border: 1px solid #000;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            background: #000;
+        }
+    }
+    .polygon-img{
+        img{
+            right: 0;
+            top: -140px;
+        }
+    }
+}
+.demo-content-block{
+    border-radius: 0px 8px 8px 8px;
+    background: #EDF2FF;
+    padding: 30px 60px 28px 90px;
+    p{
+        color: #666;
+        font-family: "Noto Sans", sans-serif;
+    }
+}
+#query-submit textarea::placeholder{
+    color: #8a8a8a;
 }
