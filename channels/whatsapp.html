@@ -594,11 +594,19 @@
                         <path d="M2 1.5H366" stroke="white" stroke-width="3" stroke-linecap="round"/>
                       </svg>
                     </h6>
-                    <form id="query-submit">
-                      <div class = "form-group">
-                          <label class="font-18px mb-6 font-w-400">Ask us and we will respond back to you.</label>
-                          <textarea id="query-message" class = "form-control" rows = "14" placeholder = "Write Your message..."></textarea>
-                          <span id="errormessage" class="mt-2 d-inline-block font-w-500" style="color: red;"></span>
+                    <form id="query-submit" class="">
+                      <div id="query-email-field" class="form-group mb-15 required">
+                        <label class="font-18px mb-6 font-w-500 d-block">Enter your email</label>
+                        <p class="font-18px mb-12 font-w-400 d-block">To send you a response, we need your email address. Don't worry, we'll only use it to answer your question and nothing else!</p>
+                        <input type="email" value="" name="faq-email" id="faq-email" placeholder="Your Email Address"/>
+                        <span id="faqEmailError" class=" mt-2 font-w-500 pl-5" style="color: white;">
+                        </span>
+                      </div>
+                      <div id="quey-box" class = "form-group">
+                          <label class="font-18px mb-12 font-w-400">Submit your question and we'll get back to you soon.</label>
+                          <textarea id="query-message" class = "form-control" rows = "10" placeholder = "Write Your message..."></textarea>
+                          <span id="errormessage" class=" mt-2 d-inline-block font-w-500" style="color: white;">
+                          </span>
                        </div>
                        <div class="submit_btn d-flex justify-content-center">
                         <input type="submit" class="btn btn-primary mt-32 mt-18px" id="query-sub" value="Ask">
