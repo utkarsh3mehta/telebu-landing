@@ -2876,6 +2876,23 @@ p.text-transform-auto {
   color: var(--color-primary);
   border: 1px solid transparent;
 }
+.faq_que_form #faq-email {
+  width: 100%;
+  height: 52px;
+  background: #f8f8f8;
+  border: 1px solid #c7d7f2;
+  border-radius: 5px;
+  outline: none !important;
+  font-size: 16px;
+  color: #000;
+  padding: 0 15px;
+}
+.faq_que_form .required label::after {
+  content: "*";
+  display: inline-block;
+  color: white;
+  font-weight: 600;
+}
 .faq_que_form .submit_btn input {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -3155,8 +3172,18 @@ header .logo img {
 }
 
 #errormessage {
-  color: white;
   font-weight: 600;
+}
+
+#faqEmailError {
+  font-weight: 600;
+}
+
+#query-email-field {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
 }
 
 .shake {

@@ -310,24 +310,42 @@ $(document).ready(function () {
   $(document).ready(function () {
     let QueryForm = document.getElementById("query-submit");
     let QueryMessage = document.getElementById("query-message");
+    let QueryBox = document.getElementById("quey-box");
     let errorMessage = document.getElementById("errormessage");
-
+    let emailErrorMessage = document.getElementById("faqEmailError");
     QueryForm.addEventListener("submit", function (event) {
       event.preventDefault();
+      var _QueryEmail = document.querySelectorAll("#faq-email");
+      var QueryEmail = _QueryEmail[0].value;
       var message = QueryMessage.value.trim();
       if (message === "") {
-        errorMessage.innerHTML = "<i class='fas fa-exclamation-triangle mr-5'></i>Message is required";
-        errorMessage.style.color = "white";
-        errorMessage.classList.add('shake');
-        setTimeout(function() {
-          errorMessage.classList.remove('shake');
-      }, 800);
+        errorMessage.innerHTML =
+          "<i class='fas fa-exclamation-triangle mr-5'></i>Message is required";
+        errormessage(errorMessage);
+        emailErrorMessage.innerHTML = "";
         return;
-      }
-      sendEmail(message);
+      } else {
+        QueryBox.style.display = "none";
+        slideDown();
+        if (QueryEmail.trim() === "") {
+          emailErrorMessage.innerHTML =
+            "<i class='fas fa-exclamation-triangle mr-5'></i>Email is required";
+          errormessage(emailErrorMessage);
+        } else if (!validateEmail(QueryEmail)) {
+          emailErrorMessage.innerHTML =
+            "<i class='fas fa-exclamation-triangle mr-5'></i>Invalid Email";
+          errormessage(emailErrorMessage);
+        } else {
+          sendEmail(message, QueryEmail);
+        }
+      } 
     });
-
-    function sendEmail(message) {
+    function validateEmail(QueryEmail) {
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(QueryEmail);
+    }
+    function sendEmail(message, email) {
+      emailErrorMessage.innerHTML = "";
       var url = API_URL + "/raise-query";
       var xhr = new XMLHttpRequest();
 
@@ -337,11 +355,11 @@ $(document).ready(function () {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            errorMessage.innerHTML = "Message is successfully send";
-            errorMessage.style.color = "white";
+            emailErrorMessage.innerHTML = "Message is successfully send";
+            emailErrorMessage.style.color = "white";
           } else {
-            errorMessage.innerHTML = "Error sending your query";
-            errorMessage.style.color = "white";
+            emailErrorMessage.innerHTML = "Error sending your query";
+            emailErrorMessage.style.color = "white";
           }
         }
       };
@@ -349,8 +367,23 @@ $(document).ready(function () {
       xhr.send(
         JSON.stringify({
           query: message,
+          email,
         })
       );
+    }
+    function errormessage(error) {
+      error.style.color = "white";
+      error.classList.add('shake');
+        setTimeout(function() {
+          error.classList.remove('shake');
+      }, 800);
+    }
+    function slideDown() {
+      const content = document.getElementById('query-email-field');
+      console.log(content)
+      content.style.display = 'block';
+      const height = content.scrollHeight + 'px';
+      content.style.maxHeight = height;
     }
   });
 
