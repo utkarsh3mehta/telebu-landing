@@ -319,7 +319,8 @@ $(document).ready(function () {
       var QueryEmail = _QueryEmail[0].value;
       var message = QueryMessage.value.trim();
       if (message === "") {
-        errorMessage.innerHTML = "<i class='fas fa-exclamation-triangle mr-5'></i>Message is required";
+        errorMessage.innerHTML =
+          "<i class='fas fa-exclamation-triangle mr-5'></i>Message is required";
         errormessage(errorMessage);
         emailErrorMessage.innerHTML = "";
         return;
@@ -327,13 +328,15 @@ $(document).ready(function () {
         QueryBox.style.display = "none";
         slideDown();
         if (QueryEmail.trim() === "") {
-          emailErrorMessage.innerHTML = "<i class='fas fa-exclamation-triangle mr-5'></i>Email is required";
+          emailErrorMessage.innerHTML =
+            "<i class='fas fa-exclamation-triangle mr-5'></i>Email is required";
           errormessage(emailErrorMessage);
         } else if (!validateEmail(QueryEmail)) {
-          emailErrorMessage.innerHTML = "<i class='fas fa-exclamation-triangle mr-5'></i>Invalid Email";
+          emailErrorMessage.innerHTML =
+            "<i class='fas fa-exclamation-triangle mr-5'></i>Invalid Email";
           errormessage(emailErrorMessage);
-        }else {
-          sendEmail(message);
+        } else {
+          sendEmail(message, QueryEmail);
         }
       } 
     });
@@ -341,7 +344,8 @@ $(document).ready(function () {
       var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailPattern.test(QueryEmail);
     }
-    function sendEmail(message) {
+    function sendEmail(message, email) {
+      emailErrorMessage.innerHTML = "";
       var url = API_URL + "/raise-query";
       var xhr = new XMLHttpRequest();
 
@@ -363,6 +367,7 @@ $(document).ready(function () {
       xhr.send(
         JSON.stringify({
           query: message,
+          email,
         })
       );
     }

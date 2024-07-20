@@ -357,7 +357,7 @@ route.post("/subscribe", (req, res) => {
 });
 
 route.post("/raise-query", (req, res) => {
-  const { query } = req.body;
+  const { query, email } = req.body;
   try {
     const mailData = {
       from: process.env.SMTP_FROM,
@@ -373,6 +373,7 @@ route.post("/raise-query", (req, res) => {
           <title>New FAQ</title>
         </head>
         <body>
+          <p>Received from: ${email}
           <p>Query: ${query}</p>
         </body>
       </html>
