@@ -363,21 +363,119 @@ route.post("/raise-query", (req, res) => {
       from: process.env.SMTP_FROM,
       to: process.env.TO_EMAIL,
       cc: process.env.CC_EMAIL,
-      subject: "New FAQ | TelebuSocial",
-      text: "New FAQ",
+      subject: `New FAQ | TelebuSocial | ${email}`,
+      text: `New FAQ | TelebuSocial | ${email}`,
       html: `<!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>New FAQ</title>
-        </head>
-        <body>
-          <p>Received from: ${email}
-          <p>Query: ${query}</p>
-        </body>
-      </html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faq Email</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      body {
+        font-family: Poppins;
+        background: linear-gradient(
+          90deg,
+          rgb(53, 83, 210) 0%,
+          rgb(53, 83, 210) 50%,
+          rgb(124, 138, 224) 100%
+        );
+        margin: 0;
+        padding-top: 0px;
+        border-radius: 5px;
+      }
+      .container {
+        max-width: 520px;
+        margin: 30px auto;
+        padding-top: 40px;
+      }
+      .table-container {
+        background-color: #fff;
+        padding: 40px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .content {
+        text-align: center;
+        padding: 20px;
+      }
+      .otp {
+        font-size: 15px;
+        margin: 20px 0;
+        font-weight: 500;
+        color: #000;
+      }
+      p {
+        color: #000;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #fff;
+        text-align: center;
+      }
+      .footer p {
+        color: #fff;
+      }
+      .footer p a {
+        color: #fff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <table
+        class="table-container"
+        cellpadding="0"
+        cellspacing="0"
+        width="100%"
+      >
+        <tr>
+          <td align="center">
+            <img src="cid:email" width="150" height="150" />
+          </td>
+        </tr>
+        <tr>
+          <td class="content">
+            <p style="font-size: 24px; font-weight: 600">Query</p>
+            <div class="query">${query}</div>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <img src="cid:logo" width="150" height="50" />
+          </td>
+        </tr>
+      </table>
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td class="footer">
+            <p>
+              <a href="#">Terms & Conditions</a> |
+              <a href="https://www.telebusocial.com/contact.html">Contact Us</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
       `,
+      attachments: [
+        {
+          filename: "logo.png",
+          path: path.join(__dirname, "/assets/logo.png"),
+          cid: "logo", //same cid value as in the html img src
+        },
+        {
+          filename: "email.jpg",
+          path: path.join(__dirname, "/assets/email.jpg"),
+          cid: "email", //same cid value as in the html img src
+        },
+      ],
     };
     transporter.sendMail(mailData, function (err, info) {
       if (err) console.log(err);
