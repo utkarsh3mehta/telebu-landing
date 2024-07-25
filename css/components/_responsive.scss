@@ -924,10 +924,15 @@
         right: 10px;
     }
     #whatsapp-icon{
-        .notification{
-            width: 230px;
-            #chatMessage{
-                line-height: 20px;
+        a{
+            gap: 10px;
+            .notification{
+                width: max-content;
+                padding: 7px 10px;
+                font-size: 12px;
+                #chatMessage{
+                    line-height: 20px;
+                }
             }
         }
     }

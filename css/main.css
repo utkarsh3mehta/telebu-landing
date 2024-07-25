@@ -3074,27 +3074,35 @@ header .logo img {
   cursor: pointer;
   z-index: 9999 !important;
 }
-#whatsapp-icon .notification {
+#whatsapp-icon a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 30px;
+}
+#whatsapp-icon a .notification {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  position: absolute;
   background: var(--color-3fc);
   border-radius: 8px;
   padding: 4px 18px;
   font-size: 14px;
   line-height: 3;
-  right: 90px;
-  top: 16px;
-  cursor: auto;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  transition: opacity 0.5s 1s, visibility 0.5s 1s;
 }
-#whatsapp-icon .notification #chatMessage {
+#whatsapp-icon a .notification #chatMessage {
   color: #333;
   font-weight: 500;
   font-family: "Poppins";
 }
-#whatsapp-icon .notification .message i {
+#whatsapp-icon a .notification .message i {
   position: absolute;
   right: 6px;
   font-size: 15px;
@@ -3105,6 +3113,12 @@ header .logo img {
   border-radius: 3px;
   padding: 4px 2px 3px;
   line-height: 9px;
+}
+#whatsapp-icon a:hover .notification {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+  transition-delay: 1s;
 }
 
 .iti__flag-container {
@@ -15399,10 +15413,17 @@ header nav ul li .dropdown.width-256 {
   #whatsapp-icon {
     right: 10px;
   }
-  #whatsapp-icon .notification {
-    width: 230px;
+  #whatsapp-icon a {
+    gap: 10px;
   }
-  #whatsapp-icon .notification #chatMessage {
+  #whatsapp-icon a .notification {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+  #whatsapp-icon a .notification #chatMessage {
     line-height: 20px;
   }
   .thank-u-page .thank-banner-block img {
