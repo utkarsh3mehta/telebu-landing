@@ -810,13 +810,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 // Remove html from url
-document.addEventListener("DOMContentLoaded", function () {
-  const url = window.location.pathname;
-  if (url.endsWith(".html")) {
-    const newUrl = url.replace(".html", "");
-    window.history.replaceState({}, "", newUrl);
-  }
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//   const url = window.location.pathname;
+//   if (url.endsWith(".html")) {
+//     const newUrl = url.replace(".html", "");
+//     window.history.replaceState({}, "", newUrl);
+//   }
+// });
 // home page slider
 $(".slider-for").slick({
   slidesToShow: 1,
