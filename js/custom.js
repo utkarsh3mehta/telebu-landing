@@ -986,7 +986,7 @@ $(document).on('click', '.sec-letter', function() {
   var sec_letter_tab = $(this).attr('data-letter');
   var targetElement = $("#" + sec_letter_tab);
   setTimeout(function() {
-    var scrollOffset = targetElement.offset().top - ($(this).parents('.glossary-section-splter').hasClass('fixed') ? 165 : 330);
+    var scrollOffset = targetElement.offset().top - ($(this).parents('.glossary-section-splter').hasClass('fixed') ? 180 : 350);
     $('html,body').animate({
       scrollTop: scrollOffset
     }, 'slow');

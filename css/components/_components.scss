@@ -1923,6 +1923,19 @@ header .logo img{
             }
         }
     }
+    .form-left-section{
+        height: 100%;
+        .demo_form_img{
+            margin-top: 100px;
+            height: 100%;
+            img{
+                position: absolute;
+                z-index: 4;
+                top: -22px;
+                width: 75%;
+            }
+        }
+    }
 }
 .demo-form-group{
     .iti{
@@ -2010,6 +2023,7 @@ header .logo img{
             font-weight: 400;
             font-family: 'Poppins';
             outline: 0;
+            padding-right: 24px;
         }
         .search_glossary{
             right: 4px;
@@ -2075,7 +2089,45 @@ header .logo img{
         }
         .glossary-content{
             margin-top: 100px;
-
+            position: relative;
+            .left-gradient{
+                border-radius: 1173.364px;
+                background: #C3DFFF;
+                filter: blur(350px);
+                width: 40%;
+                height: 40%;
+                position: absolute;
+                z-index: -1;
+                top: 20%;
+                left: 0;
+            }
+            .right-gradient{
+                border-radius: 770.446px;
+                background: #C3DFFF;
+                filter: blur(350px);
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 40%;
+                height: 40%;
+                z-index: -1;
+            }
+            .f-tab-gradient.right-gradient{
+                top: -120px;
+                height: 65%;
+            }
+            .f-tab-gradient.left-gradient{
+                top: 0px;
+                height: 100%;
+            }
+            .q-tab-gradient.right-gradient{
+                top: 0px;
+                height: 100%;
+            }
+            .q-tab-gradient.left-gradient{
+                top: -50%px;
+                height: 100%;
+            }
             .glossary-inner-content{
                 .glossary-tab-heading{
                     h3{
