@@ -11,6 +11,13 @@
         }
     }
 }
+@media (min-width: 1400px) {
+    .get_started_page{
+        .container {
+            max-width: 1040px;
+        }
+    }
+}
 @media (min-width: 992px) {
     .custom-tabs-slider{
         .slick-track{
@@ -772,7 +779,8 @@
         display: none;
     }
     header nav ul li .dropdown.width-180,
-    header nav ul li .dropdown.width-256 {
+    header nav ul li .dropdown.width-256,
+    header nav ul li .dropdown.width-430 {
         width: calc(100% + 40px);
     }
     header nav ul li .dropdown .item {

@@ -108,10 +108,16 @@ header {
                     &.width-180 {
                         width: 170px;
                     }
+                    &.width-430 {
+                        width: 430px;
+                    }
                     &.width-256 {
                         width: 256px;
                     }
                     .item {
+                        &.flex-auto{
+                            flex: auto;
+                        }
                         flex-grow: 1;
                         flex-basis: 0;
                         p {
@@ -126,6 +132,15 @@ header {
                                 margin: 6px 0 2px 0;
                                 width: 100%;
                                 padding-bottom: 0;
+                                &.disable{
+                                 a{
+                                    color: #bdbdbd;
+                                    pointer-events: none;
+                                    &::after {
+                                        display: none;
+                                    }
+                                 }
+                                }
                                 a {
                                     font-size: 15px;
                                     font-weight: 500;
