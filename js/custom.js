@@ -808,6 +808,18 @@ document.addEventListener("DOMContentLoaded", function () {
       nationalMode: false,
     });
   }
+  const demandVideoCountryCode = document.querySelector("#demo-form-number");
+  if (demandVideoCountryCode) {
+    window.intlTelInput(demandVideoCountryCode, {
+      initialCountry: "in",
+      separateDialCode: true,
+      formatOnDisplay: true,
+      nationalMode: false,
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      nationalMode: false,
+    });
+  }
 });
 // Remove html from url
 // document.addEventListener("DOMContentLoaded", function () {
@@ -946,3 +958,95 @@ $(document).ready(function () {
     $(this).parents(".notification").hide();
   });
 });
+//glossary page js
+$(window).scroll(function() {    
+  var glossaryScroll = $(window).scrollTop();
+  if (glossaryScroll >= 170) {
+      $(".glossary-section-splter").addClass("fixed");
+  } else {
+      $(".glossary-section-splter").removeClass("fixed");
+  }
+  $('.glossary-content').each(function () {
+      if ($(this).offset().top + $(this).height() - 165 > glossaryScroll) {
+          $('.glossary-content').removeClass('current');
+          $(this).addClass('current');
+          var currSection = $(this).attr('id');
+          $('.sec-letter').removeClass('active');
+          $('span.sec-letter[data-letter=' + currSection + ']').addClass('active');
+
+
+          return false;
+
+
+      }
+  });
+});
+
+$(document).on('click', '.sec-letter', function() {
+  var sec_letter_tab = $(this).attr('data-letter');
+  var targetElement = $("#" + sec_letter_tab);
+  setTimeout(function() {
+    var scrollOffset = targetElement.offset().top - ($(this).parents('.glossary-section-splter').hasClass('fixed') ? 180 : 350);
+    $('html,body').animate({
+      scrollTop: scrollOffset
+    }, 'slow');
+  }.bind(this), 300);
+});
+
+// Trigger search on icon click
+$('.glossary-filter i').click(function() {
+  triggerSearch($(this).siblings('input').val());
+});
+
+// Trigger search on 'Enter' keypress in the input field
+$('.glossary-filter input').keypress(function(event) {
+  if (event.key === 'Enter') {
+    triggerSearch($(this).val());
+  }
+});
+
+// Function to handle the search
+function triggerSearch(filterValue) {
+  let filter = filterValue.toLowerCase();
+  let glossaryItems = $('.glossary-content');
+  let glossaryItemscontent = $('.glossary-content p');
+  let matchFound = false;
+
+  $('.glossary-loader').css('display', 'flex');
+  setTimeout(function () {
+    $('.glossary-loader').css('display', 'none');
+    $('.glossary-filter input').val('');
+    glossaryItems.each(function() {
+      let term = $(this).text().toLowerCase();
+      if (term.includes(filter)) {
+        var glossary_id = $(this).attr('id');
+        $('[data-letter="' + glossary_id + '"]').removeClass('disable');
+        $(this).show();
+        $('.glossary-error').hide();
+        matchFound = true;
+      } else {
+        $(this).hide();
+        var glossary_id = $(this).attr('id');
+        $('[data-letter="' + glossary_id + '"]').addClass('disable');
+      }
+    });
+    glossaryItemscontent.each(function() {
+      let term = $(this).text().toLowerCase();
+      if (term.includes(filter)) {
+        $(this).show();
+        matchFound = true;
+        $('.glossary-error').hide();
+      } else {
+        $(this).hide();
+      }
+    });
+
+    // Show alert if no matches are found
+    if (!matchFound) {
+      $('.glossary-loader').css('display', 'none');
+      $('.glossary-error').show();
+    }
+  }, 500);
+}
+
+
