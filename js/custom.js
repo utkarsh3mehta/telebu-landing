@@ -1015,6 +1015,7 @@ function triggerSearch(filterValue) {
   $('.glossary-loader').css('display', 'flex');
   setTimeout(function () {
     $('.glossary-loader').css('display', 'none');
+    $('.glossary-filter input').val('');
     glossaryItems.each(function() {
       let term = $(this).text().toLowerCase();
       if (term.includes(filter)) {
