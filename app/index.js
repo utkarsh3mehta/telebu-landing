@@ -145,22 +145,24 @@ route.get("/test", (req, res) => {
 route.post("/validate-otp", (req, res) => {
   const { email, otp } = req.body;
   try {
-    db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
-      if (err) res.status(400).send({ message: "No email found" });
-      if (row.otp == otp) {
-        try {
-          const stmt = db.prepare(
-            `UPDATE leads SET otpValidated = 1 where email="${email}"`
-          );
-          stmt.run();
-          stmt.finalize();
-          const mailData = {
-            from: process.env.SMTP_FROM,
-            to: process.env.TO_EMAIL,
-            cc: process.env.CC_EMAIL,
-            subject: "New Lead on TelebuSocial",
-            text: "New interested user",
-            html: `<!DOCTYPE html>
+    db.each(
+      `SELECT * from leads where email="${email}" order by created_at desc limit 1`,
+      (err, row) => {
+        if (err) res.status(400).send({ message: "No email found" });
+        if (row.otp == otp) {
+          try {
+            const stmt = db.prepare(
+              `UPDATE leads SET otpValidated = 1 where email="${email}" order by created_at desc limit 1`
+            );
+            stmt.run();
+            stmt.finalize();
+            const mailData = {
+              from: process.env.SMTP_FROM,
+              to: process.env.TO_EMAIL,
+              cc: process.env.CC_EMAIL,
+              subject: `New Lead on TelebuSocial | ${email}`,
+              text: `New interested user`,
+              html: `<!DOCTYPE html>
             <html lang="en">
               <head>
                 <meta charset="UTF-8" />
@@ -199,6 +201,52 @@ route.post("/validate-otp", (req, res) => {
               </body>
             </html>
             `,
+            };
+            transporter.sendMail(mailData, function (err, info) {
+              if (err) console.log(err);
+              res.status(200).send({ message: "Request submitted" });
+            });
+          } catch (err) {
+            console.log(err);
+            res.status(400).send(err);
+          }
+        } else {
+          res.status(401).send({ message: "OTP does not match" });
+        }
+      }
+    );
+  } catch (err) {
+    res.status(400).send({ message: "No email found" });
+  }
+});
+
+route.post("/resend-otp", (req, res) => {
+  const { email } = req.body;
+  try {
+    db.each(
+      `SELECT * from leads where email="${email}" order by created_at desc limit 1`,
+      (err, row) => {
+        if (err) res.status(400).send({ message: "No email found" });
+        try {
+          const mailData = {
+            from: process.env.SMTP_FROM,
+            to: email,
+            replyTo: "noreply@telebusocial.com",
+            subject: "OTP - Getting started with TelebuSocial",
+            text: "OTP - Getting started with TelebuSocial",
+            html: OTP_MAIL(row.name, row.otp),
+            attachments: [
+              {
+                filename: "logo.png",
+                path: path.join(__dirname, "/assets/logo.png"),
+                cid: "logo", //same cid value as in the html img src
+              },
+              {
+                filename: "email.jpg",
+                path: path.join(__dirname, "/assets/email.jpg"),
+                cid: "email", //same cid value as in the html img src
+              },
+            ],
           };
           transporter.sendMail(mailData, function (err, info) {
             if (err) console.log(err);
@@ -208,50 +256,8 @@ route.post("/validate-otp", (req, res) => {
           console.log(err);
           res.status(400).send(err);
         }
-      } else {
-        res.status(401).send({ message: "OTP does not match" });
       }
-    });
-  } catch (err) {
-    res.status(400).send({ message: "No email found" });
-  }
-});
-
-route.post("/resend-otp", (req, res) => {
-  const { email } = req.body;
-  try {
-    db.each(`SELECT * from leads where email="${email}"`, (err, row) => {
-      if (err) res.status(400).send({ message: "No email found" });
-      try {
-        const mailData = {
-          from: process.env.SMTP_FROM,
-          to: email,
-          replyTo: "noreply@telebusocial.com",
-          subject: "OTP - Getting started with TelebuSocial",
-          text: "OTP - Getting started with TelebuSocial",
-          html: OTP_MAIL(row.name, row.otp),
-          attachments: [
-            {
-              filename: "logo.png",
-              path: path.join(__dirname, "/assets/logo.png"),
-              cid: "logo", //same cid value as in the html img src
-            },
-            {
-              filename: "email.jpg",
-              path: path.join(__dirname, "/assets/email.jpg"),
-              cid: "email", //same cid value as in the html img src
-            },
-          ],
-        };
-        transporter.sendMail(mailData, function (err, info) {
-          if (err) console.log(err);
-          res.status(200).send({ message: "Request submitted" });
-        });
-      } catch (err) {
-        console.log(err);
-        res.status(400).send(err);
-      }
-    });
+    );
   } catch (err) {
     console.log(err);
     res.status(400).send({ message: "No email found" });
@@ -401,12 +407,6 @@ route.post("/raise-query", (req, res) => {
         text-align: center;
         padding: 20px;
       }
-      .otp {
-        font-size: 15px;
-        margin: 20px 0;
-        font-weight: 500;
-        color: #000;
-      }
       p {
         color: #000;
       }
@@ -525,6 +525,7 @@ route.post("/get-started", (req, res) => {
     res.status(400).send(err);
   }
 });
+
 // app.use("/v1", route);
 app.use(route);
 app.listen(port, () => {

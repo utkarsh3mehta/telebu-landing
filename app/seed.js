@@ -5,7 +5,7 @@ db.serialize(() => {
   db.run(`CREATE TABLE leads (
       id INT AUTO_INCREMENT PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) NOT NULL UNIQUE,
+      email VARCHAR(255) NOT NULL,
       country VARCHAR(100),
       number VARCHAR(20),
       city VARCHAR(100),
