@@ -260,40 +260,76 @@
                 <div class="item flex-auto">
                   <ul>
                     <li>
-                      <a href="https://www.telebusocial.com/blog/" target="_blank">Blogs</a>
+                      <a
+                        href="https://www.telebusocial.com/blog/"
+                        target="_blank"
+                        >Blogs</a
+                      >
                     </li>
-                    <li class="disable position-relative" data-bs-toggle="tooltip" title="Coming Soon">
+                    <li
+                      class="disable position-relative"
+                      data-bs-toggle="tooltip"
+                      title="Coming Soon"
+                    >
                       <a href="" target="_blank">Templates + checklists</a>
                     </li>
-                    <li class="disable position-relative" data-bs-toggle="tooltip" title="Coming Soon">
+                    <li
+                      class="disable position-relative"
+                      data-bs-toggle="tooltip"
+                      title="Coming Soon"
+                    >
                       <a href="" target="_blank">Telebu Social Academy</a>
                     </li>
                     <li>
-                      <a href="https://www.telebusocial.com/blog/guides-playbooks/" target="_blank">Guides + playbooks</a>
+                      <a
+                        href="https://www.telebusocial.com/blog/guides-playbooks/"
+                        target="_blank"
+                        >Guides + playbooks</a
+                      >
                     </li>
-                    <li class="disable position-relative" data-bs-toggle="tooltip" title="Coming Soon">
+                    <li
+                      class="disable position-relative"
+                      data-bs-toggle="tooltip"
+                      title="Coming Soon"
+                    >
                       <a href="" target="_blank">Webinars</a>
                     </li>
-                    <li class="disable position-relative" data-bs-toggle="tooltip" title="Coming Soon">
+                    <li
+                      class="disable position-relative"
+                      data-bs-toggle="tooltip"
+                      title="Coming Soon"
+                    >
                       <a href="" target="_blank">Tools</a>
                     </li>
                   </ul>
                 </div>
                 <div class="item flex-auto">
                   <ul>
-                    <li class="disable position-relative" data-bs-toggle="tooltip" title="Coming Soon">
+                    <li
+                      class="disable position-relative"
+                      data-bs-toggle="tooltip"
+                      title="Coming Soon"
+                    >
                       <a href="" target="_blank">Videos</a>
                     </li>
                     <li>
                       <a href="resources/on-demand-demo.html">On-demand demo</a>
                     </li>
-                    <li class="disable position-relative" data-bs-toggle="tooltip" title="Coming Soon">
+                    <li
+                      class="disable position-relative"
+                      data-bs-toggle="tooltip"
+                      title="Coming Soon"
+                    >
                       <a href="">News+updates</a>
                     </li>
                     <li>
-                      <a href="https://podcasters.spotify.com/pod/show/humanisingcommunication/" target="_blank">Podcast</a>
+                      <a
+                        href="https://podcasters.spotify.com/pod/show/humanisingcommunication/"
+                        target="_blank"
+                        >Podcast</a
+                      >
                     </li>
-                    
+
                     <li>
                       <a href="resources/glossary.html">Glossary</a>
                     </li>
@@ -397,17 +433,28 @@
                           value=""
                           placeholder="Start typing the name ..."
                         />
+                        <span class="error-icon">
+                          <i
+                            class="fa fa-exclamation-circle"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
                       </div>
 
                       <div class="form-group slide-block required">
                         <label>Email:</label>
                         <input
-                          type="text"
+                          type="email"
                           id="get_user-email"
                           value=""
                           placeholder="Start typing the email ..."
                         />
-                        <span id="user_email" class="error"></span>
+                        <span class="error-icon">
+                          <i
+                            class="fa fa-exclamation-circle"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
                       </div>
 
                       <div
@@ -421,6 +468,12 @@
                           value=""
                           placeholder="Your Number"
                         />
+                        <span class="error-icon">
+                          <i
+                            class="fa fa-exclamation-circle"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
                       </div>
                       <div class="form-group slide-block">
                         <label>Are you looking for a 1:1 Demo?</label>
@@ -516,6 +569,7 @@
                       <label
                         ><input
                           type="text"
+                          name="ques1query"
                           placeholder="Did not find your answer ? Write here..."
                         />
                       </label>
@@ -526,6 +580,7 @@
                       <button
                         type="button"
                         id=""
+                        disabled
                         class="btn btn-primary save-next-btn"
                       >
                         Save & Next
@@ -563,6 +618,7 @@
                       <button
                         type="button"
                         id=""
+                        disabled
                         class="btn btn-primary save-next-btn"
                       >
                         Save & Next
@@ -583,16 +639,16 @@
                     <div class="ques-slider-container">
                       <div class="slider-fill" id="sliderFill"></div>
                       <div class="slider-dots">
-                        <span class="dot" data-value="0">
+                        <span class="dot" data-value="Not Sure">
                           <span>Not Sure</span>
                         </span>
-                        <span class="dot" data-value="1">
+                        <span class="dot" data-value="Up to 5,000">
                           <span>Up to 5,000</span>
                         </span>
-                        <span class="dot" data-value="2">
+                        <span class="dot" data-value="5,000-10,000">
                           <span>5,000-10,000</span>
                         </span>
-                        <span class="dot" data-value="3">
+                        <span class="dot" data-value="More than 10,000">
                           <span>More than 10,000</span>
                         </span>
                       </div>
@@ -622,12 +678,13 @@
                     </div>
                     <div class="ques-choice">
                       <div class="select-box">
-                        <select>
-                          <option>Retail</option>
-                          <option>Healthcare</option>
-                          <option>Finance</option>
-                          <option>Education</option>
-                          <option>etc</option>
+                        <select id="ques4Select">
+                          <option value="">Selected</option>
+                          <option value="Retail">Retail</option>
+                          <option value="Healthcare">Healthcare</option>
+                          <option value="Finance">Finance</option>
+                          <option value="Education">Education</option>
+                          <option value="etc">etc</option>
                         </select>
                       </div>
                     </div>
@@ -636,6 +693,7 @@
                     >
                       <button
                         type="button"
+                        disabled
                         id=""
                         class="btn btn-primary save-next-btn"
                       >
@@ -688,23 +746,26 @@
                         />
                         <span>Increase Sales and Conversions</span></label
                       >
-                      <label
+                      <label class="input-type-checkbox"
                         ><input
+                          id="input-type-checkbox"
                           type="checkbox"
                           name="ques5"
-                          value="Not found your answer in the above options? Write here..."
-                        />
+                          value="" />
                         <span
-                          >Not found your answer in the above options? Write
-                          here...</span
-                        ></label
-                      >
+                          ><input
+                            type="text"
+                            id="checkbox-input-text"
+                            name="ques5"
+                            placeholder="Not found your answer in the above options? Write here..." /></span
+                      ></label>
                     </div>
                     <div
                       class="ques-save-btn d-flex align-items-center justify-content-center position-relative"
                     >
                       <button
                         type="button"
+                        disabled
                         id=""
                         class="btn btn-primary submit-btn"
                       >
@@ -1228,133 +1289,200 @@
         /></a>
       </div>
     </div>
-    <div class="modal fade modal-default" id="modalGetStarted" tabindex="-1" aria-labelledby="modalGetStartedModalLabel">
+    <div
+      class="modal fade modal-default"
+      id="modalGetStarted"
+      tabindex="-1"
+      aria-labelledby="modalGetStartedModalLabel"
+    >
       <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h1 class="modal-title font-32px" id="exampleModalLabel">
-                      Get <span class="color-primary">started</span>
-                  </h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div class="form form-field-white">
-                      <div class="form-group">
-                          <label>Name:</label>
-                          <input type="text" value="" placeholder="Your Name" />
-                          <span id="user_name" class="error"></span>
-                      </div>
-
-                      <div class="form-group">
-                          <label>Business Email:</label>
-                          <input type="text" id="business-email" value="" placeholder="Your Business Email" />
-                          <span id="user_email" class="error"></span>
-                      </div>
-
-                      <div class="row phone-input-group">
-                          <div class="col-sm-2 col-3">
-                          <div class="form-group">
-                              <label>Country</label>
-                              <input id="country-code" class="country-code" type="text" value="" placeholder="" />
-                          </div>
-                          </div>
-                          <div class="col-sm-5 col-6">
-                          <div class="form-group">
-                              <label>Phone number</label>
-                              <input id="mobile-number" class="mobile-number" type="tel" value="" placeholder="" />
-                          </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label>Are you looking for a 1:1 Demo?</label>
-
-                          <div class="d-flex align-items-center">
-                              <p class="font-18px font-sm-14px color-f49 mb-0">No</p>
-                              <div class="custom-switch mx-3">
-                                  <input type="checkbox" id="switch" checked />
-                                  <label for="switch" class="mb-0"></label>
-                              </div>
-                              <p class="font-18px font-sm-14px color-f49 mb-0">Yes</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" id="getStartedSubmitButton" class="btn btn-primary open-otp-modal">
-          Next
-        </button>
-              </div>
-              <div id="get_started_error" style="width: 100%; text-align: center;font-size: 18px; color: red;">
-
-              </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title font-32px" id="exampleModalLabel">
+              Get <span class="color-primary">started</span>
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-      </div>
-  </div>
+          <div class="modal-body">
+            <div class="form form-field-white">
+              <div class="form-group">
+                <label>Name:</label>
+                <input type="text" value="" placeholder="Your Name" />
+                <span id="user_name" class="error"></span>
+              </div>
 
-  <div class="modal fade modal-default modal-otp" id="modalOtp" tabindex="-1" aria-labelledby="modalOtpModalLabel">
+              <div class="form-group">
+                <label>Business Email:</label>
+                <input
+                  type="text"
+                  id="business-email"
+                  value=""
+                  placeholder="Your Business Email"
+                />
+                <span id="user_email" class="error"></span>
+              </div>
+
+              <div class="row phone-input-group">
+                <div class="col-sm-2 col-3">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <input
+                      id="country-code"
+                      class="country-code"
+                      type="text"
+                      value=""
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-5 col-6">
+                  <div class="form-group">
+                    <label>Phone number</label>
+                    <input
+                      id="mobile-number"
+                      class="mobile-number"
+                      type="tel"
+                      value=""
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Are you looking for a 1:1 Demo?</label>
+
+                <div class="d-flex align-items-center">
+                  <p class="font-18px font-sm-14px color-f49 mb-0">No</p>
+                  <div class="custom-switch mx-3">
+                    <input type="checkbox" id="switch" checked />
+                    <label for="switch" class="mb-0"></label>
+                  </div>
+                  <p class="font-18px font-sm-14px color-f49 mb-0">Yes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="getStartedSubmitButton"
+              class="btn btn-primary open-otp-modal"
+            >
+              Next
+            </button>
+          </div>
+          <div
+            id="get_started_error"
+            style="width: 100%; text-align: center; font-size: 18px; color: red"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade modal-default modal-otp"
+      id="modalOtp"
+      tabindex="-1"
+      aria-labelledby="modalOtpModalLabel"
+    >
       <div class="modal-dialog">
+        <div class="modal-content">
           <div class="modal-content">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h1 class="modal-title font-32px" id="exampleModalLabel">
-                          Verify Email
-                      </h1>
-                      <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                  </div>
-                  <div class="modal-body">
-                      <h4 class="font-28px font-w-600 mt-25">Enter OTP</h4>
+            <div class="modal-header">
+              <h1 class="modal-title font-32px" id="exampleModalLabel">
+                Verify Email
+              </h1>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body">
+              <h4 class="font-28px font-w-600 mt-25">Enter OTP</h4>
 
-                      <p class="font-18px font-w-400 color-494">
-                          sent to your email ID
-                      </p>
+              <p class="font-18px font-w-400 color-494">
+                sent to your email ID
+              </p>
 
-                      <div class="form otp-fields">
-                          <div id="otp-inputs" data-inputs-classes="text-danger" data-otp-length="6"></div>
-                      </div>
-
-                      <div class="row justify-content-between">
-                          <div class="col-auto">
-                              <p id="resend_timer" class="font-18px font-w-400 color-494">00:30</p>
-                          </div>
-                          <div class="col-auto">
-                              <p class="font-18px font-w-400 color-494 text-transform-auto">
-                                  Didn't receive a OTP?
-                                  <a id="resend_otp" class="color-primary text-decoration-none">Resend OTP</a>
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" id="otpSubmitButton" class="btn btn-primary open-otp-modal mt-25">
-            Next
-          </button>
-                  </div>
-                  <div id="otp_modal_error" style="width: 100%; text-align: center;font-size: 18px; color: red;">
-
-                  </div>
+              <div class="form otp-fields">
+                <div
+                  id="otp-inputs"
+                  data-inputs-classes="text-danger"
+                  data-otp-length="6"
+                ></div>
               </div>
-          </div>
-      </div>
-  </div>
 
-  <div class="modal fade modal-default modal-success" id="modalSuccess" tabindex="-1" aria-labelledby="modalOtpModalLabel">
+              <div class="row justify-content-between">
+                <div class="col-auto">
+                  <p id="resend_timer" class="font-18px font-w-400 color-494">
+                    00:30
+                  </p>
+                </div>
+                <div class="col-auto">
+                  <p class="font-18px font-w-400 color-494 text-transform-auto">
+                    Didn't receive a OTP?
+                    <a
+                      id="resend_otp"
+                      class="color-primary text-decoration-none"
+                      >Resend OTP</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="otpSubmitButton"
+                class="btn btn-primary open-otp-modal mt-25"
+              >
+                Next
+              </button>
+            </div>
+            <div
+              id="otp_modal_error"
+              style="
+                width: 100%;
+                text-align: center;
+                font-size: 18px;
+                color: red;
+              "
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade modal-default modal-success"
+      id="modalSuccess"
+      tabindex="-1"
+      aria-labelledby="modalOtpModalLabel"
+    >
       <div class="modal-dialog">
+        <div class="modal-content">
           <div class="modal-content">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body text-center">
-                      <img src="../images/icon-success-big.svg" alt="">
-                      <p class="font-32px font-w-700 color-333 mt-40 mb-40">
-                          Thank You!
-                      </p>
-                  </div>
-              </div>
+            <div class="modal-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body text-center">
+              <img src="../images/icon-success-big.svg" alt="" />
+              <p class="font-32px font-w-700 color-333 mt-40 mb-40">
+                Thank You!
+              </p>
+            </div>
           </div>
+        </div>
       </div>
-  </div>
+    </div>
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -1400,6 +1528,7 @@
           $(".form-inner-block .slide-block").outerHeight() + 9;
         const totalSlides = $(".form-inner-block .slide-block").length;
         let currentIndex = 0;
+        let currentstep = 1;
         const totalQues = $(".started-ques-block .ques-block-content").length;
         let currentQuesIndex = 0;
         function updateSlider(slideouterheight) {
@@ -1427,11 +1556,74 @@
             .eq(currentQuesIndex)
             .addClass("current");
         }
-        $(".started-ques-block .save-next-btn").click(function () {
-          if (currentQuesIndex < totalQues - 1) {
-            currentQuesIndex++;
+        let isClicking = false;
 
-            updateQuestion();
+        // Attach keydown event handler
+        $(document).on(
+          "keydown",
+          ".started-ques-block .ques-choice input",
+          function (e) {
+            //console.log(this);
+            if (e.key === "Enter") {
+              e.preventDefault(); // Prevent default action
+              const $currentStepElement =
+                $(`.ques-block-content`).eq(currentQuesIndex);
+              if (validateQuestion(currentQuesIndex)) {
+                console.log("yes");
+                if (currentQuesIndex < totalQues - 1) {
+                  currentQuesIndex++;
+
+                  updateQuestion();
+                }
+              } else {
+                console.log("else");
+              }
+            }
+          }
+        );
+        // Attach keydown event handler
+        $(document).on(
+          "change",
+          ".started-ques-block .ques-choice input, .started-ques-block .ques-choice select, .started-ques-block .ques-choice input[type='checkbox']",
+          function (e) {
+            const $currentStepElementBtn = $(`.ques-block-content`)
+              .eq(currentQuesIndex)
+              .find(".save-next-btn");
+            $currentStepElementBtn.prop("disabled", false);
+          }
+        );
+
+        $(document).on(
+          "change",
+          ".started-ques-block .ques-choice input[type='checkbox']",
+          function (e) {
+            // Check if at least one checkbox is checked
+            const isAnyChecked =
+              $(
+                '.started-ques-block .ques-choice input[type="checkbox"]:checked'
+              ).length > 0;
+
+            if (isAnyChecked) {
+              $(`.ques-block-content .submit-btn`).prop("disabled", false);
+            } else {
+              $(`.ques-block-content .submit-btn`).prop("disabled", true);
+            }
+          }
+        );
+
+        $(".started-ques-block .save-next-btn").click(function () {
+          console.log("click");
+          const $currentStepElement =
+            $(`.ques-block-content`).eq(currentQuesIndex);
+          if (validateQuestion(currentQuesIndex)) {
+            console.log("yes");
+            if (currentQuesIndex < totalQues - 1) {
+              currentQuesIndex++;
+
+              updateQuestion();
+            }
+          } else {
+            console.log("else");
           }
         });
         $(".started-ques-block .que-back-btn").click(function () {
@@ -1451,64 +1643,55 @@
             updateQuestion();
           }
         });
-        $(".started-inner-form .save-next-btn").click(function () {
-          validateForm();
-          $(".started-inner-header").slideUp();
-          if (currentIndex == 0) {
-            $(".right-up-arrow").show();
+        $(".started-inner-form .slide-block input").keydown(function (e) {
+          if (event.key === "Enter") {
+            $(".started-inner-form .save-next-btn").click();
+            $(".form-inner-block .slide-block")
+              .eq(currentIndex)
+              .find("input")
+              .focus();
           }
-          if (currentIndex < totalSlides - 1) {
-            $(".started-inner-form .current label").hide();
-            currentIndex++;
-            updateSlider(slideHeight);
-          } else {
-            if ($("#get-started-switch").is(":checked")) {
-              $(".started-inner-form").hide();
-              $(".demo-yes-content").show();
-              $(".angle-arrow").hide();
-              $(".right-angle-arrow").hide();
-            } else {
-              $(".started-inner-form").hide();
-              $(".demo-no-content").show();
-              $(".angle-arrow").hide();
-              $(".right-angle-arrow").hide();
+
+          if (currentIndex === 3) {
+            if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+              $(".started-inner-form .slide-block #get-started-switch").prop(
+                "checked",
+                !$(".started-inner-form .slide-block #get-started-switch").prop(
+                  "checked"
+                )
+              );
+              event.preventDefault();
             }
           }
         });
-
-        // function validate form
-        function validateForm() {
-         // document.getElementById("get_user_name").innerText = "";
-          //document.getElementById("get_user_email").innerText = "";
-
-          let username = $('#get_user_name').val();
-
-          //var email = getElementById("get_user_email").value;
-          // console.log(email, username);
-          var isValid = true;
-
-          if (username.trim() === "") {
-            username.parent('.slide-block').addClass('show-error');
-            isValid = false;
+        $(".started-inner-form .save-next-btn").click(function () {
+          const $currentStepElement = $(`.slide-block`).eq(currentIndex);
+          const $inputField = $currentStepElement.find("input");
+          // $(".form-inner-block .slide-block")
+          //   .eq(currentIndex + 1)
+          //   .find("input")
+          //   .focus();
+          if (validateInput($inputField)) {
+            $($currentStepElement).removeClass("show-error");
+            $(".started-inner-header").slideUp();
+            if (currentIndex == 0) {
+              $(".right-up-arrow").show();
+            }
+            if (currentIndex < totalSlides - 1) {
+              $(".started-inner-form .current label").hide();
+              currentIndex++;
+              updateSlider(slideHeight);
+            }
+          } else {
+            $($currentStepElement).addClass("show-error");
           }
-
-          // if (email.trim() === "") {
-          //   $(this).parent('.slide-block').addClass('show-error');
-          //   isValid = false;
-          // } else if (!validateEmail(email)) {
-          //   $(this).parent('.slide-block').addClass('show-error');
-          //   isValid = false;
-          // }
-
-          return isValid;
-        }
-
-        function validateEmail(email) {
-          var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          return emailPattern.test(email);
-        }
-         $(".started-inner-form .right-up-arrow").click(function () {
+        });
+        $(".started-inner-form .right-up-arrow").click(function () {
           $(".started-inner-form .previous label").show();
+          $(".form-inner-block .slide-block")
+            .eq(currentIndex - 1)
+            .find("input")
+            .focus();
           if (currentIndex == 1) {
             $(".right-up-arrow").hide();
             $(".started-inner-header").slideDown();
@@ -1529,6 +1712,18 @@
           $(".started-ques-block").show();
           $(".angle-arrow").show();
           $(".right-angle-arrow").show();
+          const ques1query = $('input[name="ques1query"]');
+          const queradioButtons = $('input[name="ques1"]');
+          ques1query.on("focus", function () {
+            if (queradioButtons.prop("checked", false)) {
+              ques1query.addClass("selected-input-text");
+            } else {
+              ques1query.removeClass("selected-input-text");
+            }
+          });
+          queradioButtons.on("change", function () {
+            ques1query.removeClass("selected-input-text");
+          });
         });
       });
       const dots = document.querySelectorAll(".dot");
@@ -1557,6 +1752,122 @@
 
       // Initialize the dots and fill based on the default dot (first one)
       updateDotsAndFill(0);
+
+      function validateInput($input) {
+        if ($input.length === 0) {
+          return false;
+        }
+
+        const value = $input.val().trim();
+        const type = $input.attr("type");
+
+        if (type === "text" && value.length > 0) {
+          return true;
+        }
+
+        if (type === "email") {
+          const emailPattern =
+            /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+          return emailPattern.test(value);
+        }
+
+        if (type === "tel") {
+          const phonePattern = /^[0-9]{10}$/; // Example: a 10-digit phone number
+          return phonePattern.test(value);
+        }
+        if (type === "checkbox") {
+          if ($("#get-started-switch").is(":checked")) {
+            $(".started-inner-form").hide();
+            $(".demo-yes-content").show();
+            $(".angle-arrow").hide();
+            $(".right-angle-arrow").hide();
+          } else {
+            $(".started-inner-form").hide();
+            $(".demo-no-content").show();
+            $(".angle-arrow").hide();
+            $(".right-angle-arrow").hide();
+          }
+        }
+
+        return false;
+      }
+      let formData = {
+        step1: "",
+        step2: "",
+        step3: "",
+        step4: "",
+      };
+      function validateQuestion(step) {
+        let isValid = true;
+        let selectedValue = "";
+
+        if (step === 0) {
+          const radioButtons = $('input[name="ques1"]');
+          const ques1query = $('input[name="ques1query"]');
+          const radioValue = radioButtons.filter(":checked").val();
+          const queryVal = ques1query.val().trim();
+
+          if (radioValue) {
+            selectedValue = radioValue;
+          } else if (queryVal !== "") {
+            selectedValue = queryVal;
+          }
+
+          if (selectedValue === "") {
+            isValid = false;
+          } else {
+            formData.step1 = selectedValue;
+          }
+        } else if (step === 1) {
+          selectedValue = $('input[name="ques2"]:checked').val();
+
+          if (!selectedValue) {
+            isValid = false;
+          } else {
+            formData.step2 = selectedValue;
+          }
+        } else if (step === 2) {
+          selectedValue = $(".slider-dots .dot.active").last().data("value");
+          formData.step3 = selectedValue;
+        } else if (step === 3) {
+          selectedValue = $("#ques4Select").val();
+          if (selectedValue !== "") {
+            formData.step4 = selectedValue;
+          } else {
+            isValid = false;
+          }
+        }
+
+        return isValid;
+      }
+
+      $("#checkbox-input-text").on("input", function () {
+        $("#input-type-checkbox").val($(this).val());
+      });
+      $("#checkbox-input-text").on("focus", function () {
+        $(this).parent().siblings().prop("checked", true);
+      });
+      $(".ques-save-btn .submit-btn").click(function () {
+        var checkedValues = $('input[name="ques5"]:checked')
+          .map(function () {
+            return $(this).val();
+          })
+          .get();
+
+        if (checkedValues.length > 0) {
+          var userName = $("#get_user_name").val();
+          var userEmail = $("#get_user-email").val();
+          var userNumber = $("#pricing-form-number").val();
+          console.log(userName);
+          console.log(userEmail);
+          console.log(userNumber);
+          console.log(formData.step1);
+          console.log(formData.step2);
+          console.log(formData.step3);
+          console.log(formData.step4);
+          console.log(checkedValues);
+        }
+      });
     </script>
   </body>
 </html>
