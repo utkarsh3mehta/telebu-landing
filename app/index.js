@@ -152,7 +152,7 @@ route.post("/validate-otp", (req, res) => {
         if (row.otp == otp) {
           try {
             const stmt = db.prepare(
-              `UPDATE leads SET otpValidated = 1 where email="${email}" order by created_at desc limit 1`
+              `UPDATE leads SET otpValidated = 1 where email="${email}"`
             );
             stmt.run();
             stmt.finalize();
