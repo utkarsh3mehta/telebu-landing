@@ -2229,8 +2229,21 @@ header .logo img{
                     box-shadow: 2px 3px 60px -10px rgba(53, 83, 210, 0.4);
                 }
             }
+            .slide-block{
+                &.show-error{
+                    input{
+                        border-color: #ff0000;
+                        box-shadow: 0px 4px 30px 0px #FF000040;
+                        background-image: none;
+                    }
+                    .error-icon{
+                        display: block;
+                    }
+                }
+            }
             .form-group{
                 margin-bottom: 63px;
+                position: relative;
                 label{
                     display: block;
                     font-size: 24px;
@@ -2247,6 +2260,7 @@ header .logo img{
                     background-origin: border-box;
                     background-clip: padding-box, border-box; 
                     padding: 10px;
+                    color: #000;
                     &::placeholder {
                         color: #b6b6b6;
                         font-size: 16px;
@@ -2256,6 +2270,15 @@ header .logo img{
                 .custom-switch{
                     label{
                         background: #3166de;
+                    }
+                }
+                .error-icon{
+                    position: absolute;
+                    right: 16px;
+                    top: 68px;
+                    display: none;
+                    i{
+                        color: red;
                     }
                 }
             }
@@ -2294,6 +2317,18 @@ header .logo img{
             flex-direction: column;
             gap: 30px;
             label{
+                &.input-type-checkbox{
+                    span{
+                        padding: 0 !important;
+                        border: 0 !important;
+                        input{
+                            outline: 0;
+                            border-radius: 10px;
+                            color: #fff;
+                            padding-left: 44px;
+                        }
+                    }
+                }
                 span{
                     width: 100%;
                     border: 1px solid transparent;
@@ -2349,6 +2384,17 @@ header .logo img{
                         visibility: hidden;
                     }
                 }
+                input.selected-input-text{
+                    font-weight: 500;
+                    color: #fff;
+                    background: linear-gradient(90deg, #3553D2 0%, #1B2B6C 100%);
+                    border: 1px solid #3553D2;
+                    box-shadow: 2px 3px 60px -10px rgba(53, 83, 210, 0.4);
+                    outline: 0;
+                    &::placeholder{
+                        color: #fff;
+                    }
+                }
                 input[type="checkbox"]:checked + span{
                     font-weight: 500;
                     color: #fff;
@@ -2359,10 +2405,22 @@ header .logo img{
                         opacity: 1;
                         visibility: visible;
                     }
+                    input[type="text"]{
+                        &:focus{
+                            border: 0;
+                        }
+                        &::placeholder{
+                            color: #fff;
+                        }
+                        background: linear-gradient(90deg, #3553D2 0%, #1B2B6C 100%);
+                    }
                 }
             }
             input:not([type="text"]) {
-                display: none;
+                display: block;
+                opacity: 0;
+                -webkit-appearance: none;
+                -moz-appearance: none;
             }
             input[type="text"] {
                 width: 100%;

@@ -3888,8 +3888,17 @@ header .logo img {
 .get-started-form .form-inner-block .form .slide-block.current input {
   box-shadow: 2px 3px 60px -10px rgba(53, 83, 210, 0.4);
 }
+.get-started-form .form-inner-block .form .slide-block.show-error input {
+  border-color: #ff0000;
+  box-shadow: 0px 4px 30px 0px rgba(255, 0, 0, 0.2509803922);
+  background-image: none;
+}
+.get-started-form .form-inner-block .form .slide-block.show-error .error-icon {
+  display: block;
+}
 .get-started-form .form-inner-block .form .form-group {
   margin-bottom: 63px;
+  position: relative;
 }
 .get-started-form .form-inner-block .form .form-group label {
   display: block;
@@ -3906,6 +3915,7 @@ header .logo img {
   background-origin: border-box;
   background-clip: padding-box, border-box;
   padding: 10px;
+  color: #000;
 }
 .get-started-form .form-inner-block .form .form-group input::-moz-placeholder {
   color: #b6b6b6;
@@ -3924,6 +3934,15 @@ header .logo img {
 }
 .get-started-form .form-inner-block .form .form-group .custom-switch label {
   background: #3166de;
+}
+.get-started-form .form-inner-block .form .form-group .error-icon {
+  position: absolute;
+  right: 16px;
+  top: 68px;
+  display: none;
+}
+.get-started-form .form-inner-block .form .form-group .error-icon i {
+  color: red;
 }
 .get-started-form .form-btn {
   padding-top: 170px;
@@ -3956,6 +3975,16 @@ header .logo img {
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+.get-started-form .started-ques-block .ques-choice label.input-type-checkbox span {
+  padding: 0 !important;
+  border: 0 !important;
+}
+.get-started-form .started-ques-block .ques-choice label.input-type-checkbox span input {
+  outline: 0;
+  border-radius: 10px;
+  color: #fff;
+  padding-left: 44px;
 }
 .get-started-form .started-ques-block .ques-choice label span {
   width: 100%;
@@ -4012,6 +4041,23 @@ header .logo img {
   opacity: 0;
   visibility: hidden;
 }
+.get-started-form .started-ques-block .ques-choice label input.selected-input-text {
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(90deg, #3553D2 0%, #1B2B6C 100%);
+  border: 1px solid #3553D2;
+  box-shadow: 2px 3px 60px -10px rgba(53, 83, 210, 0.4);
+  outline: 0;
+}
+.get-started-form .started-ques-block .ques-choice label input.selected-input-text::-moz-placeholder {
+  color: #fff;
+}
+.get-started-form .started-ques-block .ques-choice label input.selected-input-text:-ms-input-placeholder {
+  color: #fff;
+}
+.get-started-form .started-ques-block .ques-choice label input.selected-input-text::placeholder {
+  color: #fff;
+}
 .get-started-form .started-ques-block .ques-choice label input[type=checkbox]:checked + span {
   font-weight: 500;
   color: #fff;
@@ -4023,8 +4069,26 @@ header .logo img {
   opacity: 1;
   visibility: visible;
 }
+.get-started-form .started-ques-block .ques-choice label input[type=checkbox]:checked + span input[type=text] {
+  background: linear-gradient(90deg, #3553D2 0%, #1B2B6C 100%);
+}
+.get-started-form .started-ques-block .ques-choice label input[type=checkbox]:checked + span input[type=text]:focus {
+  border: 0;
+}
+.get-started-form .started-ques-block .ques-choice label input[type=checkbox]:checked + span input[type=text]::-moz-placeholder {
+  color: #fff;
+}
+.get-started-form .started-ques-block .ques-choice label input[type=checkbox]:checked + span input[type=text]:-ms-input-placeholder {
+  color: #fff;
+}
+.get-started-form .started-ques-block .ques-choice label input[type=checkbox]:checked + span input[type=text]::placeholder {
+  color: #fff;
+}
 .get-started-form .started-ques-block .ques-choice input:not([type=text]) {
-  display: none;
+  display: block;
+  opacity: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 .get-started-form .started-ques-block .ques-choice input[type=text] {
   width: 100%;
